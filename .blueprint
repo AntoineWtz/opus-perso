@@ -1,0 +1,76 @@
+created:
+    - database/factories/RoleFactory.php
+    - database/factories/UserFactory.php
+    - database/factories/GenreMusicauxFactory.php
+    - database/factories/TypePublicationFactory.php
+    - database/factories/TypeMediaFactory.php
+    - database/factories/TypeEvenementFactory.php
+    - database/factories/GalerieFactory.php
+    - database/factories/LieuxFactory.php
+    - database/factories/EvenementFactory.php
+    - database/factories/MediaFactory.php
+    - database/factories/ArtisteFactory.php
+    - database/factories/PublicationFactory.php
+    - database/factories/PageStatiqueFactory.php
+    - database/factories/InfoAffichageFactory.php
+    - database/factories/ParametrageRsFactory.php
+    - database/factories/MotifContactFactory.php
+    - database/migrations/2023_06_09_141909_create_roles_table.php
+    - database/migrations/2023_06_09_141910_create_users_table.php
+    - database/migrations/2023_06_09_141911_create_genre_musicauxes_table.php
+    - database/migrations/2023_06_09_141912_create_type_publications_table.php
+    - database/migrations/2023_06_09_141913_create_type_media_table.php
+    - database/migrations/2023_06_09_141914_create_type_evenements_table.php
+    - database/migrations/2023_06_09_141915_create_galeries_table.php
+    - database/migrations/2023_06_09_141916_create_lieuxes_table.php
+    - database/migrations/2023_06_09_141917_create_evenements_table.php
+    - database/migrations/2023_06_09_141918_create_media_table.php
+    - database/migrations/2023_06_09_141919_create_artistes_table.php
+    - database/migrations/2023_06_09_141920_create_publications_table.php
+    - database/migrations/2023_06_09_141921_create_page_statiques_table.php
+    - database/migrations/2023_06_09_141922_create_info_affichages_table.php
+    - database/migrations/2023_06_09_141923_create_parametrage_rs_table.php
+    - database/migrations/2023_06_09_141924_create_motif_contacts_table.php
+    - database/migrations/2023_06_09_141925_create_genre_musicaux_publication_table.php
+    - database/migrations/2023_06_09_141926_create_artiste_genre_musicaux_table.php
+    - database/migrations/2023_06_09_141927_create_evenement_genre_musicaux_table.php
+    - database/migrations/2023_06_09_141928_create_galerie_media_table.php
+    - database/migrations/2023_06_09_141929_create_galerie_publication_table.php
+    - database/migrations/2023_06_09_141930_create_artiste_evenement_table.php
+    - database/migrations/2023_06_09_141931_create_evenement_media_table.php
+    - database/migrations/2023_06_09_141932_create_media_publication_table.php
+    - database/migrations/2023_06_09_141933_create_artiste_media_table.php
+    - database/migrations/2023_06_09_141934_create_artiste_publication_table.php
+    - app/Models/Role.php
+    - app/Models/User.php
+    - app/Models/GenreMusicaux.php
+    - app/Models/TypePublication.php
+    - app/Models/TypeMedia.php
+    - app/Models/TypeEvenement.php
+    - app/Models/Galerie.php
+    - app/Models/Lieux.php
+    - app/Models/Evenement.php
+    - app/Models/Media.php
+    - app/Models/Artiste.php
+    - app/Models/Publication.php
+    - app/Models/PageStatique.php
+    - app/Models/InfoAffichage.php
+    - app/Models/ParametrageRs.php
+    - app/Models/MotifContact.php
+models:
+    Role: { nom: string, relationships: { hasMany: User } }
+    User: { role_id: 'id foreign nullable', name: string, email: 'string unique', password: string, nom: 'string nullable', prenom: 'string nullable', fonction: 'string nullable', descriptif: 'longtext nullable', derniere_connexion: 'date nullable', activite: 'enum:EnLigne,HorsLigne nullable', notification_csb: 'enum:oui,non nullable', notification_rs: 'enum:oui,non  nullable', timestamps: timestamps, relationships: { hasMany: 'Publication , Media , PageStatique' } }
+    GenreMusicaux: { nom: string, visibilite: 'enum:Actif,Inactif', relationships: { belongsToMany: 'Publication , Artiste , Evenement' } }
+    TypePublication: { type_pub: string, couleur: string, relationships: { hasMany: Publication } }
+    TypeMedia: { type_med: string, relationships: { hasMany: Media } }
+    TypeEvenement: { type_event: string, relationships: { hasMany: Evenement } }
+    Galerie: { nom: string, relationships: { belongsToMany: 'media , publication' } }
+    Lieux: { nom: string, adresse: string, visibilite: 'enum:Actif,Inactif', relationships: { hasMany: 'Publication , Media , Evenement' } }
+    Evenement: { type_evenement_id: 'id foreign', lieux_id: 'id foreign', titre: string, descriptif: longtext, date_event: date, billeterie: 'string nullable', mise_en_avant: 'enum:oui,non', visibilite: 'enum:Actif,Inactif', timestamps: timestamps, relationships: { belongsToMany: 'GenreMusicaux , Artiste , Media' } }
+    Media: { type_media_id: 'id foreign', user_id: 'id foreign', lieux_id: 'id foreign', chemin: string, titre: string, balise_alt: string, modifieur: 'string nullable', photographe: 'string nullable', timestamps: timestamps, relationships: { belongsToMany: 'Galerie , Evenement , Publication' } }
+    Artiste: { nom: string, descriptif: text, lien_facebook: 'string nullable', lien_youtube: 'string nullable', lien_twiiter: 'string nullable', lien_instagram: 'string nullable', relationships: { belongsToMany: 'Media , Publication , GenreMusicaux , Evenement' } }
+    Publication: { type_publication_id: 'id foreign', user_id: 'id foreign', lieux_id: 'id foreign', titre: string, descriptif: longtext, toulousain: 'enum:oui,non', resume_rs: text, statut: 'enum:Brouillon,Relecture,Valide', timestamps: timestamps, relationships: { belongsToMany: 'GenreMusicaux , Artiste , Media , Galerie' } }
+    PageStatique: { user_id: 'id foreign', titre: string, descriptif: longtext, ordre: 'integer unique', zone: 'enum:header,footer', visibilite: 'enum:Actif,Inactif', timestamps: timestamps }
+    InfoAffichage: { media_id: 'id foreign', titre: string, descriptif: longtext, zone: 'enum:1,2', visibilite: 'enum:Actif,Inactif', ordre: 'integer unique nullable' }
+    ParametrageRs: { nom: string, code: string, token: longtext, picto: string }
+    MotifContact: { motif: string, email: string, visibilite: 'enum:Actif,Inactif', ordre: 'integer unique' }

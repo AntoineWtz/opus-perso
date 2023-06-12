@@ -1,0 +1,161 @@
+models:
+   Role:
+      nom: string 
+      relationships:
+        hasMany: User 
+        
+   User:
+      role_id: id foreign nullable
+      name: string
+      email: string unique
+      password: string
+      nom: string nullable
+      prenom: string nullable
+      fonction: string nullable
+      descriptif: longtext nullable
+      derniere_connexion: date nullable
+      activite: enum:EnLigne,HorsLigne nullable
+      notification_csb: enum:oui,non nullable
+      notification_rs: enum:oui,non  nullable
+      timestamps: true
+      relationships:
+        hasMany: Publication , Media , PageStatique
+
+  
+
+   GenreMusicaux:
+      nom: string
+      visibilite: enum:Actif,Inactif
+      relationships:
+        belongsToMany: Publication , Artiste , Evenement
+
+   
+   TypePublication:
+      type_pub: string   
+      couleur: string
+      relationships:
+        hasMany: Publication
+
+   TypeMedia:
+      type_med: string
+      relationships:
+        hasMany: Media
+
+   TypeEvenement:
+      type_event: string
+      relationships:
+        hasMany: Evenement
+
+   Galerie: 
+      nom: string
+      relationships:     
+        belongsToMany: Media , Publication
+        
+
+   Lieux:
+      nom: string
+      adresse: string
+      visibilite: enum:Actif,Inactif
+      relationships:
+        hasMany: Publication , Media , Evenement
+        
+
+   Evenement:
+      type_evenement_id: id foreign
+      lieux_id: id foreign
+      titre: string
+      descriptif: longtext
+      date_event: date
+      billeterie: string nullable
+      mise_en_avant: enum:oui,non
+      visibilite: enum:Actif,Inactif
+      timestamps: true
+      relationships:
+        belongsToMany: GenreMusicaux , Artiste , Media
+
+
+
+   Media:
+      type_media_id: id foreign
+      user_id: id foreign
+      lieux_id: id foreign
+      chemin: string
+      titre: string
+      balise_alt: string
+      modifieur: string nullable
+      photographe: string nullable
+      timestamps: true
+      relationships:
+        belongsToMany: Galerie , Evenement , Publication
+        
+
+
+   Artiste:
+      nom: string
+      descriptif: text
+      lien_facebook: string nullable
+      lien_youtube: string nullable
+      lien_twiiter: string nullable
+      lien_instagram: string nullable
+      relationships:
+         belongsToMany: Media , Publication , GenreMusicaux , Evenement
+
+
+   Publication:
+      type_publication_id: id foreign
+      user_id: id foreign
+      lieux_id: id foreign
+      titre: string
+      descriptif: longtext
+      toulousain: enum:oui,non
+      resume_rs: text
+      statut: enum:Brouillon,Relecture,Valide
+      timestamps: true
+      relationships:
+        belongsToMany: GenreMusicaux , Artiste , Media , Galerie
+       
+
+   PageStatique:
+     user_id: id foreign
+     titre: string
+     descriptif: longtext
+     ordre: integer unique
+     zone: enum:header,footer
+     visibilite: enum:Actif,Inactif
+     timestamps: true
+     
+       
+      
+   InfoAffichage:
+      media_id: id foreign
+      titre: string
+      descriptif: longtext
+      zone: enum:1,2
+      visibilite: enum:Actif,Inactif
+      ordre: integer unique nullable
+      
+        
+   ParametrageRs:
+      nom: string
+      code: string
+      token: longtext
+      picto: string
+
+   MotifContact:
+      motif: string
+      email: string 
+      visibilite: enum:Actif,Inactif
+      ordre: integer unique
+   
+   
+   
+      
+
+
+   
+
+
+
+
+
+      
