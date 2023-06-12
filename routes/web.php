@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PublicationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,10 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::prefix('/admin')->group(function () {
+       Route::resource('/GestionPublication' , 'App\Http\Controllers\PublicationController' );
+
+});
 
 require __DIR__.'/auth.php';

@@ -18,7 +18,6 @@ class CreateTypePublicationsTable extends Migration
         Schema::create('type_publications', function (Blueprint $table) {
             $table->id();
             $table->string('type_pub');
-            $table->string('couleur');
             $table->timestamps();
         });
 

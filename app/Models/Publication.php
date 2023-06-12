@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Publication extends Model
 {
     use HasFactory;
-
+    
+    protected $table = 'publications';
     /**
      * The attributes that are mass assignable.
      *
@@ -36,6 +37,11 @@ class Publication extends Model
         'user_id' => 'integer',
         'lieux_id' => 'integer',
     ];
+    public function SelectAllPublication(){
+           $publication = Publication::select('*')->get();
+
+           return $publication;
+    }
 
     public function genreMusicauxes()
     {
