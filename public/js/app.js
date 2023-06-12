@@ -5190,6 +5190,36 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+//Fonction open Modal Search
+document.addEventListener('DOMContentLoaded', function () {
+  var openModalButtons = document.querySelectorAll('.open-modal');
+  var modal = document.getElementById('modal');
+  openModalButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      modal.classList.remove('hidden');
+    });
+  });
+
+  //Fonction fermeture Modal Search
+  var closeModalButton = document.getElementById('closeModal');
+  closeModalButton.addEventListener('click', function () {
+    modal.classList.add('hidden');
+  });
+});
+
+// Carrousel
+$(document).ready(function () {
+  $('.autoplay').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4500,
+    infinite: true,
+    speed: 1600
+  });
+});
 
 /***/ }),
 
