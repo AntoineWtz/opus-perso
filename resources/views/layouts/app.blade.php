@@ -17,20 +17,22 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="w-full font-sans antialiased">
-        <div class="flex">
+        <div class="flex ">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
-            <header class="w-full shadow">
-                <div class="">
-                    {{ $header }}
-                </div>
-            </header>
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            <div class="w-full">
+                <header class="shadow  ">
+                    <div class="">
+                        {{ $header }}
+                    </div>
+                </header>
+    
+                <!-- Page Content -->
+                <main>
+                    {{ $slot }}
+                </main>
+            </div>
         </div>
     </body>
 </html>
