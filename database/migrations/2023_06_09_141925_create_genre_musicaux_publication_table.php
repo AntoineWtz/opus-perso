@@ -16,8 +16,11 @@ class CreateGenreMusicauxPublicationTable extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('genre_musicaux_publication', function (Blueprint $table) {
-            $table->foreignId('genre_musicaux_id');
-            $table->foreignId('publication_id');
+        $table->unsignedBigInteger('genre_musicaux_id');
+        $table->unsignedBigInteger('publication_id');
+
+        $table->foreign('genre_musicaux_id')->references('id')->on('genre_musicauxes')->onDelete('cascade');
+        $table->foreign('publication_id')->references('id')->on('publications')->onDelete('cascade');
         });
 
         Schema::enableForeignKeyConstraints();

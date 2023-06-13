@@ -19,11 +19,11 @@ class CreatePublicationsTable extends Migration
             $table->id();
             $table->foreignId('type_publication_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('lieux_id')->constrained();
+            $table->foreignId('lieux_id')->nullable();
             $table->string('titre');
             $table->longText('descriptif');
             $table->enum('toulousain', ["oui","non"]);
-            $table->text('resume_rs');
+            $table->text('resume_rs')->nullable();
             $table->enum('statut', ["Brouillon","Relecture","Valide"]);
             $table->timestamps();
         });

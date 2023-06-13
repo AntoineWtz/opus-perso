@@ -24,7 +24,7 @@ class TypePublicationFactory extends Factory
     {
         return [
             'type_pub' => $this->faker->word,
-            'couleur' => $this->faker->word,
+            
         ];
     }
 }

@@ -16,8 +16,11 @@ class CreateArtisteMediaTable extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('artiste_media', function (Blueprint $table) {
-            $table->foreignId('artiste_id');
-            $table->foreignId('medium_id');
+            $table->unsignedBigInteger('artiste_id');
+            $table->unsignedBigInteger('media_id');
+
+            $table->foreign('artiste_id')->references('id')->on('artistes')->onDelete('cascade');
+            $table->foreign('media_id')->references('id')->on('media')->onDelete('cascade');
         });
 
         Schema::enableForeignKeyConstraints();
