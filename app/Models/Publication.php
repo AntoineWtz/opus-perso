@@ -36,12 +36,14 @@ class Publication extends Model
         'type_publication_id' => 'integer',
         'user_id' => 'integer',
         'lieux_id' => 'integer',
+        'evenement_id' => 'integer',
     ];
     public function SelectAllPublication(){
            $publication = Publication::select('*')->get();
 
            return $publication;
     }
+    
 
     public function genreMusicauxes()
     {
@@ -62,7 +64,10 @@ class Publication extends Model
     {
         return $this->belongsToMany(Galerie::class);
     }
-
+    public function evenements()
+    {
+        return $this->belongsTo(Evenement::class);
+    }
     public function typePublication()
     {
         return $this->belongsTo(TypePublication::class);

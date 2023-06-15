@@ -23,6 +23,7 @@ class ArtisteFactory extends Factory
     public function definition()
     {
         return [
+            'media_id' => Media::factory(),
             'nom' => $this->faker->word,
             'descriptif' => $this->faker->text,
             'lien_facebook' => $this->faker->word,

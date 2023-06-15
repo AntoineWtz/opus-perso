@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
                 'type_med' => $type_med
             ]);
         }
-        $genre_musicaux = ['Pop' , 'Rock' , 'Rap' , 'Hip-Hop' , 'Electro' , 'Jazz' , 'Pop/rock' , 'Punk' , 'Metal' , 'Post-punk' , 'Post-Rock' , 'Variété française' , 'Reaggae' , 'World' , 'Dubstep' , 'R&B' , 'Funk', 'Melodic Techno' , 'Heavy metal' , 'Ska' , 'Indie pop', 'Alternative' , 'Country' , 'Classique' , 'Folk' , 'Soul' , 'Jungle' , 'Hard rock' , 'Musique Classique' , 'Gospel' ];
+        $genre_musicaux = ['Pop' , 'Rock' , 'Rap' , 'Hip-Hop' , 'Electro' , 'Jazz' , 'Métal' , 'Punk' , 'Metal' , 'Post-punk' , 'Post-Rock' , 'Variété française' , 'Reaggae' , 'World' , 'Dubstep' , 'R&B' , 'Funk', 'Melodic Techno' , 'Heavy metal' , 'Ska' , 'Indie pop', 'Alternative' , 'Country' , 'Classique' , 'Folk' , 'Soul' , 'Jungle' , 'Hard rock' , 'Musique Classique' , 'Gospel' ];
         foreach($genre_musicaux as $genre_musicaux){
             GenreMusicaux::factory()->create([
                 'nom' => $genre_musicaux

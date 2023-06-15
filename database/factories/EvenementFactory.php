@@ -25,10 +25,10 @@ class EvenementFactory extends Factory
     public function definition()
     {
         return [
+            'media_id' => Media::factory(),
             'type_evenement_id' => TypeEvenement::factory(),
             'lieux_id' => Lieux::factory(),
             'titre' => $this->faker->word,
-            'descriptif' => $this->faker->text,
             'date_event' => $this->faker->date(),
             'billeterie' => $this->faker->word,
             'mise_en_avant' => $this->faker->randomElement(["oui","non"]),

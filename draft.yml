@@ -63,6 +63,7 @@ models:
    Evenement:
       type_evenement_id: id foreign
       lieux_id: id foreign
+      media_id: id foreign
       titre: string
       descriptif: longtext
       date_event: date
@@ -71,7 +72,8 @@ models:
       visibilite: enum:Actif,Inactif
       timestamps: true
       relationships:
-        belongsToMany: GenreMusicaux , Artiste , Media
+        belongsToMany: GenreMusicaux , Artiste
+        hasMany: Publication
 
 
 
@@ -86,11 +88,13 @@ models:
       photographe: string nullable
       timestamps: true
       relationships:
-        belongsToMany: Galerie , Evenement , Publication
+        belongsToMany: Galerie , Publication
+        hasMany: Evenement , Artiste
         
 
 
    Artiste:
+      media_id: id foreign nullable
       nom: string
       descriptif: text
       lien_facebook: string nullable
@@ -104,11 +108,12 @@ models:
    Publication:
       type_publication_id: id foreign
       user_id: id foreign
-      lieux_id: id foreign
+      lieux_id: id foreign nullable
+      evenement_id: id foreign nullable
       titre: string
       descriptif: longtext
       toulousain: enum:oui,non
-      resume_rs: text
+      resume_rs: text nullable
       statut: enum:Brouillon,Relecture,Valide
       timestamps: true
       relationships:
@@ -129,7 +134,6 @@ models:
    InfoAffichage:
       media_id: id foreign
       titre: string
-      descriptif: longtext
       zone: enum:1,2
       visibilite: enum:Actif,Inactif
       ordre: integer unique nullable

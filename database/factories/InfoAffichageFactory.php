@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\InfoAffichage;
-use App\Models\Medium;
+use App\Models\Media;
 
 class InfoAffichageFactory extends Factory
 {
@@ -24,7 +24,7 @@ class InfoAffichageFactory extends Factory
     public function definition()
     {
         return [
-            'media_id' => Medium::factory(),
+            'media_id' => Media::factory(),
             'titre' => $this->faker->word,
             'descriptif' => $this->faker->text,
             'zone' => $this->faker->randomElement(["1","2"]),

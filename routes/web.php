@@ -24,6 +24,7 @@ Route::get('/dashboard', function () {
 
 Route::prefix('/admin')->group(function () {
        Route::resource('/GestionPublication' , 'App\Http\Controllers\PublicationController' );
+       Route::resource('/GestionGenreMusicaux' , 'App\Http\Controllers\GenreMusicauxController' );
 
 });
 

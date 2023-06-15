@@ -18,7 +18,6 @@ class Evenement extends Model
         'type_evenement_id',
         'lieux_id',
         'titre',
-        'descriptif',
         'date_event',
         'billeterie',
         'mise_en_avant',
@@ -34,6 +33,7 @@ class Evenement extends Model
         'id' => 'integer',
         'type_evenement_id' => 'integer',
         'lieux_id' => 'integer',
+        'media_id' => 'integer',
         'date_event' => 'date',
     ];
 
@@ -49,7 +49,7 @@ class Evenement extends Model
 
     public function media()
     {
-        return $this->belongsToMany(Media::class);
+        return $this->belongsTo(Media::class);
     }
 
     public function typeEvenement()
@@ -60,5 +60,9 @@ class Evenement extends Model
     public function lieux()
     {
         return $this->belongsTo(Lieux::class);
+    }
+    public function publications()
+    {
+        return $this->hasMany(Publication::class);
     }
 }

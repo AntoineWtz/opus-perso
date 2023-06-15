@@ -21,8 +21,8 @@ class CreateMediaTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('lieux_id')->nullable();
             $table->string('chemin');
-            $table->string('titre');
-            $table->string('balise_alt');
+            $table->string('titre')->nullable();
+            $table->string('balise_alt')->nullable();
             $table->string('modifieur')->nullable();
             $table->string('photographe')->nullable();
             $table->timestamps();

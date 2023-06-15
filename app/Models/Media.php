@@ -42,16 +42,24 @@ class Media extends Model
         return $this->belongsToMany(Galerie::class);
     }
 
-    public function evenements()
-    {
-        return $this->belongsToMany(Evenement::class);
-    }
-
     public function publications()
     {
         return $this->belongsToMany(Publication::class);
     }
+    public function evenements()
+    {
+        return $this->hasMany(Evenement::class);
+    }
+    public function artistes()
+    {
+      return $this->hasMany(Artiste::class);
+    }
 
+    public function infoaffichage()
+    {
+      return $this->hasMany(InfoAffichage::class);
+    }
+    
     public function typeMedia()
     {
         return $this->belongsTo(TypeMedia::class);

@@ -19,7 +19,6 @@ class CreateInfoAffichagesTable extends Migration
             $table->id();
             $table->foreignId('media_id')->constrained('media');
             $table->string('titre');
-            $table->longText('descriptif');
             $table->enum('zone', ["1","2"]);
             $table->enum('visibilite', ["Actif","Inactif"]);
             $table->integer('ordre')->unique()->nullable();

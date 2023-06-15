@@ -26,6 +26,7 @@ class PublicationFactory extends Factory
     public function definition()
     {
         return [
+            'media_id' => Media::factory(),
             'type_publication_id' => TypePublication::factory(),
             'user_id' => User::factory(),
             'lieux_id' => Lieux::factory(),

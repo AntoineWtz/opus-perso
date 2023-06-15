@@ -17,6 +17,7 @@ class CreateArtistesTable extends Migration
 
         Schema::create('artistes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('media_id')->nullable();
             $table->string('nom');
             $table->text('descriptif');
             $table->string('lien_facebook')->nullable();

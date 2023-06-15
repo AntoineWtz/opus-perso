@@ -30,11 +30,12 @@ class Artiste extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'media_id' => 'integer'
     ];
 
     public function media()
     {
-        return $this->belongsToMany(Media::class);
+        return $this->belongsTo(Media::class);
     }
 
     public function publications()

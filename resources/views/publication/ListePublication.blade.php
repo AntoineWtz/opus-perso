@@ -3,7 +3,8 @@
             <h1>Profil de l'user</h1>
         </x-slot>
         <x-slot name="slot">
-            
+            <a class='w-1/3 border rounded-md' href="{{route ('GestionPublication.create') }}">New Publication
+            </a>
             <?php 
                   echo $publications;
                   ?>
@@ -24,6 +25,13 @@
                     <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{$publication->created_at}}</td>
                     <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{$publication->updated_at}}</td>
                     <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{$publication->statut}}</td>
+                    <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </td>
+                    
                  </tr>
                 @endforeach
                  </table>

@@ -17,7 +17,7 @@ class CreateGenreMusicauxesTable extends Migration
 
         Schema::create('genre_musicauxes', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('nom')->unique();
             $table->enum('visibilite', ["Actif","Inactif"]);
             $table->timestamps();
         });
