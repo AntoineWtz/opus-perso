@@ -90,13 +90,15 @@
 
             
 
-
+            {{-- Lier la publication a un évènement ?--}}
 
 
 
 
 
             {{-- Définir un lieux --}}
+            <h2 class="font-bold">Lieux de la publication</h2>
+
 
 
             {{-- Toulousain  --}}
@@ -125,7 +127,7 @@
             <div class="">
 
                 {{-- Boutton Annuler --}}
-                <button class="bg-transparent hover:bg-red-600 text-red-600 font-semibold hover:text-white py-2 px-4 border border-red-600 hover:border-transparent rounded " type="submit"><a href="{{ route('GestionPublication.index') }}">Annuler</a> </button>
+                <button class="bg-transparent hover:bg-red-600 text-red-600 font-semibold hover:text-white py-2 px-4 border border-red-600 hover:border-transparent rounded " type="button"><a href="{{ route('GestionPublication.index') }}">Annuler</a> </button>
                 {{-- Boutton Valider --}}
                 <button class="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border border-green-400 hover:border-transparent rounded " type="submit">Valider</button>
            
