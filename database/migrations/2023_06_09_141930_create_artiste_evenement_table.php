@@ -16,11 +16,10 @@ class CreateArtisteEvenementTable extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('artiste_evenement', function (Blueprint $table) {
-            $table->unsignedBigInteger('artiste_id');
-            $table->unsignedBigInteger('evenement_id');
+            $table->foreignId('artiste_id')->constrained();
+            $table->foreignId('evenement_id')->constrained();
 
-            $table->foreign('artiste_id')->references('id')->on('artistes')->onDelete('cascade');
-            $table->foreign('evenement_id')->references('id')->on('evenements')->onDelete('cascade');
+            
         });
 
         Schema::enableForeignKeyConstraints();

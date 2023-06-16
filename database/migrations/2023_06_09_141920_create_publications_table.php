@@ -19,8 +19,8 @@ class CreatePublicationsTable extends Migration
             $table->id();
             $table->foreignId('type_publication_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('lieux_id')->nullable();
-            $table->foreignId('evenement_id')->nullable();
+            $table->foreignId('lieux_id')->nullable()->constrained();
+            $table->foreignId('evenement_id')->nullable()->constrained();
             $table->string('titre');
             $table->longText('descriptif');
             $table->enum('toulousain', ["oui","non"]);

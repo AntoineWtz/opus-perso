@@ -19,7 +19,7 @@ class CreateMediaTable extends Migration
             $table->id();
             $table->foreignId('type_media_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('lieux_id')->nullable();
+            $table->foreignId('lieux_id')->nullable()->constrained();
             $table->string('chemin');
             $table->string('titre')->nullable();
             $table->string('balise_alt')->nullable();

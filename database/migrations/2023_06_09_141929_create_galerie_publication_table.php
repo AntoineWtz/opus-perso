@@ -16,11 +16,10 @@ class CreateGaleriePublicationTable extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('galerie_publication', function (Blueprint $table) {
-            $table->unsignedBigInteger('galerie_id');
-            $table->unsignedBigInteger('publication_id');
+            $table->foreignId('galerie_id')->constrained();
+            $table->foreignId('publication_id')->constrained();
 
-            $table->foreign('galerie_id')->references('id')->on('galeries')->onDelete('cascade');
-            $table->foreign('publication_id')->references('id')->on('publications')->onDelete('cascade');
+           
         });
 
         Schema::enableForeignKeyConstraints();

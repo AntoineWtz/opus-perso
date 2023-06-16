@@ -18,8 +18,8 @@ class CreateEvenementsTable extends Migration
         Schema::create('evenements', function (Blueprint $table) {
             $table->id();
             $table->foreignId('type_evenement_id')->constrained();
-            $table->foreignId('lieux_id')->nullable();
-            $table->foreignId('media_id')->nullable();
+            $table->foreignId('lieux_id')->nullable()->constrained();
+            $table->foreignId('media_id')->nullable()->constrained();
             $table->string('titre');
             $table->date('date_event');
             $table->string('billeterie')->nullable();
