@@ -98,6 +98,50 @@
 
             {{-- Définir un lieux --}}
             <h2 class="font-bold">Lieux de la publication</h2>
+            <select name="genre_musicaux" id="genre_musicaux" class="w-72 rounded border-gray-200" multiple>
+                @foreach ($genre_musicaux as $genre_musicaux)
+                 @if( $genre_musicaux->visibilite == "Actif" )
+                <option value="{{ $lieux->id }}" @if (isset($publications) && $publications[0]['lieux_id']==$genre_musicaux->id) selected @endif>
+                  {{ $genre_musicaux->nom }}
+                </option>
+                 @endif
+                @endforeach
+            </select>
+            <button type="button" id="new-genre-musicaux-btn">New</button>
+            <button type="button" id="new-genre-musicaux-btn2">New</button>
+            <div class="hidden modalgenremusical">      
+                <div class="bg-white ">            
+                        <h2 class='font-bold'>Nom du genre musical</h2>
+                        <input class="w-12 rounded  border-gray-200" type="text" name="nomgenremusical" placeholder="nom"> 
+                        <button type="reset" id="annulerbtn">Annuler</button>               
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
