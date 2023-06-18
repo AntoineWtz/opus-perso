@@ -1,5 +1,7 @@
 
+
 <x-app-layout>
+   
     <x-slot name="header">
         <h1>@if ( isset($publications)) Modifier la publication : "{{$publications[0]['titre']}}" @else Nouvelle publication @endif</h1>
     </x-slot>
@@ -46,7 +48,6 @@
                 @endforeach
             </select>
             <button type="button" id="new-genre-musicaux-btn">New</button>
-            <button type="button" id="new-genre-musicaux-btn2">New</button>
             <div class="hidden modalgenremusical">      
                 <div class="bg-white ">            
                         <h2 class='font-bold'>Nom du genre musical</h2>
@@ -70,6 +71,7 @@
             </select>
             <button type="button" id="new-artiste-btn">New</button>
 
+
             {{-- Galerie Photo --}}
             <button type="button" class="block" id="new-galerie1-btn">Créer une galerie photo</button>
 
@@ -82,6 +84,7 @@
                         <h2 class='font-bold'>Image de la galerie</h2>
                         <input class="w-12 rounded  border-gray-200" type="file" name="photo[]" placeholder="saisir des images" multiple>                
                 </div>
+                <button type="reset" id="annuler-galerie-btn">Annuler</button>
 
 
             </div>
@@ -98,22 +101,23 @@
 
             {{-- Définir un lieux --}}
             <h2 class="font-bold">Lieux de la publication</h2>
-            <select name="genre_musicaux" id="genre_musicaux" class="w-72 rounded border-gray-200" multiple>
-                @foreach ($genre_musicaux as $genre_musicaux)
-                 @if( $genre_musicaux->visibilite == "Actif" )
-                <option value="{{ $lieux->id }}" @if (isset($publications) && $publications[0]['lieux_id']==$genre_musicaux->id) selected @endif>
-                  {{ $genre_musicaux->nom }}
+            <select name="lieux" id="lieux" class="w-72 rounded border-gray-200" multiple>
+                @foreach ($lieux as $lieux)
+                 @if( $lieux->visibilite == "Actif" )
+                <option value="{{ $lieux->id }}" @if (isset($publications) && $publications[0]['lieux_id']==$lieux->id) selected @endif>
+                  {{ $lieux->nom }} - {{$lieux->adresse}}
                 </option>
                  @endif
                 @endforeach
             </select>
-            <button type="button" id="new-genre-musicaux-btn">New</button>
-            <button type="button" id="new-genre-musicaux-btn2">New</button>
-            <div class="hidden modalgenremusical">      
+            <button type="button" id="new-lieux-btn">New</button>
+            <div class="hidden modalLieux">      
                 <div class="bg-white ">            
-                        <h2 class='font-bold'>Nom du genre musical</h2>
-                        <input class="w-12 rounded  border-gray-200" type="text" name="nomgenremusical" placeholder="nom"> 
-                        <button type="reset" id="annulerbtn">Annuler</button>               
+                        <h2 class='font-bold'>Nom du lieux</h2>
+                        <input class="w-12 rounded  border-gray-200" type="text" name="nomLieux" placeholder="nom"> 
+                        <h2 class="font-bold">Adresse</h2>
+                        <input class="w-12 rounded  border-gray-200" type="text" name="adresseLieux" placeholder="adresse"> 
+                        <button type="reset" id="annuler-lieux-btn">Annuler</button>               
                 </div>
             </div>
 
@@ -180,34 +184,16 @@
         </form>
     
     
-    
+    <script src="{{ asset('js/publication.js') }}" defer></script>
     <script>
         ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-        var newGenreMusicauxbtn = document.getElementById('new-genre-musicaux-btn');
-        newGenreMusicauxbtn.addEventListener('click' , function() {
-            window.open('{{ route('GestionGenreMusicaux.create')}}' , '_blank' , 'with=600n,height=400')
-        })
-        var newGenreMusicauxbtn2 = document.getElementById('new-genre-musicaux-btn2');
-        var btnAnnuler = document.getElementById('annulerbtn');
-        newGenreMusicauxbtn2.addEventListener('click' , function(){
-            document.querySelector('div .modalgenremusical').classList.remove('hidden');
-            document.querySelector('div .modalgenremusical').classList.add('block');
-        })
-        btnAnnuler.addEventListener('click' , function(){
-            document.querySelector('div .modalgenremusical').classList.remove('block');
-            document.querySelector('div .modalgenremusical').classList.add('hidden');
-        })
-        var newGenreMusicauxbtn2 = document.getElementById('new-galerie1-btn');
-        var btnAnnuler = document.getElementById('annuler-galerie-btn');
-        newGenreMusicauxbtn2.addEventListener('click' , function(){
-            document.querySelector('div .modalGalerie').classList.remove('hidden');
-            document.querySelector('div .modalGalerie').classList.add('block');
-        })
+.create( document.querySelector( '#editor' ) )
+.catch( error => {
+    console.error( error );
+});
     </script>
+       
+   
     </x-slot>
    
 </x-app-layout>
