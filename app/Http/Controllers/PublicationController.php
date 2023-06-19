@@ -56,7 +56,7 @@ class PublicationController extends Controller
           return redirect()->back()->with('succes' , 'Publication supprimé avec succès');
  
     }
-    public function store(){ 
+    public function store(Request $request){ 
 
     }
     public function show(){
