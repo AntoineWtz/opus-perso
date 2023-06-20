@@ -69,8 +69,7 @@
                 {{-- btn new genre musical --}}
                 <button type="button" id="new-genre-musicaux-btn"
                     class=" flex bg-transparent hover:bg-purple-600 text-purple-600 font-semibold hover:text-white py-2 px-4 border border-purple-600 hover:border-transparent rounded ">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 st0 fill-current" fill="none"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 st0 fill-current" fill="none"
                         viewBox="0 0 24 24">
                         <g fill-rule="evenodd" clip-rule="evenodd">
                             <path
@@ -107,7 +106,8 @@
                 <h2 class="font-bold">Définir Un Artiste</h2>
 
                 <h3>Artiste déjà créer</h3>
-                <select name="genre_musicaux" id="genre_musicaux" class="w-72 rounded border-gray-200 js-example-basic-multiple" multiple>
+                <select name="artiste" id="artiste" class="w-72 rounded border-gray-200 js-example-basic-multiple2"
+                    multiple>
 
                     @foreach ($artiste as $artiste)
                         <option value="{{ $artiste->id }}" @if (isset($publications) && $publications[0]['artiste_id'] == $artiste->id) selected @endif>
@@ -116,7 +116,10 @@
                     @endforeach
 
                 </select>
-                <button type="button" id="new-artiste-btn">New</button>
+                <button type="button" onclick="ajouterArtiste()">New</button>
+                <div id="content" class="flex flex-wrap">
+
+                </div>
             </div>
 
 
@@ -154,7 +157,7 @@
                     <div class="w-full">
                         <h2 class='font-bold w-full'>Image de la galerie</h2>
                         <input class=" rounded border-gray-200 dropzone p-4 border-2 border-dashed border-gray-400"
-                            id="myDropzone2" type="file" name="photo2[]" placeholder="Saisir des images" multiple>
+                            id="myDropzone" type="file" name="photo2[]" placeholder="Saisir des images" multiple>
                     </div>
                     <button type="reset" id="annuler-galerie2-btn">Annuler</button>
 
@@ -231,7 +234,7 @@
                     @endforeach
                 </select>
             </div>
- 
+
             {{-- btn envoie ou annulation --}}
             <div class="w-full mt-3">
 
@@ -260,8 +263,9 @@
 
 
             });
+            
         </script>
-
+         
 
     </x-slot>
 

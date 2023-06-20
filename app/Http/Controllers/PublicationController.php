@@ -57,7 +57,20 @@ class PublicationController extends Controller
  
     }
     public function store(Request $request){ 
+          $type_publication = $request['type_pub'];
+          $titre = $request['titre'];
+          $descriptif = $request['descriptif'];
+          $genre_musicaux = $request['genre_musicaux'];
+          
+          //envoie des tables de la publication
 
+          $publication = Publication::create([
+                'titre' => $titre,
+                'descriptif' => $descriptif,
+                
+          ]);
+
+          dd($request->all());
     }
     public function show(){
 

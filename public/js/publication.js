@@ -46981,54 +46981,75 @@ __webpack_require__(/*! select2 */ "./node_modules/select2/dist/js/select2.js");
 window.Dropzone = (dropzone__WEBPACK_IMPORTED_MODULE_0___default());
 
 
-jquery__WEBPACK_IMPORTED_MODULE_1___default()('.js-example-basic-single').select2();
-jquery__WEBPACK_IMPORTED_MODULE_1___default()('.js-example-basic-multiple').select2();
-document.addEventListener('DOMContentLoaded', function () {
+jquery__WEBPACK_IMPORTED_MODULE_1___default()(".js-example-basic-single").select2();
+jquery__WEBPACK_IMPORTED_MODULE_1___default()(".js-example-basic-multiple").select2();
+jquery__WEBPACK_IMPORTED_MODULE_1___default()(".js-example-basic-multiple2").select2();
+
+//variable new artiste
+
+var CountArtiste = 1;
+window.ajouterArtiste = function () {
+  if (CountArtiste >= 5) {
+    return alert("Limite d'artiste atteinte (maximun 4)");
+  } else {
+    var divformArtiste = document.querySelector("#content");
+    divformArtiste.innerHTML += "\n  \n        <div class='flex flex-wrap w-full' id=\"".concat(CountArtiste, "\" >\n        <h2 class='font-bold'> Artiste ").concat(CountArtiste, " </h2>\n  \n        <div class=\"block w-full\">\n        <h2 class='font-bold'>Photo de profil de l'artiste ").concat(CountArtiste, " </h2>\n        <input class=\" rounded border-gray-200 dropzone p-4 border-2 border-dashed border-gray-400\"\n        id=\"myDropzone2\" type=\"file\" name=\"photoArtiste[]\" placeholder=\"Saisir des images\">\n        </div>\n  \n        <div class=\"block w-full\">\n        <h2 class='font-bold'>Nom de l'artiste ").concat(CountArtiste, "</h2>\n        <input class=\" rounded  border-gray-200\" type=\"text\" name=\"nomArtiste[]\" placeholder=\"nom\">\n        </div>\n  \n        <div class=\"block w-full\">\n        <h2 class='font-bold '>Descriptif de l'artiste ").concat(CountArtiste, "</h2>\n        <textarea class=\"w-2/4 rounded  border-gray-200\" type=\"text\" name=\"descriptifArtiste[]\"\n            placeholder=\"discriptif\"></textarea>\n        </div>\n  \n        <div class=\"block w-2/4\">   \n        <h2 class='font-bold'>lien vers Facebook artiste ").concat(CountArtiste, " </h2>\n        <input class=\"full rounded  border-gray-200\" type=\"text\" name=\"=facebook[]\"\n            placeholder=\"lien facebook\">\n        </div>\n  \n        <div class=\"block w-2/4\">    \n        <h2 class='font-bold'>lien vers Youtube artiset ").concat(CountArtiste, "</h2>\n        <input class=\"full rounded  border-gray-200\" type=\"text\" name=\"=youtube[]\"\n            placeholder=\"lien Youtube\">\n        </div>\n  \n        <div class=\"block w-2/4\">    \n        <h2 class='font-bold'>lien vers Twitter artiste ").concat(CountArtiste, "</h2>\n        <input class=\" rounded  border-gray-200\" type=\"text\" name=\"=twitter[]\"\n            placeholder=\"lien Twitter\">\n        </div>\n  \n        <div class=\"block w-2/4\">    \n        <h2 class='font-bold'>lien vers Instagram ").concat(CountArtiste, "</h2>\n        <input class=\" rounded  border-gray-200\" type=\"text\" name=\"=instagram[]\"\n            placeholder=\"lien Instagram\">\n        </div>\n        <button type=\"button\" onclick=\"ajouterArtiste()\">New</button>\n        <button type=\"button\" onclick=\"annulerArtiste( ").concat(CountArtiste, ")\">Annuler</button>\n        </div> \n        ");
+    CountArtiste++;
+  }
+};
+window.annulerArtiste = function (id) {
+  var artisteElement = document.getElementById("".concat(id));
+  if (artisteElement) {
+    artisteElement.remove();
+    CountArtiste--;
+  }
+};
+document.addEventListener("DOMContentLoaded", function () {
   //variable new genre musicaux
-  var newGenreMusicauxbtn = document.getElementById('new-genre-musicaux-btn');
-  var btnAnnulerGenreMusicaux = document.getElementById('annulerbtn');
+  var newGenreMusicauxbtn = document.getElementById("new-genre-musicaux-btn");
+  var btnAnnulerGenreMusicaux = document.getElementById("annulerbtn");
   //btn new genre musicaux
-  newGenreMusicauxbtn.addEventListener('click', function () {
-    document.querySelector('div .modalgenremusical').classList.remove('hidden');
+  newGenreMusicauxbtn.addEventListener("click", function () {
+    document.querySelector("div .modalgenremusical").classList.remove("hidden");
   });
   //btn annuler Genre musicaux
-  btnAnnulerGenreMusicaux.addEventListener('click', function () {
-    document.querySelector('div .modalgenremusical').classList.add('hidden');
+  btnAnnulerGenreMusicaux.addEventListener("click", function () {
+    document.querySelector("div .modalgenremusical").classList.add("hidden");
   });
 
   //variable new galerie
-  var newGaleriebtn = document.getElementById('new-galerie1-btn');
-  var btnAnnulerGalerie = document.getElementById('annuler-galerie1-btn');
+  var newGaleriebtn = document.getElementById("new-galerie1-btn");
+  var btnAnnulerGalerie = document.getElementById("annuler-galerie1-btn");
   // btn new galerie
-  newGaleriebtn.addEventListener('click', function () {
-    document.querySelector('div .modalGalerie').classList.remove('hidden');
+  newGaleriebtn.addEventListener("click", function () {
+    document.querySelector("div .modalGalerie").classList.remove("hidden");
   });
   // btn annuler galerie
-  btnAnnulerGalerie.addEventListener('click', function () {
-    document.querySelector('div .modalGalerie').classList.add('hidden');
+  btnAnnulerGalerie.addEventListener("click", function () {
+    document.querySelector("div .modalGalerie").classList.add("hidden");
   });
   //variable new galerie 2
-  var newGaleriebtn2 = document.getElementById('new-galerie2-btn');
-  var btnAnnulerGalerie2 = document.getElementById('annuler-galerie2-btn');
+  var newGaleriebtn2 = document.getElementById("new-galerie2-btn");
+  var btnAnnulerGalerie2 = document.getElementById("annuler-galerie2-btn");
   // btn new galerie 2
-  newGaleriebtn2.addEventListener('click', function () {
-    document.querySelector('div .modalGalerie2').classList.remove('hidden');
+  newGaleriebtn2.addEventListener("click", function () {
+    document.querySelector("div .modalGalerie2").classList.remove("hidden");
   });
   // btn annuler gaelerie 2
-  btnAnnulerGalerie2.addEventListener('click', function () {
-    document.querySelector('div .modalGalerie2').classList.add('hidden');
+  btnAnnulerGalerie2.addEventListener("click", function () {
+    document.querySelector("div .modalGalerie2").classList.add("hidden");
   });
 
   //variable new lieux
-  var newLieuxbtn = document.getElementById('new-lieux-btn');
-  var btnAnnulerLieux = document.getElementById('annuler-lieux-btn');
+  var newLieuxbtn = document.getElementById("new-lieux-btn");
+  var btnAnnulerLieux = document.getElementById("annuler-lieux-btn");
   //btn new lieux
-  newLieuxbtn.addEventListener('click', function () {
-    document.querySelector('div .modalLieux').classList.remove('hidden');
+  newLieuxbtn.addEventListener("click", function () {
+    document.querySelector("div .modalLieux").classList.remove("hidden");
   });
   //btn annuler lieux
-  btnAnnulerLieux.addEventListener('click', function () {
-    document.querySelector('div .modalLieux').classList.add('hidden');
+  btnAnnulerLieux.addEventListener("click", function () {
+    document.querySelector("div .modalLieux").classList.add("hidden");
   });
   var myDropzone = document.querySelector("#myDropzone");
   (dropzone__WEBPACK_IMPORTED_MODULE_0___default().options).myDropzone = {
@@ -47041,8 +47062,7 @@ document.addEventListener('DOMContentLoaded', function () {
   (dropzone__WEBPACK_IMPORTED_MODULE_0___default().options).myDropzone2 = {
     paramName: "photo",
     acceptedFiles: ".jpeg,.jpg,.png",
-    dictDefaultMessage: "Déposez vos fichiers ici ou cliquez pour les sélectionner",
-    uploadMultiple: true
+    dictDefaultMessage: "Déposez vos fichiers ici ou cliquez pour les sélectionner"
   };
 });
 })();
