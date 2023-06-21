@@ -39,7 +39,7 @@ class PublicationController extends Controller
          $lieux = Lieux::all();
 
            
-     return view('publication.FormPublication')
+          return view('publication.FormPublication')
                 ->with('genre_musicaux' , $genre_musicaux)
                 ->with('artiste' , $artistes)
                 ->with('type_publication' , $type_publications)
@@ -57,18 +57,60 @@ class PublicationController extends Controller
  
     }
     public function store(Request $request){ 
+          $request->validate([
+               'titre' => 'required',
+               'descriptif' => 'required'
+          ]);
+
           $type_publication = $request['type_pub'];
           $titre = $request['titre'];
           $descriptif = $request['descriptif'];
           $genre_musicaux = $request['genre_musicaux'];
+          $toulousain = $request['toulousain'];
+          $user = $request['user'];
+          $statut = $request['statut'];
           
-          //envoie des tables de la publication
+          if($request->has('lieux') && $request['lieux'] !== "null"){
+               $lieux = $request['lieux'];
+          }
+          else if($request->has('nomLieux') && $request->has('adresseLieux') && $request['nomLieux'] !== null && $request['adresseLieux']) {
 
-          $publication = Publication::create([
-                'titre' => $titre,
-                'descriptif' => $descriptif,
-                
-          ]);
+               $newlieux = Lieux::create([
+                    'nom' => $request['nomLieux'],
+                    'adresse' => $request['adresseLieux'],
+                    'visibilite' => 'Actif',
+               ]);
+
+               $lieux = $newlieux->id;
+          }
+          
+
+          $publication = new Publication;
+          $publication->type_publication_id = $type_publication;
+          $publication->user_id = $user;
+          $publication->titre = $titre;
+          $publication->descriptif = $descriptif;
+          $publication->toulousain = $toulousain;
+          $publication->statut = $statut;
+          if(isset($lieux)){
+               $publication->lieux_id = $lieux;
+          };
+          $publication->save();
+
+
+          //envoie des tables de la publication
+          // $publication = Publication::create([
+          //       'type_publication_id' => $type_publication,
+          //       'user_id' => $user,
+          //       'titre' => $titre,
+          //       'descriptif' => $descriptif,
+          //       'toulousain' => $toulousain,
+          //       'statut' => $statut,
+          //       'lieux_id' => $lieux ?: null,
+                 
+
+
+          // ]);
 
           dd($request->all());
     }

@@ -46984,26 +46984,6 @@ window.Dropzone = (dropzone__WEBPACK_IMPORTED_MODULE_0___default());
 jquery__WEBPACK_IMPORTED_MODULE_1___default()(".js-example-basic-single").select2();
 jquery__WEBPACK_IMPORTED_MODULE_1___default()(".js-example-basic-multiple").select2();
 jquery__WEBPACK_IMPORTED_MODULE_1___default()(".js-example-basic-multiple2").select2();
-
-//variable new artiste
-
-var CountArtiste = 1;
-window.ajouterArtiste = function () {
-  if (CountArtiste >= 5) {
-    return alert("Limite d'artiste atteinte (maximun 4)");
-  } else {
-    var divformArtiste = document.querySelector("#content");
-    divformArtiste.innerHTML += "\n  \n        <div class='flex flex-wrap w-full' id=\"".concat(CountArtiste, "\" >\n        <h2 class='font-bold'> Artiste ").concat(CountArtiste, " </h2>\n  \n        <div class=\"block w-full\">\n        <h2 class='font-bold'>Photo de profil de l'artiste ").concat(CountArtiste, " </h2>\n        <input class=\" rounded border-gray-200 dropzone p-4 border-2 border-dashed border-gray-400\"\n        id=\"myDropzone2\" type=\"file\" name=\"photoArtiste[]\" placeholder=\"Saisir des images\">\n        </div>\n  \n        <div class=\"block w-full\">\n        <h2 class='font-bold'>Nom de l'artiste ").concat(CountArtiste, "</h2>\n        <input class=\" rounded  border-gray-200\" type=\"text\" name=\"nomArtiste[]\" placeholder=\"nom\">\n        </div>\n  \n        <div class=\"block w-full\">\n        <h2 class='font-bold '>Descriptif de l'artiste ").concat(CountArtiste, "</h2>\n        <textarea class=\"w-2/4 rounded  border-gray-200\" type=\"text\" name=\"descriptifArtiste[]\"\n            placeholder=\"discriptif\"></textarea>\n        </div>\n  \n        <div class=\"block w-2/4\">   \n        <h2 class='font-bold'>lien vers Facebook artiste ").concat(CountArtiste, " </h2>\n        <input class=\"full rounded  border-gray-200\" type=\"text\" name=\"=facebook[]\"\n            placeholder=\"lien facebook\">\n        </div>\n  \n        <div class=\"block w-2/4\">    \n        <h2 class='font-bold'>lien vers Youtube artiset ").concat(CountArtiste, "</h2>\n        <input class=\"full rounded  border-gray-200\" type=\"text\" name=\"=youtube[]\"\n            placeholder=\"lien Youtube\">\n        </div>\n  \n        <div class=\"block w-2/4\">    \n        <h2 class='font-bold'>lien vers Twitter artiste ").concat(CountArtiste, "</h2>\n        <input class=\" rounded  border-gray-200\" type=\"text\" name=\"=twitter[]\"\n            placeholder=\"lien Twitter\">\n        </div>\n  \n        <div class=\"block w-2/4\">    \n        <h2 class='font-bold'>lien vers Instagram ").concat(CountArtiste, "</h2>\n        <input class=\" rounded  border-gray-200\" type=\"text\" name=\"=instagram[]\"\n            placeholder=\"lien Instagram\">\n        </div>\n        <button type=\"button\" onclick=\"ajouterArtiste()\">New</button>\n        <button type=\"button\" onclick=\"annulerArtiste( ").concat(CountArtiste, ")\">Annuler</button>\n        </div> \n        ");
-    CountArtiste++;
-  }
-};
-window.annulerArtiste = function (id) {
-  var artisteElement = document.getElementById("".concat(id));
-  if (artisteElement) {
-    artisteElement.remove();
-    CountArtiste--;
-  }
-};
 document.addEventListener("DOMContentLoaded", function () {
   //variable new genre musicaux
   var newGenreMusicauxbtn = document.getElementById("new-genre-musicaux-btn");
@@ -47035,36 +47015,94 @@ document.addEventListener("DOMContentLoaded", function () {
   newGaleriebtn2.addEventListener("click", function () {
     document.querySelector("div .modalGalerie2").classList.remove("hidden");
   });
-  // btn annuler gaelerie 2
+  // btn annuler galerie 2
   btnAnnulerGalerie2.addEventListener("click", function () {
     document.querySelector("div .modalGalerie2").classList.add("hidden");
   });
 
-  //variable new lieux
-  var newLieuxbtn = document.getElementById("new-lieux-btn");
-  var btnAnnulerLieux = document.getElementById("annuler-lieux-btn");
-  //btn new lieux
-  newLieuxbtn.addEventListener("click", function () {
-    document.querySelector("div .modalLieux").classList.remove("hidden");
+  // variable art1 / btn new art1 / btn annuler art1
+  var newArtiste1 = document.getElementById("newArtiste-1");
+  var annulerArtiste1 = document.getElementById("annulerArtiste-1");
+  newArtiste1.addEventListener("click", function () {
+    document.querySelector("div .Artiste-1").classList.remove("hidden");
   });
-  //btn annuler lieux
-  btnAnnulerLieux.addEventListener("click", function () {
-    document.querySelector("div .modalLieux").classList.add("hidden");
+  annulerArtiste1.addEventListener("click", function () {
+    document.querySelector("div .Artiste-1").classList.add("hidden");
+  });
+  // variable art2 / btn new art2 / btn annuler art2
+  var newArtiste2 = document.getElementById("newArtiste-2");
+  var annulerArtiste2 = document.getElementById("annulerArtiste-2");
+  newArtiste2.addEventListener("click", function () {
+    document.querySelector("div .Artiste-2").classList.remove("hidden");
+  });
+  annulerArtiste2.addEventListener("click", function () {
+    document.querySelector("div .Artiste-2").classList.add("hidden");
+  });
+  // variable art3 / btn new art3 / btn annuler art3
+  var newArtiste3 = document.getElementById("newArtiste-3");
+  var annulerArtiste3 = document.getElementById("annulerArtiste-3");
+  newArtiste3.addEventListener("click", function () {
+    document.querySelector("div .Artiste-3").classList.remove("hidden");
+  });
+  annulerArtiste3.addEventListener("click", function () {
+    document.querySelector("div .Artiste-3").classList.add("hidden");
+  });
+  // variable art4 / btn new art4 / btn annuler art4
+  var newArtiste4 = document.getElementById("newArtiste-4");
+  var annulerArtiste4 = document.getElementById("annulerArtiste-4");
+  newArtiste4.addEventListener("click", function () {
+    document.querySelector("div .Artiste-4").classList.remove("hidden");
+  });
+  annulerArtiste4.addEventListener("click", function () {
+    document.querySelector("div .Artiste-4").classList.add("hidden");
+  });
+
+  //variable lieux/ btn new lieux / btn annuler lieux
+  var newLieux = document.getElementById('newLieux');
+  var annulerLieux = document.getElementById('annulerLieux');
+  newLieux.addEventListener('click', function () {
+    document.querySelector("div .modalLieux").classList.remove('hidden');
+    document.querySelector("div .allLieux").classList.add('hidden');
+  });
+  annulerLieux.addEventListener('click', function () {
+    document.querySelector("div .modalLieux").classList.add('hidden');
+    document.querySelector("div .allLieux").classList.remove('hidden');
   });
   var myDropzone = document.querySelector("#myDropzone");
   (dropzone__WEBPACK_IMPORTED_MODULE_0___default().options).myDropzone = {
     paramName: "photo",
     acceptedFiles: ".jpeg,.jpg,.png",
     dictDefaultMessage: "Déposez vos fichiers ici ou cliquez pour les sélectionner",
-    uploadMultiple: true
+    uploadMultiple: true,
+    init: function init() {}
   };
   var myDropzone2 = document.querySelector("#myDropzone2");
   (dropzone__WEBPACK_IMPORTED_MODULE_0___default().options).myDropzone2 = {
     paramName: "photo",
     acceptedFiles: ".jpeg,.jpg,.png",
-    dictDefaultMessage: "Déposez vos fichiers ici ou cliquez pour les sélectionner"
+    dictDefaultMessage: "Déposez vos fichiers ici ou cliquez pour les sélectionner",
+    init: function init() {}
   };
 });
+window.validerFormulaire = function () {
+  if (!document.querySelector('.modalLieux').classList.contains('hidden')) {
+    var nom = document.getElementById('nomLieux').value;
+    var adresse = document.getElementById('adresseLieux').value;
+    if (nom === '' || nom === null || adresse === '' || adresse === null) {
+      if (nom === '' || nom === null) {
+        document.querySelector('.nomLieux').classList.remove('border-gray-200');
+        document.querySelector('.nomLieux').style.borderColor = '#e53e3e';
+      }
+      if (adresse === '' || adresse === null) {
+        document.querySelector('.adresseLieux').classList.remove('border-gray-200');
+        document.querySelector('.adresseLieux').style.borderColor = '#e53e3e';
+      }
+      alert('veuillez remplir les champs du nouveaux lieux ou l\'annuler');
+      return false;
+    }
+  }
+  return true;
+};
 })();
 
 /******/ })()

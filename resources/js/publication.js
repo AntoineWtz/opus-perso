@@ -11,79 +11,6 @@ $(".js-example-basic-multiple").select2();
 $(".js-example-basic-multiple2").select2();
 
 
-
-  //variable new artiste
-  
-  let CountArtiste = 1;
-   window.ajouterArtiste = function() {
-      if (CountArtiste >= 5) {
-          return alert("Limite d'artiste atteinte (maximun 4)");
-      } else {
-          const divformArtiste = document.querySelector("#content");
-          divformArtiste.innerHTML += `
-  
-        <div class='flex flex-wrap w-full' id="${CountArtiste}" >
-        <h2 class='font-bold'> Artiste ${CountArtiste} </h2>
-  
-        <div class="block w-full">
-        <h2 class='font-bold'>Photo de profil de l'artiste ${CountArtiste} </h2>
-        <input class=" rounded border-gray-200 dropzone p-4 border-2 border-dashed border-gray-400"
-        id="myDropzone2" type="file" name="photoArtiste[]" placeholder="Saisir des images">
-        </div>
-  
-        <div class="block w-full">
-        <h2 class='font-bold'>Nom de l'artiste ${CountArtiste}</h2>
-        <input class=" rounded  border-gray-200" type="text" name="nomArtiste[]" placeholder="nom">
-        </div>
-  
-        <div class="block w-full">
-        <h2 class='font-bold '>Descriptif de l'artiste ${CountArtiste}</h2>
-        <textarea class="w-2/4 rounded  border-gray-200" type="text" name="descriptifArtiste[]"
-            placeholder="discriptif"></textarea>
-        </div>
-  
-        <div class="block w-2/4">   
-        <h2 class='font-bold'>lien vers Facebook artiste ${CountArtiste} </h2>
-        <input class="full rounded  border-gray-200" type="text" name="=facebook[]"
-            placeholder="lien facebook">
-        </div>
-  
-        <div class="block w-2/4">    
-        <h2 class='font-bold'>lien vers Youtube artiset ${CountArtiste}</h2>
-        <input class="full rounded  border-gray-200" type="text" name="=youtube[]"
-            placeholder="lien Youtube">
-        </div>
-  
-        <div class="block w-2/4">    
-        <h2 class='font-bold'>lien vers Twitter artiste ${CountArtiste}</h2>
-        <input class=" rounded  border-gray-200" type="text" name="=twitter[]"
-            placeholder="lien Twitter">
-        </div>
-  
-        <div class="block w-2/4">    
-        <h2 class='font-bold'>lien vers Instagram ${CountArtiste}</h2>
-        <input class=" rounded  border-gray-200" type="text" name="=instagram[]"
-            placeholder="lien Instagram">
-        </div>
-        <button type="button" onclick="ajouterArtiste()">New</button>
-        <button type="button" onclick="annulerArtiste( ${CountArtiste})">Annuler</button>
-        </div> 
-        `;
-          CountArtiste++;
-      }
-  }
-  window.annulerArtiste = function(id){
-      const artisteElement = document.getElementById(`${id}`);
-      if(artisteElement){
-         artisteElement.remove();
-         CountArtiste--;
-      }
-  }
-  
- 
- 
- 
-
 document.addEventListener("DOMContentLoaded", function () {
     //variable new genre musicaux
     const newGenreMusicauxbtn = document.getElementById(
@@ -103,8 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
             .classList.add("hidden");
     });
 
-   
-
     //variable new galerie
     const newGaleriebtn = document.getElementById("new-galerie1-btn");
     const btnAnnulerGalerie = document.getElementById("annuler-galerie1-btn");
@@ -123,22 +48,72 @@ document.addEventListener("DOMContentLoaded", function () {
     newGaleriebtn2.addEventListener("click", function () {
         document.querySelector("div .modalGalerie2").classList.remove("hidden");
     });
-    // btn annuler gaelerie 2
+    // btn annuler galerie 2
     btnAnnulerGalerie2.addEventListener("click", function () {
         document.querySelector("div .modalGalerie2").classList.add("hidden");
     });
 
-    //variable new lieux
-    const newLieuxbtn = document.getElementById("new-lieux-btn");
-    const btnAnnulerLieux = document.getElementById("annuler-lieux-btn");
-    //btn new lieux
-    newLieuxbtn.addEventListener("click", function () {
-        document.querySelector("div .modalLieux").classList.remove("hidden");
+    // variable art1 / btn new art1 / btn annuler art1
+    const newArtiste1 = document.getElementById("newArtiste-1");
+    const annulerArtiste1 = document.getElementById("annulerArtiste-1");
+    newArtiste1.addEventListener("click", function () {
+        document.querySelector("div .Artiste-1").classList.remove("hidden");
     });
-    //btn annuler lieux
-    btnAnnulerLieux.addEventListener("click", function () {
-        document.querySelector("div .modalLieux").classList.add("hidden");
+    annulerArtiste1.addEventListener("click", function () {
+        document.querySelector("div .Artiste-1").classList.add("hidden");
     });
+    // variable art2 / btn new art2 / btn annuler art2
+    const newArtiste2 = document.getElementById("newArtiste-2");
+    const annulerArtiste2 = document.getElementById("annulerArtiste-2");
+    newArtiste2.addEventListener("click", function () {
+        document.querySelector("div .Artiste-2").classList.remove("hidden");
+    });
+    annulerArtiste2.addEventListener("click", function () {
+        document.querySelector("div .Artiste-2").classList.add("hidden");
+    });
+    // variable art3 / btn new art3 / btn annuler art3
+    const newArtiste3 = document.getElementById("newArtiste-3");
+    const annulerArtiste3 = document.getElementById("annulerArtiste-3");
+    newArtiste3.addEventListener("click", function () {
+        document.querySelector("div .Artiste-3").classList.remove("hidden");
+    });
+    annulerArtiste3.addEventListener("click", function () {
+        document.querySelector("div .Artiste-3").classList.add("hidden");
+    });
+    // variable art4 / btn new art4 / btn annuler art4
+    const newArtiste4 = document.getElementById("newArtiste-4");
+    const annulerArtiste4 = document.getElementById("annulerArtiste-4");
+    newArtiste4.addEventListener("click", function () {
+        document.querySelector("div .Artiste-4").classList.remove("hidden");
+    });
+    annulerArtiste4.addEventListener("click", function () {
+        document.querySelector("div .Artiste-4").classList.add("hidden");
+    });
+
+    
+    //variable lieux/ btn new lieux / btn annuler lieux
+    const newLieux = document.getElementById('newLieux');
+    const annulerLieux =  document.getElementById('annulerLieux');
+    newLieux.addEventListener('click' , function () {
+        document.querySelector("div .modalLieux").classList.remove('hidden');
+        document.querySelector("div .allLieux").classList.add('hidden');
+    })
+    annulerLieux.addEventListener('click' , function () {
+        document.querySelector("div .modalLieux").classList.add('hidden');
+        document.querySelector("div .allLieux").classList.remove('hidden');
+    })
+
+
+
+
+
+
+
+
+
+
+
+
 
     const myDropzone = document.querySelector("#myDropzone");
     Dropzone.options.myDropzone = {
@@ -147,6 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
         dictDefaultMessage:
             "Déposez vos fichiers ici ou cliquez pour les sélectionner",
         uploadMultiple: true,
+        init: function() {}
     };
     const myDropzone2 = document.querySelector("#myDropzone2");
     Dropzone.options.myDropzone2 = {
@@ -154,6 +130,38 @@ document.addEventListener("DOMContentLoaded", function () {
         acceptedFiles: ".jpeg,.jpg,.png",
         dictDefaultMessage:
             "Déposez vos fichiers ici ou cliquez pour les sélectionner",
-    };
+        init: function() {}
+        };
 });
 
+
+
+
+
+window.validerFormulaire = function () {
+     if(!document.querySelector('.modalLieux').classList.contains('hidden') ){
+        var nom = document.getElementById('nomLieux').value ;
+        var adresse = document.getElementById('adresseLieux').value ;
+
+        if(nom === '' || nom === null || adresse === '' || adresse === null){
+            if (nom === '' || nom === null) {
+                document.querySelector('.nomLieux').classList.remove('border-gray-200');
+                document.querySelector('.nomLieux').style.borderColor= '#e53e3e';
+            }
+            if (adresse === '' || adresse === null) {
+                document.querySelector('.adresseLieux').classList.remove('border-gray-200');
+                document.querySelector('.adresseLieux').style.borderColor= '#e53e3e';
+                
+            }
+            alert('veuillez remplir les champs du nouveaux lieux ou l\'annuler');
+            return false
+        }
+
+     }
+
+
+
+
+
+    return true;
+}
