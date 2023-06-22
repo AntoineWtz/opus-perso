@@ -36,4 +36,8 @@ class Galerie extends Model
     {
         return $this->belongsToMany(Publication::class);
     }
+    public function artiste()
+    {
+        return $this->belongsToMany(Artiste::class);
+    }
 }

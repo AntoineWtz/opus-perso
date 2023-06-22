@@ -49,7 +49,7 @@ models:
    Galerie: 
       nom: string
       relationships:     
-        belongsToMany: Media , Publication
+        belongsToMany: Media , Publication , Artiste
         
 
    Lieux:
@@ -81,6 +81,7 @@ models:
       type_media_id: id foreign
       user_id: id foreign
       lieux_id: id foreign
+      galerie_id: id foreign
       chemin: string
       titre: string
       balise_alt: string
@@ -88,8 +89,8 @@ models:
       photographe: string nullable
       timestamps: true
       relationships:
-        belongsToMany: Galerie , Publication
-        hasMany: Evenement , Artiste
+        belongsToMany: Galerie 
+        hasMany: Evenement , Artiste 
         
 
 
@@ -102,7 +103,7 @@ models:
       lien_twiiter: string nullable
       lien_instagram: string nullable
       relationships:
-         belongsToMany: Media , Publication , GenreMusicaux , Evenement
+         belongsToMany:  Publication , GenreMusicaux , Evenement , Galerie
 
 
    Publication:
@@ -117,7 +118,7 @@ models:
       statut: enum:Brouillon,Relecture,Valide
       timestamps: true
       relationships:
-        belongsToMany: GenreMusicaux , Artiste , Media , Galerie
+        belongsToMany: GenreMusicaux , Artiste , Galerie
        
 
    PageStatique:

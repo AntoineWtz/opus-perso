@@ -37,6 +37,10 @@ class Artiste extends Model
     {
         return $this->belongsTo(Media::class);
     }
+    public function galerie()
+    {
+        return $this->belongsToMany(Galerie::class);
+    }
 
     public function publications()
     {

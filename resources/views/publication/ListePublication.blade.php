@@ -21,10 +21,10 @@
                 <table  class="table-auto">
                     <tr class='text-left'>
                         <th class="w-8">titre</th>
-                        <th class="w-8">description</th>
-                        <th class="w-5">Date Creation</th>
-                        <th class="w-5">Date Mofication</th>
+                        <th class="w-6">Date Creation</th>
+                        <th class="w-6">Date Mofication</th>
                         <th class="w-2">Statut</th>
+                        <th class="w-2">Créateur</th>
                         <th class="w-1">Action</th>
                         <th class="w-1">Action</th>
                       
@@ -32,10 +32,10 @@
                 @foreach ($publications as $publication)
                  <tr class='border-collapse text-left'>
                     <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{$publication->titre}}</td>
-                    <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50 .overflow-visible'>{{$publication->descriptif}}</td>
                     <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{$publication->created_at}}</td>
                     <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{$publication->updated_at}}</td>
                     <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{$publication->statut}}</td>                     
+                    <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{$publication->user->name}}</td>                     
                     <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>
                         
                         {{-- btn Editer --}}

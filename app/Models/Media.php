@@ -35,6 +35,7 @@ class Media extends Model
         'type_media_id' => 'integer',
         'user_id' => 'integer',
         'lieux_id' => 'integer',
+        'galerie_id' => 'integer',
     ];
 
     public function galeries()
@@ -44,7 +45,7 @@ class Media extends Model
 
     public function publications()
     {
-        return $this->belongsToMany(Publication::class);
+        return $this->hasMany(Publication::class);
     }
     public function evenements()
     {

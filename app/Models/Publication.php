@@ -37,6 +37,8 @@ class Publication extends Model
         'user_id' => 'integer',
         'lieux_id' => 'integer',
         'evenement_id' => 'integer',
+        'image_demo' => 'integer',
+        'video_demo' => 'integer,'
     ];
     public function SelectAllPublication(){
            $publication = Publication::select('*')->get();
@@ -57,7 +59,7 @@ class Publication extends Model
 
     public function media()
     {
-        return $this->belongsToMany(Media::class);
+        return $this->belongsTo(Media::class);
     }
 
     public function galeries()
