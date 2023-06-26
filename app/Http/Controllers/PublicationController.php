@@ -7,7 +7,9 @@ use App\Models\Artiste;
 use App\Models\TypePublication;
 use App\Models\User;
 use App\Models\Lieux;
+use App\Models\Media;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PublicationController extends Controller
 {
@@ -69,7 +71,34 @@ class PublicationController extends Controller
           $toulousain = $request['toulousain'];
           $user = $request['user'];
           $statut = $request['statut'];
-          
+          if($request->has('photographe_img')){
+               $photographe_demo = $request['photographe_img'];
+          }
+          if($request->has('alt_img_demo')){
+               $alt = $request['alt_img_demo'];
+          }         
+          //création de l'image de démo
+          if($request['image_demo']){
+               $file = $request->file('image_demo');
+               $path = $file->store('public/images');
+               $url = Storage::url($path);
+              
+               $new_img = new Media;
+               $new_img->type_media_id = 1;
+               $new_img->chemin = $url;
+               $new_img->user_id = $user;
+               if($alt){
+                    $new_img->balise_alt = $alt;
+               }
+               if($photographe_demo){
+                    $new_img->photographe = $photographe_demo;
+               }
+               $new_img->save();
+               $image_demo = $new_img->id;
+
+          }
+
+          //création du lieux de la publication
           if($request->has('lieux') && $request['lieux'] !== "null"){
                $lieux = $request['lieux'];
           }
@@ -83,19 +112,107 @@ class PublicationController extends Controller
 
                $lieux = $newlieux->id;
           }
+                  
           
-
           $publication = new Publication;
           $publication->type_publication_id = $type_publication;
           $publication->user_id = $user;
           $publication->titre = $titre;
+          $publication->image_demo = $image_demo;
           $publication->descriptif = $descriptif;
           $publication->toulousain = $toulousain;
           $publication->statut = $statut;
-          if(isset($lieux)){
-               $publication->lieux_id = $lieux;
-          };
+          $publication->lieux_id = $lieux ?? null;
+          
           $publication->save();
+          
+          //creation d'un artiste
+          if($request->has('nomArtiste')) {
+               $nomsArtiste = $request['nomArtiste'];
+               if($request['descriptifArtiste']){
+                    $descArtiste = $request['descriptifArtiste'];
+               }
+               if($request['photoArtiste']){
+                    $photoArtiste = $request['photoArtiste'];
+               }
+               if($request['facebook']){
+                    $facebookArtiste = $request['facebook'];
+               }
+               if($request['youtube']){
+                    $youtubeArtiste = $request['youtube'];
+               }
+               if($request['twitter']){
+                    $twitterArtiste = $request['twitter'];
+               }
+               if( $request['instagram']){
+                    $instagramArtiste = $request['instagram'];
+               }
+               
+
+               for($i = 0 ; $i < count($nomsArtiste) ; $i++ ){
+                  if($nomsArtiste[$i] !== null){
+
+                       $artiste = new Artiste;
+                       $artiste->nom = $nomsArtiste[$i];
+                       if($descArtiste[$i] !== null){
+                            $artiste->descriptif = $descArtiste[$i];
+                       }
+                       if($photoArtiste[$i] && $photoArtiste[$i] !== null){
+                            $file = $request->file('photoArtiste')[$i];
+                            $path = $file->store('public/images');
+                            $url = Storage::url($path);
+                            
+                            $art_img = new Media;
+                            $art_img->type_media_id = 1;
+                            $art_img->chemin = $url;
+                            $art_img->user_id = $user;
+                            $art_img->balise_alt = $nomsArtiste[$i];
+                            $art_img->save();
+                            $pdpArtiste = $art_img->id;
+
+                            $artiste->media_id = $pdpArtiste;
+                       }
+                       if($facebookArtiste[$i] && $facebookArtiste[$i] !== null){
+                            $artiste->lien_facebook = $facebookArtiste[$i];
+                       }
+                       if($youtubeArtiste[$i] && $youtubeArtiste[$i] !== null){
+                            $artiste->lien_youtube = $youtubeArtiste[$i];
+                       }
+                       if($twitterArtiste[$i] && $twitterArtiste[$i] !== null){
+                            $artiste->lien_twitter = $twitterArtiste[$i];
+                       }
+                       if($instagramArtiste[$i] && $instagramArtiste[$i] !== null){
+                            $artiste->lien_instagram = $instagramArtiste[$i];
+                         }
+                       $artiste->save();        
+                       $artiste->publications()->attach($publication);                  
+                    }
+               }
+          }
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
 
 
           //envoie des tables de la publication

@@ -47068,7 +47068,13 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector("div .modalLieux").classList.add('hidden');
     document.querySelector("div .allLieux").classList.remove('hidden');
   });
-  var myDropzone = document.querySelector("#myDropzone");
+
+  //  const form = document.querySelector('.form');
+  //  form.addEventListener('submit', function (e) {
+  //      e.preventDefault();
+  //  })
+
+  var myDropzone = document.querySelectorAll("#myDropzone");
   (dropzone__WEBPACK_IMPORTED_MODULE_0___default().options).myDropzone = {
     paramName: "photo",
     acceptedFiles: ".jpeg,.jpg,.png",
@@ -47076,7 +47082,7 @@ document.addEventListener("DOMContentLoaded", function () {
     uploadMultiple: true,
     init: function init() {}
   };
-  var myDropzone2 = document.querySelector("#myDropzone2");
+  var myDropzone2 = document.querySelectorAll("#myDropzone2");
   (dropzone__WEBPACK_IMPORTED_MODULE_0___default().options).myDropzone2 = {
     paramName: "photo",
     acceptedFiles: ".jpeg,.jpg,.png",
@@ -47084,24 +47090,68 @@ document.addEventListener("DOMContentLoaded", function () {
     init: function init() {}
   };
 });
-window.validerFormulaire = function () {
+window.validerFormulaire = function (event) {
+  var valid = true;
+  var titre = document.getElementById('titre').value;
+  var image_demo = document.getElementById('image-demo').value;
+  var alt_imgdemo = document.getElementById('alt_img_demo').value;
+
+  //verif titre
+  if (titre === '' || titre == null) {
+    document.querySelector('.redtitre').style.color = '#e53e3e';
+    valid = false;
+  }
+  //vérif image aperçu
+  if (image_demo === '' || image_demo == null) {
+    document.querySelector('.redimg').style.color = '#e53e3e';
+    valid = false;
+  }
+  if (alt_imgdemo === '' || image_demo == null) {
+    document.querySelector('.redalt').style.color = '#e53e3e';
+    valid = false;
+  }
+  //vérif lieux 
   if (!document.querySelector('.modalLieux').classList.contains('hidden')) {
     var nom = document.getElementById('nomLieux').value;
     var adresse = document.getElementById('adresseLieux').value;
-    if (nom === '' || nom === null || adresse === '' || adresse === null) {
-      if (nom === '' || nom === null) {
-        document.querySelector('.nomLieux').classList.remove('border-gray-200');
-        document.querySelector('.nomLieux').style.borderColor = '#e53e3e';
+    if (nom === '' || nom == null || adresse === '' || adresse == null) {
+      if (nom === '' || nom == null) {
+        document.querySelector('.redlieux').style.color = '#e53e3e';
+        valid = false;
       }
-      if (adresse === '' || adresse === null) {
-        document.querySelector('.adresseLieux').classList.remove('border-gray-200');
-        document.querySelector('.adresseLieux').style.borderColor = '#e53e3e';
+      if (adresse === '' || adresse == null) {
+        document.querySelector('.redadresse').style.color = '#e53e3e';
+        valid = false;
       }
-      alert('veuillez remplir les champs du nouveaux lieux ou l\'annuler');
-      return false;
+      valid = false;
     }
   }
-  return true;
+  //vérif Artiste
+  if (!document.querySelector('.Artiste-1').classList.contains('hidden')) {}
+
+  //vérif Galerie 1
+  if (!document.querySelector('.modalGalerie').classList.contains('hidden')) {
+    var nom = document.getElementById('nomgalerie').value;
+    var imgInput = document.querySelector('input[name="photo[]"]');
+    var img = imgInput.files;
+    if (nom === '' || nom == null || img.length === 0) {
+      if (nom === '' || nom == null) {
+        document.querySelector('.redng1').style.color = '#e53e3e';
+        valid = false;
+      }
+      if (img.length === 0) {
+        document.querySelector('.redig1').style.color = '#e53e3e';
+        valid = false;
+      }
+      valid = false;
+    }
+  }
+  if (valid !== true) {
+    alert('Veuillez remplir les champs obligatoire !');
+    return false;
+  } else {
+    return true;
+  }
 };
 })();
 

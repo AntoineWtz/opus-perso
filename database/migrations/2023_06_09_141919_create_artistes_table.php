@@ -19,10 +19,10 @@ class CreateArtistesTable extends Migration
             $table->id();
             $table->foreignId('media_id')->nullable()->constrained();
             $table->string('nom');
-            $table->text('descriptif');
+            $table->text('descriptif')->nullable();
             $table->string('lien_facebook')->nullable();
             $table->string('lien_youtube')->nullable();
-            $table->string('lien_twiiter')->nullable();
+            $table->string('lien_twitter')->nullable();
             $table->string('lien_instagram')->nullable();
             $table->timestamps();
         });

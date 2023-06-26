@@ -1002,9 +1002,6 @@ select {
 .overflow-hidden {
   overflow: hidden;
 }
-.overflow-visible {
-  overflow: visible;
-}
 .rounded {
   border-radius: 0.25rem;
 }
