@@ -1,17 +1,45 @@
 <nav x-data="{ open: false }">
     <!-- Primary Navigation Menu -->
-    <div class="bg-yellow-300">
+    <div class="bg-yellow-300 overflow-hidden">
+        <!-- Logo -->
+        <div class="shrink-0 items-center px-4 py-2">
+            <a href="{{ route('dashboard') }}">
+                <img src="{{ asset('asset/opus-logo.png') }}" alt="logo Opus" class="w-full h-auto">
+            </a>
+        </div>
+
         <div class="flex flex-col w-1/5 h-screen ">
+            
             <div class="flex flex-col">
-                <!-- Logo -->
-                <div class="shrink-0 items-center px-4 py-2">
-                    <h1>Logo</h1>
-                </div>
 
                 <!-- Navigation Links -->
                 <div class="flex flex-col px-4 py-2">
-                    <a href="{{ route('dashboard') }}" :class="{ 'text-blue-500': request()->routeIs('dashboard') }">{{ __('Dashboard') }}</a>          
-                    <a href="{{ route('GestionPublication.index') }}" :class="{ 'text-blue-500': request()->routeIs('publication') }">{{ __('Publication') }}</a>
+                    <a href="{{ route('dashboard') }}" class="m-1 hover:opacity-75 menu-link {{ request()->routeIs('dashboard') ? 'text-blue-500' : '' }}">{{ __('Dashboard') }}</a>
+                    <a href="{{ route('GestionEvenement.index') }}" class="m-1 hover:opacity-75 menu-link {{ request()->routeIs('GestionEvenement.index') ? 'text-blue-500' : '' }}">{{ __('Evenement') }}</a>
+                    <a href="{{ route('GestionPublication.index') }}" class="m-1 hover:opacity-75 menu-link {{ request()->routeIs('GestionPublication.index') ? 'text-blue-500' : '' }}">{{ __('Publication') }}</a>
+                    <a href="{{ route('GestionUser.index') }}" class="m-1 hover:opacity-75 menu-link {{ request()->routeIs('GestionUser.index') ? 'text-blue-500' : '' }}">{{ __('Utilisateur') }}</a>
+
+                    <!-- Menu Burger -->
+                    <hr class="m-2">
+                    <div class="relative w-full">
+                        <details class="menu-link mb-8">
+                            <summary class="hover:opacity-75 cursor-pointer">Autre</summary>
+                            <div class="flex flex-col whitespace-nowrap">
+                            <a href="{{ route('GestionArtiste.index') }}" class="m-1 hover:opacity-75 menu-link {{ request()->routeIs('GestionArtiste.index') ? 'text-blue-500' : '' }}">{{ __('Artiste') }}</a>
+                            <a href="{{ route('GestionGalerie.index') }}" class="m-1 hover:opacity-75 menu-link {{ request()->routeIs('GestionGalerie.index') ? 'text-blue-500' : '' }}">{{ __('Galeries') }}</a>
+                            <a href="{{ route('GestionGenreMusicaux.index') }}" class="m-1 hover:opacity-75 menu-link {{ request()->routeIs('GestionGenreMusicaux.index') ? 'text-blue-500' : '' }}">{{ __('Genres Musicaux') }}</a>
+                            <a href="{{ route('GestionInfoAffichage.index') }}" class="m-1 hover:opacity-75 menu-link {{ request()->routeIs('GestionInfoAffichage.index') ? 'text-blue-500' : '' }}">{{ __('Info Affichage') }}</a>
+                            <a href="{{ route('GestionLieux.index') }}" class="m-1 hover:opacity-75 menu-link {{ request()->routeIs('GestionLieux.index') ? 'text-blue-500' : '' }}">{{ __('Lieux') }}</a>
+                            <a href="{{ route('GestionMedia.index') }}" class="m-1 hover:opacity-75 menu-link {{ request()->routeIs('GestionMedia.index') ? 'text-blue-500' : '' }}">{{ __('Media') }}</a>
+                            <a href="{{ route('GestionMotifContact.index') }}" class="m-1 hover:opacity-75 menu-link {{ request()->routeIs('GestionMotifContact.index') ? 'text-blue-500' : '' }}">{{ __('Motif Contact') }}</a>   
+                            <a href="{{ route('GestionPageStatique.index') }}" class="m-1 hover:opacity-75 menu-link{{ request()->routeIs('GestionPageStatique.index') ? 'text-blue-500' : '' }}">{{ __('Page Statique') }}</a>
+                            <a href="{{ route('GestionParametrageRS.index') }}" class="m-1 hover:opacity-75 menu-link{{ request()->routeIs('GestionParametrageRS.index') ? 'text-blue-500' : '' }}">{{ __('Parametrage RS') }}</a>
+                            <a href="{{ route('GestionTypeEvenement.index') }}" class="m-1 hover:opacity-75 menu-link  {{ request()->routeIs('GestionTypeEvenement.index') ? 'text-blue-500' : '' }}">{{ __('Type Evenement') }}</a>
+                            <a href="{{ route('GestionTypeMedia.index') }}" class="m-1 hover:opacity-75 menu-link  {{ request()->routeIs('GestionTypeMedia.index') ? 'text-blue-500' : '' }}">{{ __('Type Media') }}</a>
+                            <a href="{{ route('GestionTypePublication.index') }}" class="m-1 hover:opacity-75 menu-link  {{ request()->routeIs('GestionTypePublication.index') ? 'text-blue-500' : '' }}">{{ __('Type Publication') }}</a>
+                            </div>
+                        </details>
+                    </div>
                 </div>
             </div>
 
@@ -25,7 +53,7 @@
                         </svg>
                     </button>
 
-                    <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 py-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
+                    <div x-show="open" @click.away="open = false" class="absolute left-0 mt-2 py-2 w-32 bg-white border border-gray-200 rounded-md shadow-lg">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left">{{ __('Log Out') }}</button>
