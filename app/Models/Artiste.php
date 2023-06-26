@@ -19,7 +19,7 @@ class Artiste extends Model
         'descriptif',
         'lien_facebook',
         'lien_youtube',
-        'lien_twiiter',
+        'lien_twitter',
         'lien_instagram',
     ];
 

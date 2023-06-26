@@ -10,7 +10,7 @@
         </h1>
     </x-slot>
     <x-slot name="slot">
-        <form class="mx-5 flex flex-col "
+        <form class="form mx-5 flex flex-col "
             action=" @if (isset($publications)) {{ route('GestionPublication.update', ['publication' => $publications[0]['id']]) }} @else {{ route('GestionPublication.store') }} @endif"
             method="POST" enctype="multipart/form-data">
             @csrf
@@ -43,19 +43,38 @@
             </div>
 
             {{-- titre --}}
-            <div class="w-full mt-3">
-                <h2 class='font-bold'>Titre</h2>
-                <input class="w-10/12 rounded  border-gray-200" type="text" name="titre"
+            <div class=" w-full mt-3">
+                <h2 class='redtitre font-bold'>Titre <span style="color:#feb2b2;">*</h2>
+                <input class=" w-10/12 rounded  border-gray-200" id="titre" type="text" name="titre"
                     placeholder="Titre de la publication"
                     @if (isset($publications)) value="{{ $publications[0]['titre'] }}" @endif>
             </div>
 
             {{-- descriptif --}}
             <div class="w-full mt-3">
-                <h2 class='font-bold'>Descriptif</h2>
-                <textarea class="w-10/12 rounded  border-gray-200" id='editor' type="text" name="descriptif"
+                <h2 class='reddesc font-bold'>Descriptif</h2>
+                <textarea class=" w-10/12 rounded  border-gray-200" id='editor' type="text" name="descriptif"
                     placeholder="Description de la publication"
                     @if (isset($publications)) value="{{ $publications[0]['descriptif'] }}" @endif></textarea>
+            </div>
+
+            {{-- image aperçu --}}
+            <div class="w-full mt-3">
+                <h2 class="redimg font-bold">Image d'aperçu <span style="color:#feb2b2;">*</span></h2>
+                <input type="file" name="image_demo" id="image-demo">
+                <label for="photographe_aperçu">Photographe de l'image :</label>
+                <input class=" w-25 rounded border-gray-200" type="text" name="photographe_img" id="photographe-aperçu">
+                <label class="redalt" for="alt_img_demo">balise alternative de l'image :<span style="color:#feb2b2;">*</label>
+                <input class="w-25 rounded border-gray-200" type="text" name="alt_img_demo" id="alt_img_demo">
+
+            </div>
+            
+        
+            {{-- video aperçu --}}
+            <div class="w-full mt-3">
+                <h2 class="font-bold">Video de démo</h2>
+                <input class="w-10/12 rounded  border-gray-200" type="url" name="video_demo" id="video_demo">
+
             </div>
 
             {{-- Genre musicaux --}}
@@ -136,12 +155,12 @@
                         <div class="block w-full">
                             <h2 class='font-bold'>Photo de profil de l'artiste 1 </h2>
                             <input class=" rounded border-gray-200 dropzone p-4 border-2 border-dashed border-gray-400"
-                                id="myDropzone2" type="file" name="photoArtiste[]" placeholder="Saisir des images">
+                                id="myDropzone2" type="file" name="photoArtiste[]"   placeholder="Saisir des images">
                         </div>
 
                         <div class="block w-full">
                             <h2 class='font-bold'>Nom de l'artiste 1</h2>
-                            <input class=" rounded  border-gray-200" type="text" name="nomArtiste[]"
+                            <input class=" rounded  border-gray-200" type="text" name="nomArtiste[]" 
                                 placeholder="nom">
                         </div>
 
@@ -152,25 +171,25 @@
 
                         <div class="block w-2/4">
                             <h2 class='font-bold'>lien vers Facebook artiste 1 </h2>
-                            <input class="full rounded  border-gray-200" type="text" name="=facebook[]"
+                            <input class="full rounded  border-gray-200" type="text" name="facebook[]"
                                 placeholder="lien facebook">
                         </div>
 
                         <div class="block w-2/4">
                             <h2 class='font-bold'>lien vers Youtube artiset 1</h2>
-                            <input class="full rounded  border-gray-200" type="text" name="=youtube[]"
+                            <input class="full rounded  border-gray-200" type="text" name="youtube[]"
                                 placeholder="lien Youtube">
                         </div>
 
                         <div class="block w-2/4">
                             <h2 class='font-bold'>lien vers Twitter artiste 1</h2>
-                            <input class=" rounded  border-gray-200" type="text" name="=twitter[]"
+                            <input class=" rounded  border-gray-200" type="text" name="twitter[]"
                                 placeholder="lien Twitter">
                         </div>
 
                         <div class="block w-2/4">
                             <h2 class='font-bold'>lien vers Instagram 1</h2>
-                            <input class=" rounded  border-gray-200" type="text" name="=instagram[]"
+                            <input class=" rounded  border-gray-200" type="text" name="instagram[]"
                                 placeholder="lien Instagram">
                         </div>
                         <button type="button" id="newArtiste-2" >New</button>
@@ -200,25 +219,25 @@
 
                         <div class="block w-2/4">
                             <h2 class='font-bold'>lien vers Facebook artiste 2 </h2>
-                            <input class="full rounded  border-gray-200" type="text" name="=facebook[]"
+                            <input class="full rounded  border-gray-200" type="text" name="facebook[]"
                                 placeholder="lien facebook">
                         </div>
 
                         <div class="block w-2/4">
                             <h2 class='font-bold'>lien vers Youtube artiset 2</h2>
-                            <input class="full rounded  border-gray-200" type="text" name="=youtube[]"
+                            <input class="full rounded  border-gray-200" type="text" name="youtube[]"
                                 placeholder="lien Youtube">
                         </div>
 
                         <div class="block w-2/4">
                             <h2 class='font-bold'>lien vers Twitter artiste 2</h2>
-                            <input class=" rounded  border-gray-200" type="text" name="=twitter[]"
+                            <input class=" rounded  border-gray-200" type="text" name="twitter[]"
                                 placeholder="lien Twitter">
                         </div>
 
                         <div class="block w-2/4">
                             <h2 class='font-bold'>lien vers Instagram 2</h2>
-                            <input class=" rounded  border-gray-200" type="text" name="=instagram[]"
+                            <input class=" rounded  border-gray-200" type="text" name="instagram[]"
                                 placeholder="lien Instagram">
                         </div>
                         <button type="button" id="newArtiste-3" >New</button>
@@ -248,25 +267,25 @@
 
                         <div class="block w-2/4">
                             <h2 class='font-bold'>lien vers Facebook artiste 3 </h2>
-                            <input class="full rounded  border-gray-200" type="text" name="=facebook[]"
+                            <input class="full rounded  border-gray-200" type="text" name="facebook[]"
                                 placeholder="lien facebook">
                         </div>
 
                         <div class="block w-2/4">
                             <h2 class='font-bold'>lien vers Youtube artiset 3</h2>
-                            <input class="full rounded  border-gray-200" type="text" name="=youtube[]"
+                            <input class="full rounded  border-gray-200" type="text" name="youtube[]"
                                 placeholder="lien Youtube">
                         </div>
 
                         <div class="block w-2/4">
                             <h2 class='font-bold'>lien vers Twitter artiste 3</h2>
-                            <input class=" rounded  border-gray-200" type="text" name="=twitter[]"
+                            <input class=" rounded  border-gray-200" type="text" name="twitter[]"
                                 placeholder="lien Twitter">
                         </div>
 
                         <div class="block w-2/4">
                             <h2 class='font-bold'>lien vers Instagram 3</h2>
-                            <input class=" rounded  border-gray-200" type="text" name="=instagram[]"
+                            <input class=" rounded  border-gray-200" type="text" name="instagram[]"
                                 placeholder="lien Instagram">
                         </div>
                         <button type="button" id="newArtiste-4" >New</button>
@@ -296,25 +315,25 @@
 
                         <div class="block w-2/4">
                             <h2 class='font-bold'>lien vers Facebook artiste 4 </h2>
-                            <input class="full rounded  border-gray-200" type="text" name="=facebook[]"
+                            <input class="full rounded  border-gray-200" type="text" name="facebook[]"
                                 placeholder="lien facebook">
                         </div>
 
                         <div class="block w-2/4">
                             <h2 class='font-bold'>lien vers Youtube artiset 4</h2>
-                            <input class="full rounded  border-gray-200" type="text" name="=youtube[]"
+                            <input class="full rounded  border-gray-200" type="text" name="youtube[]"
                                 placeholder="lien Youtube">
                         </div>
 
                         <div class="block w-2/4">
                             <h2 class='font-bold'>lien vers Twitter artiste 4</h2>
-                            <input class=" rounded  border-gray-200" type="text" name="=twitter[]"
+                            <input class=" rounded  border-gray-200" type="text" name="twitter[]"
                                 placeholder="lien Twitter">
                         </div>
 
                         <div class="block w-2/4">
                             <h2 class='font-bold'>lien vers Instagram 4</h2>
-                            <input class=" rounded  border-gray-200" type="text" name="=instagram[]"
+                            <input class=" rounded  border-gray-200" type="text" name="instagram[]"
                                 placeholder="lien Instagram">
                         </div>      
                         <button type="button" id="annulerArtiste-4">Annuler</button>
@@ -338,17 +357,33 @@
 
             {{-- Galerie Photo --}}
             <div class="w-full mt-3">
-                <button type="button" class="block" id="new-galerie1-btn">Créer une galerie photo</button>
+                <button type="button" class="block font-bold" id="new-galerie1-btn">Créer une galerie photo</button>
                 <div class="hidden modalGalerie w-full">
                     <div class="w-full">
-                        <h2 class='font-bold w-full'>Nom de la galerie</h2>
-                        <input class=" rounded  border-gray-200" type="text" name="nomgalerie" placeholder="nom">
+                        <h2 class='redng1 font-bold w-full'>Nom de la galerie <span style="color:#feb2b2;">*</h2>
+                        <input class=" rounded  border-gray-200" type="text" name="nomgalerie" id="nomgalerie" placeholder="nom">
                     </div>
                     <div class="w-full">
-                        <h2 class='font-bold w-full'>Image de la galerie</h2>
+                        <h2 class='font-bold w-full'>Photographe de la galerie</h2>
+                        <input class=" rounded  border-gray-200" type="text" name="photographegalerie1"  placeholder="photographe">
+                    </div>
+                    <div class="w-full">
+                        <h2 class='redig1 font-bold w-full'>Image de la galerie <span style="color:#feb2b2;">*</h2>
                         <input class=" rounded border-gray-200 dropzone p-4 border-2 border-dashed border-gray-400"
-                            id="myDropzone" type="file" name="photo[]" placeholder="Saisir des images" multiple>
+                            id="myDropzone" type="file" name="photo[]" id="photo" placeholder="Saisir des images" multiple>
+                    </div>
+                    <div class="w_full">
+                        <h2 class='font-bold w-full' >Lier un artiste a la galerie</h2>
+                    <select name="artisteGalerie" id="artisteGalerie" class="w-72 rounded border-gray-200 js-example-basic-multiple2"
+                    multiple>
 
+                    @foreach ($artiste as $artiste)
+                        <option value="{{ $artiste->id }}" @if (isset($publications) && $publications[0]['artiste_id'] == $artiste->id) selected @endif>
+                            {{ $artiste->nom }}
+                        </option>
+                    @endforeach
+
+                </select>
                     </div>
                     <button type="reset" id="annuler-galerie1-btn">Annuler</button>
                     <button type="button" class="block" id="new-galerie2-btn">Créer une deuxième galerie
@@ -401,10 +436,10 @@
                 </div>
                 <div class="hidden modalLieux w-full">
                     <div class="bg-white w-full">
-                        <h2 class='font-bold'>Nom du lieux <span style="color:#feb2b2;">*</span></h2>
-                        <input class="nomLieux rounded  border-gray-200" type="text" id="nomLieux" name="nomLieux" placeholder="nom">
-                        <h2 class="font-bold">Adresse <span style="color:#feb2b2;" >*</span></h2>
-                        <input class="adresseLieux rounded  border-gray-200" type="text" id="adresseLieux" name="adresseLieux"
+                        <h2 class='redlieux font-bold'>Nom du lieux <span style="color:#feb2b2;">*</span></h2>
+                        <input class=" rounded  border-gray-200" type="text" id="nomLieux" name="nomLieux" placeholder="nom">
+                        <h2 class="redadresse font-bold">Adresse <span style="color:#feb2b2;" >*</span></h2>
+                        <input class=" rounded  border-gray-200" type="text" id="adresseLieux" name="adresseLieux"
                             placeholder="adresse">
                         <button class="block" type="reset" id="annulerLieux" >Annuler</button>
                     </div>

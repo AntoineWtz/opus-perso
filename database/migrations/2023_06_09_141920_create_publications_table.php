@@ -23,8 +23,8 @@ class CreatePublicationsTable extends Migration
             $table->foreignId('image_demo')->constrained('media');
             $table->foreignId('video_demo')->nullable()->constrained('media');
             $table->string('titre');
-            $table->longText('descriptif');
-            $table->dateTime('date_parution');
+            $table->longText('descriptif')->nullable();
+            $table->dateTime('date_parution')->nullable();
             $table->enum('toulousain', ["oui","non"]);
             $table->text('resume_rs')->nullable();
             $table->enum('statut', ["Brouillon","Relecture","Valide"]);

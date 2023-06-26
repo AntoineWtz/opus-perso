@@ -38,7 +38,7 @@ class Publication extends Model
         'lieux_id' => 'integer',
         'evenement_id' => 'integer',
         'image_demo' => 'integer',
-        'video_demo' => 'integer,'
+        'video_demo' => 'integer'
     ];
     public function SelectAllPublication(){
            $publication = Publication::select('*')->get();
