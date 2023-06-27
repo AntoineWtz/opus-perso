@@ -42,6 +42,10 @@ class LieuxController extends Controller
             'nom' => 'required',
             'adresse' => 'required',
             'visibilite' => 'required',
+        ], [
+            'nom.required' => 'Veuillez renseigner votre nom',
+            'adresse.required' => 'Veuillez renseigner une adresse',
+            'visibilite.required' => 'Veuillez renseigner une visibilité',
         ]);
 
         // Créer un nouvel objet Contact
@@ -64,6 +68,10 @@ class LieuxController extends Controller
             'nom' => 'required',
             'adresse' => 'required',
             'visibilite' => 'required',
+        ], [
+            'nom.required' => 'Veuillez renseigner votre nom',
+            'adresse.required' => 'Veuillez renseigner une adresse',
+            'visibilite.required' => 'Veuillez renseigner une visibilité',
         ]);
     
         $lieux->nom = $request->nom;

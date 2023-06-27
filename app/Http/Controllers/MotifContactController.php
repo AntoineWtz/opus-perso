@@ -44,6 +44,11 @@ class MotifContactController extends Controller
             'email' => 'required|email',
             'visibilite' => 'required',
             'ordre' => 'required|integer|unique:motif_contacts,ordre,' . $request->id,
+        ], [
+            'motif.required' => 'Veuillez renseigner le motif',
+            'email.required' => 'Veuillez renseigner un email valide',
+            'visibilite.required' => 'Veuillez renseigner la visibilité',
+            'ordre.required' => 'Veuillez renseigner l\'ordre dans le formulaire',
         ]);
 
         // Créer un nouvel objet Contact
@@ -69,6 +74,11 @@ class MotifContactController extends Controller
             'email' => 'required|email',
             'visibilite' => 'required',
             'ordre' => 'required|integer|unique:motif_contacts,ordre,' . $motifContact->id,
+        ], [
+            'motif.required' => 'Veuillez renseigner le motif',
+            'email.required' => 'Veuillez renseigner un email valide',
+            'visibilite.required' => 'Veuillez renseigner la visibilité',
+            'ordre.required' => 'Veuillez renseigner l\'ordre dans le formulaire',
         ]);
     
         $motifContact->motif = $request->motif;

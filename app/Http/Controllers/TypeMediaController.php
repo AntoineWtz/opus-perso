@@ -46,6 +46,8 @@ class TypeMediaController extends Controller
         // Valider les données du formulaire
         $validatedData = $request->validate([
             'type_med' => 'required|unique:type_media,type_med,' . $request->id,
+        ], [
+            'type_med.required' => 'Veuillez renseigner le type de media',
         ]);
 
         // Créer un nouvel objet Contact
@@ -65,6 +67,8 @@ class TypeMediaController extends Controller
     
         $validatedData = $request->validate([
             'type_med' => 'required|unique:type_media,type_med,' . $typeMedia->id,
+        ], [
+            'type_med.required' => 'Veuillez renseigner le type de media',
         ]);
     
         $typeMedia->type_med = $request->type_med;

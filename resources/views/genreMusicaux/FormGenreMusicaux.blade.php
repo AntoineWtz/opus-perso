@@ -1,10 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="font-bold text-3xl text-center mt-2">
-            @if (isset($genreMusicaux))
-            Modifier le type de publication : "{{ $genreMusicaux->type_pub }}"
-            @else
-            Nouveau Genre Musicale
+        @if (isset($genreMusicauxes))
+            Modifier le genre musical : "{{$genreMusicauxes[0]['nom']}}"
+            @else Nouveau genre musical
             @endif
         </h1>
     </x-slot>
@@ -35,8 +34,8 @@
             <div class="flex">
                     <h2 class="font-bold m-2" for="visibilite">Visibilité</h2>
                     <select name="visibilite" class="rounded border-gray-200">
-                        <option value="Actif" {{ isset($evenement) && $evenement->visibilite == 'Actif' ? 'selected' : '' }}>Actif</option>
-                        <option value="Inactif" {{ isset($evenement) && $evenement->visibilite == 'Inactif' ? 'selected' : '' }}>Inactif</option>
+                        <option value="Actif" {{ isset($genreMusicaux) && $genreMusicaux->visibilite == 'Actif' ? 'selected' : '' }}>Actif</option>
+                        <option value="Inactif" {{ isset($genreMusicaux) && $genreMusicaux->visibilite == 'Inactif' ? 'selected' : '' }}>Inactif</option>
                     </select>
                 </div>
 

@@ -1,6 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class='text-center text-3xl'>Liste des genres musicaux</h1>
+        <div class="m-4">
+            <h1 class="text-center text-4xl">Information Genre Musicaux</h1>
+            <p class="text-center">Listes des genres musicaux pour le formulaire</p>
+        </div>
     </x-slot>
     <x-slot name="slot">
 
@@ -14,7 +17,8 @@
                     <th class="w-5">Visibilité</th>
                     <th class="w-5">Date de création</th>
                     <th class="w-5">Date de modification</th>
-                    <th class="w-2">Action</th>
+                    <th class="w-2">Modifier</th>
+                    <th class="w-2">Supprimer</th>
                 </tr>
                 <thead>
 
@@ -25,12 +29,18 @@
                         <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{$genreMusicaux->created_at}}</td>
                         <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{$genreMusicaux->updated_at}}</td>
                         <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid bg-gray-50'>
-                        <!-- modifier -->
-                        @include('components.bouton.ButtonModifier', ['routeName' => 'GestionEvenement', 'itemId' => $evenement->id])
+
+                            <!-- modifier -->
+                            @include('components.bouton.ButtonModifier', ['routeName' => 'GestionGenreMusicaux', 'itemId' => $genreMusicaux->id])
+
                         </td>
+
                         <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid bg-gray-50'>
-                        <!-- supprimer -->
-                        <x-bouton.buttonSupprimer routeName="GestionEvenement" itemId="{{ $evenement->id }}" />
+
+                            <!-- supprimer -->
+
+                            <x-bouton.buttonSupprimer routeName="GestionGenreMusicaux" itemId="{{ $genreMusicaux->id }}" />
+
                         </td>
                     </tr>
                     @endforeach

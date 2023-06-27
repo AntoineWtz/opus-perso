@@ -50,6 +50,9 @@ class ArtisteController extends Controller
     $validatedData = $request->validate([
         'nom' => 'required',
         'descriptif' => 'required',
+    ], [
+        'nom.required' => 'Veuillez renseigner votre nom',
+        'descriptif.required' => 'Veuillez renseigner une description',
     ]);
 
     // Création d'un nouvel artiste avec les données validées
@@ -83,6 +86,9 @@ class ArtisteController extends Controller
     $validatedData = $request->validate([
         'nom' => 'required',
         'descriptif' => 'required',
+    ], [
+        'nom.required' => 'Veuillez renseigner votre nom',
+        'descriptif.required' => 'Veuillez renseigner une description',
     ]);
 
     $artiste->nom = $request->nom;

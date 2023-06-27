@@ -25,7 +25,7 @@
                 </tr>
             </thead>
 
-            @foreach ($parametrageRSs as $parametrageRS)
+            @foreach ($parametrageRSes as $parametrageRS)
             <tr class='border-collapse text-left'>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{$parametrageRS->nom}}</td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{$parametrageRS->code}}</td>

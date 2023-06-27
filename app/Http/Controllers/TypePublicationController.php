@@ -46,6 +46,8 @@ class TypePublicationController extends Controller
         // Valider les données du formulaire
         $validatedData = $request->validate([
             'type_pub' => 'required',
+        ], [
+            'type_pub.required' => 'Veuillez renseigner le type de publication',
         ]);
 
         // Créer un nouvel objet Contact
@@ -65,6 +67,8 @@ class TypePublicationController extends Controller
     
         $validatedData = $request->validate([
             'type_pub' => 'required',
+        ], [
+            'type_pub.required' => 'Veuillez renseigner le type de publication',        
         ]);
     
         $typePublication->type_pub = $request->type_pub;
