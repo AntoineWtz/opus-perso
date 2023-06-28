@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Lieux;
 use App\Models\Media;
 use App\Models\Galerie;
+use App\Models\Evenement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,14 +26,16 @@ class PublicationController extends Controller
          $type_publications = TypePublication::all();
          $users = User::all();
          $lieux = Lieux::all();
+         $event = Evenement::all();
 
-         //dd($artistes->all());
+         //dd($event->all());
          return view('publication.FormPublication')
                 ->with('genre_musicaux' , $genre_musicaux)
                 ->with('artiste' , $artistes)
                 ->with('type_publication' , $type_publications)
                 ->with('user' , $users)
-                ->with('lieux' , $lieux);
+                ->with('lieux' , $lieux)
+                ->with('evenement' , $event);
                 
     }
     public function edit($id){
@@ -41,14 +44,15 @@ class PublicationController extends Controller
          $type_publications = TypePublication::all();
          $users = User::all();
          $lieux = Lieux::all();
-
+         $event = Evenement::all();
            
           return view('publication.FormPublication')
                 ->with('genre_musicaux' , $genre_musicaux)
                 ->with('artiste' , $artistes)
                 ->with('type_publication' , $type_publications)
                 ->with('user' , $users)
-                ->with('lieux' , $lieux);
+                ->with('lieux' , $lieux)
+                ->with('evenement' , $event);
 
     }
     public function destroy($id){
@@ -75,6 +79,8 @@ class PublicationController extends Controller
           $toulousain = $request['toulousain'];
           $user = $request['user'];
           $statut = $request['statut'];
+          $resume_rs = $request['resume_rs'];
+          $date_parution = $request['date_parution'];
           if($request->has('photographe_img')){
                $photographe_demo = $request['photographe_img'];
           }
@@ -128,7 +134,15 @@ class PublicationController extends Controller
 
                $lieux = $newlieux->id;
           }
-                  
+           
+          //liaison publication - event
+          if($request->has('evenement') && $request['evenement'] !== "null" ){
+                $event = $request['evenement'];
+          }
+          
+
+
+
           //création de la publication
           $publication = new Publication;
           $publication->type_publication_id = $type_publication;
@@ -141,9 +155,12 @@ class PublicationController extends Controller
                $publication->video_aperçu = $image_demo;
           }
           $publication->descriptif = $descriptif;
+          $publication->date_parution = $date_parution;
           $publication->toulousain = $toulousain;
+          $publication->resume_rs = $resume_rs;
           $publication->statut = $statut;
           $publication->lieux_id = $lieux ?? null;
+          $publication->evenement_id = $event ?? null;
           
           $publication->save();
           
@@ -178,7 +195,7 @@ class PublicationController extends Controller
                        if($descArtiste[$i] !== null){
                             $artiste->descriptif = $descArtiste[$i];
                        }
-                       if($photoArtiste[$i] && $photoArtiste[$i] !== null){
+                       if(isset($photoArtiste[$i]) && $photoArtiste[$i] !== null){
                             $file = $request->file('photoArtiste')[$i];
                             $path = $file->store('public/images');
                             $url = Storage::url($path);
@@ -206,11 +223,18 @@ class PublicationController extends Controller
                             $artiste->lien_instagram = $instagramArtiste[$i];
                          }
                        $artiste->save();        
-                       $artiste->publications()->attach($publication);                  
+                       $artiste->publications()->attach($publication); 
+                       
+                       if ($request->has("genre_musicaux_art" . ($i + 1))) {
+                         $genre_art = $request->input("genre_musicaux_art" . ($i + 1));
+                         foreach ($genre_art as $g) {
+                             $a_g = GenreMusicaux::find($g);
+                             $a_g->artistes()->attach($artiste);
+                         }
                     }
                }
           }
-           
+     }
           //genre musicaux de la publication
           if($request->has('genre_musicaux')) {
                $genre_musicaux = $request['genre_musicaux'];
@@ -291,28 +315,7 @@ class PublicationController extends Controller
 
 
           }
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+  
 
 
           //envoie des tables de la publication

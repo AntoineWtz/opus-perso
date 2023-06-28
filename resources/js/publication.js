@@ -172,8 +172,10 @@ document.addEventListener("DOMContentLoaded", function () {
             "Déposez vos fichiers ici ou cliquez pour les sélectionner",
         init: function() {}
         };
-
     
+        
+          
+        
 
 });
 
@@ -221,10 +223,43 @@ window.validerFormulaire = function () {
             valid = false ;
         }
      }
-    //vérif Artiste
-    if(!document.querySelector('.Artiste-1').classList.contains('hidden')){
 
+    //vérif Artiste 1
+    if(!document.querySelector('.Artiste-1').classList.contains('hidden')){
+        var nom = document.getElementById('Art-1').value;
+        if(nom === '' || nom == null){
+            document.querySelector('.redh1').style.color= '#e53e3e'; 
+            valid = false ;
+        }
     }
+    //vérif Artiste 2
+    if(!document.querySelector('.Artiste-2').classList.contains('hidden')){
+        var nom = document.getElementById('Art-2').value;
+        if(nom === '' || nom == null){
+            document.querySelector('.redh2').style.color= '#e53e3e'; 
+            valid = false ;
+        }
+    }
+    //vérif Artiste 1
+    if(!document.querySelector('.Artiste-3').classList.contains('hidden')){
+        var nom = document.getElementById('Art-3').value;
+        if(nom === '' || nom == null){
+            document.querySelector('.redh3').style.color= '#e53e3e'; 
+            valid = false ;
+        }
+    }
+    //vérif Artiste 1
+    if(!document.querySelector('.Artiste-4').classList.contains('hidden')){
+        var nom = document.getElementById('Art-4').value;
+        if(nom === '' || nom == null){
+            document.querySelector('.redh4').style.color= '#e53e3e'; 
+            valid = false ;
+        }
+    }
+
+
+
+
 
     //vérif Galerie 1
     if(!document.querySelector('.modalGalerie').classList.contains('hidden')){
@@ -300,7 +335,7 @@ window.validerFormulaire = function () {
     
     }
 
-
+    
 
 
 

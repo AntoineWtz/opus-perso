@@ -18,6 +18,7 @@ class CreatePublicationsTable extends Migration
         Schema::create('publications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('type_publication_id')->constrained();
+            $table->foreignId('evenement_id')->nullable()->constrained();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('lieux_id')->nullable()->constrained();
             $table->foreignId('image_aperçu')->constrained('media');
