@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
 // Seeder pour MotifContact
 $motifs = ['artiste', 'découverte', 'autre'];
 $emails = ['erwan@gmail.com', 'antoine@gmail.com', 'layla@gmail.com'];
-foreach ($motifs as $motif) {
+foreach ($motifs as $index => $motif) {
     MotifContact::factory()->create([
         'motif' => $motif,
         'email' => $emails[$index],

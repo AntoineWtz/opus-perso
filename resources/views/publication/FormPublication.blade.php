@@ -1,5 +1,5 @@
 <x-app-layout>
-
+    
     <x-slot name="header">
         <h1>
             @if (isset($publications))
@@ -72,7 +72,7 @@
         
             {{-- video aperçu --}}
             <div class="w-full mt-3">
-                <h2 class="font-bold">Video de démo</h2>
+                <h2 class="font-bold">Video d'aperçu</h2>
                 <input class="w-10/12 rounded  border-gray-200" type="url" name="video_demo" id="video_demo">
 
             </div>
@@ -80,7 +80,7 @@
             {{-- Genre musicaux --}}
             <div class="w-full mt-3">
                 <h2 class='font-bold'>Genre Musicaux</h2>
-                <select name="genre_musicaux" id="genre_musicaux"
+                <select name="genre_musicaux[]" id="genre_musicaux"
                     class="w-72 rounded border-gray-200 js-example-basic-multiple" multiple>
                     @php
                         $count = 1;
@@ -136,12 +136,12 @@
                 <h2 class="font-bold">Définir Un Artiste</h2>
 
                 <h3>Artiste déjà créer</h3>
-                <select name="artiste" id="artiste" class="w-72 rounded border-gray-200 js-example-basic-multiple2"
+                <select name="artiste[]" id="artiste" class="w-72 rounded border-gray-200 js-example-basic-multiple2"
                     multiple>
-
-                    @foreach ($artiste as $artiste)
-                        <option value="{{ $artiste->id }}" @if (isset($publications) && $publications[0]['artiste_id'] == $artiste->id) selected @endif>
-                            {{ $artiste->nom }}
+                    
+                    @foreach ($artiste as $artistes)
+                        <option value="{{ $artistes->id }}" @if (isset($publications)) selected @endif>
+                            {{ $artistes->nom }}
                         </option>
                     @endforeach
 
@@ -357,52 +357,137 @@
 
             {{-- Galerie Photo --}}
             <div class="w-full mt-3">
-                <button type="button" class="block font-bold" id="new-galerie1-btn">Créer une galerie photo</button>
+                <h2 class="font-bold">Créer une galerie photo</h2>
+                <button type="button" class="block " id="new-galerie1-btn">New</button>
+                {{-- galerie 1 --}}
                 <div class="hidden modalGalerie w-full">
                     <div class="w-full">
                         <h2 class='redng1 font-bold w-full'>Nom de la galerie <span style="color:#feb2b2;">*</h2>
-                        <input class=" rounded  border-gray-200" type="text" name="nomgalerie" id="nomgalerie" placeholder="nom">
+                        <input class=" rounded  border-gray-200" type="text" name="nomgalerie[]" id="nomgalerie" placeholder="nom">
                     </div>
                     <div class="w-full">
                         <h2 class='font-bold w-full'>Photographe de la galerie</h2>
-                        <input class=" rounded  border-gray-200" type="text" name="photographegalerie1"  placeholder="photographe">
+                        <input class=" rounded  border-gray-200" type="text" name="photographegalerie[]"  placeholder="photographe">
                     </div>
                     <div class="w-full">
                         <h2 class='redig1 font-bold w-full'>Image de la galerie <span style="color:#feb2b2;">*</h2>
                         <input class=" rounded border-gray-200 dropzone p-4 border-2 border-dashed border-gray-400"
-                            id="myDropzone" type="file" name="photo[]" id="photo" placeholder="Saisir des images" multiple>
+                            id="myDropzone" type="file" name="photoGalerie_0[]" id="photo" placeholder="Saisir des images" multiple>
                     </div>
                     <div class="w_full">
                         <h2 class='font-bold w-full' >Lier un artiste a la galerie</h2>
-                    <select name="artisteGalerie" id="artisteGalerie" class="w-72 rounded border-gray-200 js-example-basic-multiple2"
+                    <select name="artisteGalerie_0" id="artisteGalerie" class="w-72 rounded border-gray-200 js-example-basic-multiple-art1"
                     multiple>
 
-                    @foreach ($artiste as $artiste)
-                        <option value="{{ $artiste->id }}" @if (isset($publications) && $publications[0]['artiste_id'] == $artiste->id) selected @endif>
-                            {{ $artiste->nom }}
+                    @foreach ($artiste as $artistes)
+                        <option value="{{ $artistes->id }}" @if (isset($publications) && $publications[0]['artiste_id'] == $artiste->id) selected @endif>
+                            {{ $artistes->nom }}
                         </option>
                     @endforeach
 
-                </select>
+                    </select>
                     </div>
                     <button type="reset" id="annuler-galerie1-btn">Annuler</button>
                     <button type="button" class="block" id="new-galerie2-btn">Créer une deuxième galerie
                         photo</button>
                 </div>
+                {{-- galerie 2 --}}
                 <div class="hidden modalGalerie2 w-full">
                     <div class="w-full">
-                        <h2 class='font-bold w-full'>Nom de la galerie</h2>
-                        <input class=" rounded  border-gray-200" type="text" name="nomgalerie2"
+                        <h2 class='redng2 font-bold w-full'>Nom de la galerie 2<span style="color:#feb2b2;">*</span></h2>
+                        <input class=" rounded  border-gray-200" type="text" name="nomgalerie[]" id="nomgalerie2"
                             placeholder="nom">
                     </div>
                     <div class="w-full">
-                        <h2 class='font-bold w-full'>Image de la galerie</h2>
+                        <h2 class='font-bold w-full'>Photographe de la galerie 2</h2>
+                        <input class=" rounded  border-gray-200" type="text" name="photographegalerie[]"  placeholder="photographe">
+                    </div>
+                    <div class="w-full">
+                        <h2 class='redig2 font-bold w-full'>Image de la galerie 2<span style="color:#feb2b2;">*</span></h2>
                         <input class=" rounded border-gray-200 dropzone p-4 border-2 border-dashed border-gray-400"
-                            id="myDropzone" type="file" name="photo2[]" placeholder="Saisir des images" multiple>
+                            id="myDropzone" type="file" name="photoGalerie_1[]" placeholder="Saisir des images" multiple>
+                    </div>
+                    <div class="w_full">
+                        <h2 class='font-bold w-full' >Lier un artiste a la galerie 2</h2>
+                    <select name="artisteGalerie_1" id="artisteGalerie2" class="w-72 rounded border-gray-200 js-example-basic-multiple-art1"
+                    multiple>
+
+                    @foreach ($artiste as $artistes)
+                        <option value="{{ $artistes->id }}" @if (isset($publications)) selected @endif>
+                            {{ $artistes->nom }}
+                        </option>
+                    @endforeach
+
+                    </select>
                     </div>
                     <button type="reset" id="annuler-galerie2-btn">Annuler</button>
-
+                    <button type="button" class="block" id="new-galerie3-btn">Créer une troisième galerie 
+                        photo</button>
                 </div>
+                {{-- galerie 3 --}}
+                <div class="hidden modalGalerie3 w-full">
+                    <div class="w-full">
+                        <h2 class='redng3 font-bold w-full'>Nom de la galerie 3<span style="color:#feb2b2;">*</span></h2>
+                        <input class=" rounded  border-gray-200" type="text" name="nomgalerie[]" id="nomgalerie3"
+                            placeholder="nom">
+                    </div>
+                    <div class="w-full">
+                        <h2 class='font-bold w-full'>Photographe de la galerie 3</h2>
+                        <input class=" rounded  border-gray-200" type="text" name="photographegalerie[]"  placeholder="photographe">
+                    </div>
+                    <div class="w-full">
+                        <h2 class='redig3 font-bold w-full'>Image de la galerie 3<span style="color:#feb2b2;">*</span></h2>
+                        <input class=" rounded border-gray-200 dropzone p-4 border-2 border-dashed border-gray-400"
+                            id="myDropzone" type="file" name="photoGalerie_2[]" placeholder="Saisir des images" multiple>
+                    </div>
+                    <div class="w_full">
+                        <h2 class='font-bold w-full' >Lier un artiste a la galerie 3</h2>
+                    <select name="artisteGalerie_2" id="artisteGalerie3" class="w-72 rounded border-gray-200 js-example-basic-multiple-art1"
+                    multiple>
+
+                    @foreach ($artiste as $artistes)
+                        <option value="{{ $artistes->id }}" @if (isset($publications) && $publications[0]['artiste_id'] == $artiste->id) selected @endif>
+                            {{ $artistes->nom }}
+                        </option>
+                    @endforeach
+
+                    </select>
+                    </div>
+                    <button type="reset" id="annuler-galerie3-btn">Annuler</button>
+                    <button type="button" class="block" id="new-galerie4-btn">Créer une quatrième galerie 
+                        photo</button>
+                </div>
+                {{-- Galerie 4 --}}
+                <div class="hidden modalGalerie4 w-full">
+                    <div class="w-full">
+                        <h2 class='redng4 font-bold w-full'>Nom de la galerie 4<span style="color:#feb2b2;">*</span></h2>
+                        <input class=" rounded  border-gray-200" type="text" name="nomgalerie[]" id="nomgalerie4"
+                            placeholder="nom">
+                    </div>
+                    <div class="w-full">
+                        <h2 class='font-bold w-full'>Photographe de la galerie 4</h2>
+                        <input class=" rounded  border-gray-200" type="text" name="photographegalerie[]"  placeholder="photographe">
+                    </div>
+                    <div class="w-full">
+                        <h2 class='redig4 font-bold w-full'>Image de la galerie 4<span style="color:#feb2b2;">*</span></h2>
+                        <input class=" rounded border-gray-200 dropzone p-4 border-2 border-dashed border-gray-400"
+                            id="myDropzone" type="file" name="photoGalerie_3[]" placeholder="Saisir des images" multiple>
+                    </div>
+                    <div class="w_full">
+                        <h2 class='font-bold w-full' >Lier un artiste a la galerie 4</h2>
+                    <select name="artisteGalerie_3" id="artisteGalerie4" class="w-72 rounded border-gray-200 js-example-basic-multiple-art1"
+                    multiple>
+
+                    @foreach ($artiste as $artistes)
+                        <option value="{{ $artistes->id }}" @if (isset($publications) ) selected @endif>
+                            {{ $artistes->nom }}
+                        </option>
+                    @endforeach
+
+                    </select>
+                    </div>
+                    <button type="reset" id="annuler-galerie4-btn">Annuler</button>                
+            </div>
             </div>
 
 
