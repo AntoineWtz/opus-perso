@@ -95,7 +95,7 @@ class InfoAffichageController extends Controller
             'balise_alt' => 'required',
         ]);
     
-        $infoAffichage->media_id = $request->media;
+        $infoAffichage->media_id = $request->media_id;
         $infoAffichage->titre = $request->titre;
         $infoAffichage->zone = $request->zone;
         $infoAffichage->visibilite = $request->visibilite;

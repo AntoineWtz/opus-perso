@@ -2061,6 +2061,7 @@ module.exports = {
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./carrousel */ "./resources/js/carrousel.js");
 
 //Fonction open Modal Search
 document.addEventListener('DOMContentLoaded', function () {
@@ -2117,6 +2118,27 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/carrousel.js":
+/*!***********************************!*\
+  !*** ./resources/js/carrousel.js ***!
+  \***********************************/
+/***/ (() => {
+
+//CARROUSEL ACCUEIL
+
+$(function () {
+  $('.autoplay').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4500,
+    infinite: true,
+    speed: 1600
+  });
+});
 
 /***/ }),
 

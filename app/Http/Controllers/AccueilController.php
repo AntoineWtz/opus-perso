@@ -12,15 +12,15 @@ class AccueilController extends Controller
 {
     public function Index()
     {
-        $infoAffichages = InfoAffichage::all();
+        $infoAffichages = InfoAffichage::where('visibilite', 'Actif')->get();
         $medias = Media::all();
-        $publications = Publication::all();
-        $evenements = Evenement::all();
+        // $publications = Publication::all();
+        $evenements = Evenement::where('visibilite', 'Actif')->get();
 
         return view('accueil')
             ->with('infoAffichages', $infoAffichages)
             ->with('medias', $medias)
-            ->with('publications', $publications)
+            // ->with('publications', $publications)
             ->with('evenements', $evenements);
     }
 }

@@ -23,10 +23,10 @@
         @include('partials.header')
         <!-- BLOC PAGE -->
         <div class="mt-16 mb-8 mx-auto container">
-            <!-- CARROUSEL A LA UNE => OK  -->
+            <!-- CARROUSEL A LA UNE => Boucle qui affiche les info Affichages zone 1  -->
             <div class="mt-8 autoplay mx-auto text-center"> 
                 @foreach ($infoAffichages as $infoAffichage)
-                    @if ($infoAffichage->visibilite === 'Actif' && $infoAffichage->zone === '1')
+                    @if ($infoAffichage->zone === '1')
                     <div class="relative">
                         <div class="flex flex-col items-center">
                             <img src="{{ asset($infoAffichage->media->chemin) }}" alt="{{ $infoAffichage->media->balise_alt}}" class="w-full">
@@ -97,25 +97,22 @@
                     <h2 class="text-3xl font-bold text-center">Concerts à venir</h2>
                     <hr class="my-4" style="width: 50%;">
                 </div>
-                <!-- Contenu de la grille => créer une boucle avec un des blocs 
-                pour afficher les 6 dernières publications Evenements -->
+                <!-- boucle qui affiche les 6 prochains event par ordre date_event -->
                 <div class="flex flex-wrap lg:justify-between items-center justify-center">
-                    @foreach ($evenements as $evenement)
-                        @if ($loop->iteration <= 6 && $evenement->visibilite === 'Actif')
-                            <div class="flex flex-col items-center text-center mb-4">
-                                <img src="{{ asset($evenement->media) }}" alt="Photo de l'événement">
-                                <p class="text-xl">{{ $evenement->titre}}</p>
-                                <p>{{ $evenement->lieux->nom }} {{ date('d/m/Y', strtotime($evenement->date_event)) }}</p>
-                            </div>
-                        @endif
-                    @endforeach
+                @foreach ($evenements->sortBy('date_event')->take(6) as $evenement)
+                        <div class="flex flex-col items-center text-center m-4">
+                            <img src="{{ asset($evenement->media->chemin) }}" alt="Photo de l'événement">
+                            <p class="text-xl">{{ $evenement->titre}}</p>
+                            <p>{{ $evenement->lieux->nom }} {{ date('d/m/Y', strtotime($evenement->date_event)) }}</p>
+                        </div>
+                @endforeach
                 </div>
             </div>
 
-            <!-- CARROUSEL A LA UNE 2 => OK  -->
+            <!-- CARROUSEL A LA UNE 2 => Boucle qui affiche les info Affichages zone 2  --> 
             <div class="mt-8 autoplay mx-auto text-center"> 
                 @foreach ($infoAffichages as $infoAffichage)
-                    @if ($infoAffichage->visibilite === 'Actif' && $infoAffichage->zone === '2')
+                    @if ($infoAffichage->zone === '2')
                     <div class="relative">
                         <div class="flex flex-col items-center">
                             <img src="{{ asset($infoAffichage->media->chemin) }}" alt="{{ $infoAffichage->media->balise_alt}}" class="w-full">

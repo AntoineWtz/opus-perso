@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h1 class="font-bold text-3xl text-center mt-2">
             @if (isset($infoAffichages))
-            Modifier Affichage : "{{ $infoAffichages[0]['titre']}}"
+            Modifier Affichage : "{{ $infoAffichages[0]['titre'] }}"
             @else
             Nouvelle info affichage
 
@@ -11,7 +11,8 @@
     </x-slot>
 
     <x-slot name="slot">
-        <form class="ml-4" action="{{ isset($infoAffichage) ? route('GestionInfoAffichage.update', ['GestionInfoAffichage' => $infoAffichage->id]) : route('GestionInfoAffichage.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col">
+        <form class="ml-4" action="{{ isset($infoAffichage) ? route('GestionInfoAffichage.update', ['GestionInfoAffichage' => $infoAffichage->id]) : route('GestionInfoAffichage.store') }}" 
+            method="POST" enctype="multipart/form-data" class="flex flex-col">
             @csrf
             @if(isset($infoAffichage))
             @method('PUT')
@@ -28,24 +29,27 @@
             </div>
             @endif
 
-            <!-- Champ Titre -->
-            <label for="titre">Titre</label>
-            <input class="w-10/12 rounded border-gray-200" type="text" name="titre" placeholder="Titre de l'info affichage" value="{{ isset($infoAffichage) ? $infoAffichage->titre : '' }}"><br>
-
-            <!-- Champ Zone -->
-            <label for="zone">Zone</label>
-            <select name="zone">
-                <option value="1">Carrousel 1</option>
-                <option value="2">Carrousel 2</option>
-            </select><br>
-
-            <!-- Champ Visibilité -->
-            <label for="visibilite">Visibilité</label>
-            <select name="visibilite" id="visibilite" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
-                <option value="Actif">Actif</option>
-                <option value="Inactif">Inactif</option>
-            </select><br>
-
+            <div>
+                <h3 class="Font-bold text-xl m-8 text-blue-500">Infos Affichages</h3>
+                <!-- Champ Titre -->
+                <label for="titre">Titre</label>
+                <input class="w-10/12 rounded border-gray-200" type="text" name="titre" placeholder="Titre de l'info affichage" value="{{ isset($infoAffichage) ? $infoAffichage->titre : '' }}"><br>
+    
+                <!-- Champ Zone -->
+                <label for="zone">Zone</label>
+                <select name="zone">
+                    <option value="1">Carrousel 1</option>
+                    <option value="2">Carrousel 2</option>
+                </select><br>
+    
+                <!-- Champ Visibilité -->
+                <label for="visibilite">Visibilité</label>
+                <select name="visibilite" id="visibilite" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                    <option value="Actif">Actif</option>
+                    <option value="Inactif">Inactif</option>
+                </select>
+            </div>
+            <br>
             <!-- Champ Ordre -->
             <label for="ordre">Ordre</label>
             <select name="ordre" id="ordre" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
