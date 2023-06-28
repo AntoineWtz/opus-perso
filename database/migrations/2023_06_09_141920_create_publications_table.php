@@ -18,10 +18,11 @@ class CreatePublicationsTable extends Migration
         Schema::create('publications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('type_publication_id')->constrained();
+            $table->foreignId('evenement_id')->nullable()->constrained();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('lieux_id')->nullable()->constrained();
-            $table->foreignId('image_demo')->constrained('media');
-            $table->foreignId('video_demo')->nullable()->constrained('media');
+            $table->foreignId('image_aperçu')->constrained('media');
+            $table->foreignId('video_aperçu')->nullable()->constrained('media');
             $table->string('titre');
             $table->longText('descriptif')->nullable();
             $table->dateTime('date_parution')->nullable();
