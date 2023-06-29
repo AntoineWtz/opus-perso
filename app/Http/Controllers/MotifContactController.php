@@ -17,7 +17,7 @@ class MotifContactController extends Controller
     }
     public function create()
     {
-        return view('MotifContact.FormMotifContact');
+        return view('motifContact.FormMotifContact');
     }
     public function edit($id)
     {
@@ -79,6 +79,7 @@ class MotifContactController extends Controller
             'email.required' => 'Veuillez renseigner un email valide',
             'visibilite.required' => 'Veuillez renseigner la visibilité',
             'ordre.required' => 'Veuillez renseigner l\'ordre dans le formulaire',
+            'ordre.unique' => 'L\'ordre est déjà pris. Veuillez en choisir un autre.',
         ]);
     
         $motifContact->motif = $request->motif;
@@ -88,6 +89,6 @@ class MotifContactController extends Controller
     
         $motifContact->save();
     
-        return redirect()->back()->with('success', 'Le contact a été mis à jour avec succès.');
+        return redirect()->route('GestionMotifContact.index')->with('success', 'Le contact a été mis à jour avec succès.');
     }
 }

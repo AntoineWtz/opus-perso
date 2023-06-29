@@ -50,5 +50,12 @@
             </tr>
             @endforeach
         </table>
+        @if (session('success'))
+        <div class="text-center mt-4 mb-2">
+            <div class="bg-green-500 text-white px-4 py-2 rounded-md inline-block">
+                {{ session('success') }}
+            </div>
+        </div>
+        @endif
     </x-slot>
 </x-app-layout>
