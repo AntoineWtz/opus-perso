@@ -36,7 +36,7 @@
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid bg-gray-50'>
 
                     <!-- modifier -->
-                    @include('components.bouton.ButtonModifier', ['routeName' => 'GestionMotifContact', 'itemId' => $motifContact->id])
+                    @include('components.bouton.buttonModifier', ['routeName' => 'GestionMotifContact', 'itemId' => $motifContact->id])
 
                 </td>
 
@@ -50,5 +50,12 @@
             </tr>
             @endforeach
         </table>
+        @if (session('success'))
+        <div class="text-center mt-4 mb-2">
+            <div class="bg-green-500 text-white px-4 py-2 rounded-md inline-block">
+                {{ session('success') }}
+            </div>
+        </div>
+        @endif
     </x-slot>
 </x-app-layout>

@@ -54,33 +54,19 @@ Route::middleware(['auth'])->group(function () {
     // Autres routes protégées par le middleware d'authentification
     Route::prefix('/admin')->group(function () {
         Route::resource('/GestionArtiste', ArtisteController::class);
-        
         Route::resource('/GestionEvenement', EvenementController::class);
-      
         Route::resource('/GestionGalerie', GalerieController::class);
-
         Route::resource('/GestionGenreMusicaux', GenreMusicauxController::class);
-       
         Route::resource('/GestionInfoAffichage', InfoAffichageController::class);
-        
         Route::resource('/GestionLieux', LieuxController::class);
-       
         Route::resource('/GestionMedia', MediaController::class);
-  
         Route::resource('/GestionMotifContact', MotifContactController::class);
-      
         Route::resource('/GestionPageStatique', PageStatiqueController::class);
-
         Route::resource('/GestionParametrageRS', ParametrageRSController::class);
-       
         Route::resource('/GestionPublication', PublicationController::class);
-       
         Route::resource('/GestionTypeEvenement', TypeEvenementController::class);
-       
         Route::resource('/GestionTypeMedia', TypeMediaController::class);
-        
         Route::resource('/GestionTypePublication', TypePublicationController::class);
-
         Route::resource('/GestionUser' , UserController::class);
     });
 });

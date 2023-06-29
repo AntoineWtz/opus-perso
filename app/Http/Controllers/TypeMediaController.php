@@ -13,7 +13,7 @@ class TypeMediaController extends Controller
     {
         $typeMedias = TypeMedia::all();
 
-        return view('TypeMedia.ListeTypeMedia')->with('typeMedias', $typeMedias);
+        return view('typeMedia.ListeTypeMedia')->with('typeMedias', $typeMedias);
     }
     
     public function create()
