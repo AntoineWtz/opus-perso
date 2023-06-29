@@ -46984,6 +46984,7 @@ window.Dropzone = (dropzone__WEBPACK_IMPORTED_MODULE_0___default());
 jquery__WEBPACK_IMPORTED_MODULE_1___default()(".js-example-basic-single").select2();
 jquery__WEBPACK_IMPORTED_MODULE_1___default()(".js-example-basic-multiple").select2();
 jquery__WEBPACK_IMPORTED_MODULE_1___default()(".js-example-basic-multiple2").select2();
+jquery__WEBPACK_IMPORTED_MODULE_1___default()(".js-example-basic-multiple-art1").select2();
 document.addEventListener("DOMContentLoaded", function () {
   //variable new genre musicaux
   var newGenreMusicauxbtn = document.getElementById("new-genre-musicaux-btn");
@@ -47018,6 +47019,28 @@ document.addEventListener("DOMContentLoaded", function () {
   // btn annuler galerie 2
   btnAnnulerGalerie2.addEventListener("click", function () {
     document.querySelector("div .modalGalerie2").classList.add("hidden");
+  });
+  //variable new galerie 3
+  var newGaleriebtn3 = document.getElementById("new-galerie3-btn");
+  var btnAnnulerGalerie3 = document.getElementById("annuler-galerie3-btn");
+  // btn new galerie 3
+  newGaleriebtn3.addEventListener("click", function () {
+    document.querySelector("div .modalGalerie3").classList.remove("hidden");
+  });
+  // btn annuler galerie 3
+  btnAnnulerGalerie3.addEventListener("click", function () {
+    document.querySelector("div .modalGalerie3").classList.add("hidden");
+  });
+  //variable new galerie 4
+  var newGaleriebtn4 = document.getElementById("new-galerie4-btn");
+  var btnAnnulerGalerie4 = document.getElementById("annuler-galerie4-btn");
+  // btn new galerie 4
+  newGaleriebtn4.addEventListener("click", function () {
+    document.querySelector("div .modalGalerie4").classList.remove("hidden");
+  });
+  // btn annuler galerie 4
+  btnAnnulerGalerie4.addEventListener("click", function () {
+    document.querySelector("div .modalGalerie4").classList.add("hidden");
   });
 
   // variable art1 / btn new art1 / btn annuler art1
@@ -47090,7 +47113,7 @@ document.addEventListener("DOMContentLoaded", function () {
     init: function init() {}
   };
 });
-window.validerFormulaire = function (event) {
+window.validerFormulaire = function () {
   var valid = true;
   var titre = document.getElementById('titre').value;
   var image_demo = document.getElementById('image-demo').value;
@@ -47126,13 +47149,44 @@ window.validerFormulaire = function (event) {
       valid = false;
     }
   }
-  //vérif Artiste
-  if (!document.querySelector('.Artiste-1').classList.contains('hidden')) {}
+
+  //vérif Artiste 1
+  if (!document.querySelector('.Artiste-1').classList.contains('hidden')) {
+    var nom = document.getElementById('Art-1').value;
+    if (nom === '' || nom == null) {
+      document.querySelector('.redh1').style.color = '#e53e3e';
+      valid = false;
+    }
+  }
+  //vérif Artiste 2
+  if (!document.querySelector('.Artiste-2').classList.contains('hidden')) {
+    var nom = document.getElementById('Art-2').value;
+    if (nom === '' || nom == null) {
+      document.querySelector('.redh2').style.color = '#e53e3e';
+      valid = false;
+    }
+  }
+  //vérif Artiste 1
+  if (!document.querySelector('.Artiste-3').classList.contains('hidden')) {
+    var nom = document.getElementById('Art-3').value;
+    if (nom === '' || nom == null) {
+      document.querySelector('.redh3').style.color = '#e53e3e';
+      valid = false;
+    }
+  }
+  //vérif Artiste 1
+  if (!document.querySelector('.Artiste-4').classList.contains('hidden')) {
+    var nom = document.getElementById('Art-4').value;
+    if (nom === '' || nom == null) {
+      document.querySelector('.redh4').style.color = '#e53e3e';
+      valid = false;
+    }
+  }
 
   //vérif Galerie 1
   if (!document.querySelector('.modalGalerie').classList.contains('hidden')) {
     var nom = document.getElementById('nomgalerie').value;
-    var imgInput = document.querySelector('input[name="photo[]"]');
+    var imgInput = document.querySelector('input[name="photoGalerie_0[]"]');
     var img = imgInput.files;
     if (nom === '' || nom == null || img.length === 0) {
       if (nom === '' || nom == null) {
@@ -47141,6 +47195,57 @@ window.validerFormulaire = function (event) {
       }
       if (img.length === 0) {
         document.querySelector('.redig1').style.color = '#e53e3e';
+        valid = false;
+      }
+      valid = false;
+    }
+  }
+  //vérif Galerie 2
+  if (!document.querySelector('.modalGalerie2').classList.contains('hidden')) {
+    var nom = document.getElementById('nomgalerie2').value;
+    var imgInput = document.querySelector('input[name="photoGalerie_1[]"]');
+    var img = imgInput.files;
+    if (nom === '' || nom == null || img.length === 0) {
+      if (nom === '' || nom == null) {
+        document.querySelector('.redng2').style.color = '#e53e3e';
+        valid = false;
+      }
+      if (img.length === 0) {
+        document.querySelector('.redig2').style.color = '#e53e3e';
+        valid = false;
+      }
+      valid = false;
+    }
+  }
+  //vérif Galerie 3
+  if (!document.querySelector('.modalGalerie3').classList.contains('hidden')) {
+    var nom = document.getElementById('nomgalerie3').value;
+    var imgInput = document.querySelector('input[name="photoGalerie_2[]"]');
+    var img = imgInput.files;
+    if (nom === '' || nom == null || img.length === 0) {
+      if (nom === '' || nom == null) {
+        document.querySelector('.redng3').style.color = '#e53e3e';
+        valid = false;
+      }
+      if (img.length === 0) {
+        document.querySelector('.redig3').style.color = '#e53e3e';
+        valid = false;
+      }
+      valid = false;
+    }
+  }
+  //vérif Galerie 4
+  if (!document.querySelector('.modalGalerie4').classList.contains('hidden')) {
+    var nom = document.getElementById('nomgalerie4').value;
+    var imgInput = document.querySelector('input[name="photoGalerie_3[]"]');
+    var img = imgInput.files;
+    if (nom === '' || nom == null || img.length === 0) {
+      if (nom === '' || nom == null) {
+        document.querySelector('.redng4').style.color = '#e53e3e';
+        valid = false;
+      }
+      if (img.length === 0) {
+        document.querySelector('.redig4').style.color = '#e53e3e';
         valid = false;
       }
       valid = false;
