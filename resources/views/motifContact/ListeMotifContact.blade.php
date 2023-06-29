@@ -36,7 +36,7 @@
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid bg-gray-50'>
 
                     <!-- modifier -->
-                    @include('components.bouton.ButtonModifier', ['routeName' => 'GestionMotifContact', 'itemId' => $motifContact->id])
+                    @include('components.bouton.buttonModifier', ['routeName' => 'GestionMotifContact', 'itemId' => $motifContact->id])
 
                 </td>
 

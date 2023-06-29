@@ -13,7 +13,7 @@ class MotifContactController extends Controller
     {
         $motifContacts = MotifContact::all();
 
-        return view('MotifContact.ListeMotifContact')->with('motifContacts', $motifContacts);
+        return view('motifContact.ListeMotifContact')->with('motifContacts', $motifContacts);
     }
     public function create()
     {
