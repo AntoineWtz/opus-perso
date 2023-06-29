@@ -29,6 +29,7 @@ class CreatePublicationsTable extends Migration
             $table->text('resume_rs')->nullable();
             $table->enum('statut', ["Brouillon","Relecture","Valide"]);
             $table->timestamps();
+            $table->foreignId('evenement_id')->nullable()->constrained();
         });
 
         Schema::enableForeignKeyConstraints();

@@ -5,7 +5,6 @@
             Modifier l'événement : "{{ $evenements[0]['titre'] }}"
             @else
             Nouvel événement
-
             @endif
         </h1>
     </x-slot>
@@ -28,94 +27,143 @@
             </div>
             @endif
 
-            <div>
-                <!-- Champ pour le titre -->
-                <div class="m-8">
-                    <h2 class="font-bold">Titre</h2>
-                    <input class="w-10/12 rounded border-gray-200" type="text" name="titre" placeholder="Titre de l'événement" value="{{ isset($evenement) ? $evenement->titre : '' }}">
-                </div>
-                <!-- Champ pour le descriptif -->
-                <!-- <div class="m-8"> -->
-                    <!-- <h2 class="font-bold m-2">Descriptif</h2> -->
-                    <!-- <textarea class="w-10/12 rounded border-gray-200" id="editor" type="text" name="descriptif" placeholder="Description de l'événement"> {{ isset($evenement) ? $evenement->descriptif : '' }}</textarea> -->
-                <!-- </div> -->
+           
+            <!-- Champ pour le titre -->
+            <div class="flex ml-8 m-2">
+                <h2 class="font-bold m-2">Titre :</h2>
+                <input class="w-10/12 rounded border-gray-200" type="text" name="titre" placeholder="Titre de l'événement" value="{{ isset($evenement) ? $evenement->titre : '' }}">
             </div>
 
-            <div class="flex justify-evenly items-center m-8">
-                <!-- Champ pour le lieu -->
-                <div class="flex">
-                    <h2 class="font-bold m-2" for="lieux_id">Lieu</h2>
-                    <select class="mr-4 rounded border-gray-200" name="lieux_id">
-                        @foreach($lieux as $lieu)
-                        <option value="{{ $lieu->id }}" {{ (isset($evenement) && $evenement->lieux_id == $lieu->id) ? 'selected' : '' }}>
-                            {{ $lieu->nom }}
-                        </option>
-                        @endforeach
-                    </select>
-                    @component('components.bouton.buttonAjouter')
+            <!-- Champ pour le lieu -->
+            <div class="flex ml-8 m-2">
+                <h2 class="font-bold m-2">Lieux</h2>
+                <select name="lieux_id" id="lieux_id" class="w-72 rounded border-gray-200 js-example-basic-single">
+                    @foreach ($lieux as $lieu)
+                    @if ($lieu->visibilite == 'Actif')
+                    <option value="{{ $lieu->id }}"
+                        @if (isset($publications) && $publications[0]['lieux_id'] == $lieu->id) selected @endif>
+                        {{ $lieu->nom }}
+                    </option>
+                    @endif
+                    @endforeach
+                </select>
+            </div>
+
+            
+            <!-- Champ pour les artistes présents à l'événement -->
+<div class="flex ml-8 m-2">
+    <h2 class="font-bold m-2">Artistes</h2>
+    <select name="artiste[]" id="artiste" class="w-72 rounded border-gray-200 js-example-basic-multiple" multiple>
+        
+        @foreach ($artiste as $artistes)
+        <option value="{{ $artistes->id }}"
+            @if (isset($evenement) && $evenement->artistes->contains('id', $artistes->id)) selected @endif>
+            {{ $artistes->nom }}
+        </option>
+       
+        @endforeach
+
+    </select>
+</div>
+
+
+
+            <!-- Champ pour le type d'événement -->
+            <div class="flex ml-8 m-2">
+                <h2 class="font-bold m-2">Type d'événement :</h2>
+                <select name="type_evenement_id" id="type_evenement" class="rounded border-gray-200">
+                    @foreach($type_evenements as $type_evenement)
+                    <option value="{{ $type_evenement->id }}" @if(isset($evenement) && $evenement->type_evenement_id == $type_evenement->id) selected @endif>{{ $type_evenement->type_event }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <!-- Genre musicaux -->
+            <div class="flex ml-8 m-2">
+                <h2 class='font-bold m-2'>Genre Musicaux</h2>
+                <select name="genre_musicaux[]" id="genre_musicaux"
+                    class="w-72 rounded border-gray-200 js-example-basic-multiple" multiple>
+                    @php
+                        $count = 1;
+                    @endphp
+                    @foreach ($genre_musicaux as $genre)
+                        @if ($genre->visibilite == 'Actif')
+                            <option value="{{ $genre->id }}" @if (isset($publications) && $publications[0]['genre_musicaux_id'] == $genre_musicaux->id) selected @endif>
+                                {{ $count }} - {{ $genre->nom }}
+                            </option>
+                            @php
+                                $count++;
+                            @endphp
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+            <!-- Champ pour la billetterie -->
+            <div class="flex ml-8 m-2">
+                <h2 class="font-bold m-2" for="billeterie">Billetterie</h2>
+                <input type="url" class="rounded border-gray-200" name="billeterie" value="{{ isset($evenement) ? $evenement->billeterie : '' }}">
+            </div>
+
+            <!-- Champ pour la date de l'événement -->
+            <div class="flex ml-8 m-2">
+                <h2 class="font-bold m-2" for="date_event">Date de l'événement</h2>
+                <input type="date" class="rounded border-gray-200" name="date_event" value="{{ old('date_event', isset($evenement) ? $evenement->date_event->format('Y-m-d') : '') }}">
+            </div>
+        
+            <!-- Champ pour liée une publication -->
+            <div class="flex ml-8 m-2">
+                <label  class="font-bold m-2" for="publication_id">Liée une Publication :</label>
+                <select name="publication_id" class="form-control">
+                <option value="">Sélectionner une publication</option>
+                @foreach($publicationsNonLiees as $publication)
+                <option value="{{ $publication->id }}">{{ $publication->titre }}</option>
+                @endforeach
+                </select>
+            </div>
+
+            <!-- Champ pour la mise en avant -->
+            <div class="flex ml-8 m-2">
+                <h2 class="font-bold m-2 " for="mise_en_avant">Mise en avant</h2>
+                <select name="mise_en_avant" class="rounded border-gray-200">
+                    <option value="oui" {{ isset($evenement) && $evenement->mise_en_avant == 'oui' ? 'selected' : '' }}>Oui</option>
+                    <option value="non" {{ isset($evenement) && $evenement->mise_en_avant == 'non' ? 'selected' : '' }}>Non</option>
+                </select>
+            </div>
+    
+            <!-- Champ pour la visibilité -->
+            <div class="flex ml-8 m-2">
+                <h2 class="font-bold m-2" for="visibilite">Visibilité</h2>
+                <select name="visibilite" class="rounded border-gray-200">
+                    <option value="Actif" {{ isset($evenement) && $evenement->visibilite == 'Actif' ? 'selected' : '' }}>Actif</option>
+                    <option value="Inactif" {{ isset($evenement) && $evenement->visibilite == 'Inactif' ? 'selected' : '' }}>Inactif</option>
+                </select>
+            </div>
+        
+            <!-- image aperçu -->
+            <div class="flex ml-8 m-2">
+                <h2 class="redimg font-bold">Image d'aperçu <span style="color:#feb2b2;">*</span></h2>
+                <input type="file" name="image_demo" id="image-demo">
+                <label class="redalt" for="alt_img_demo">balise alternative de l'image :<span
+                        style="color:#feb2b2;">*</span></label>
+                <input class="w-25 rounded border-gray-200" type="text" name="alt_img_demo" id="alt_img_demo">
+
+            </div>
+
+            <!-- Boutons -->
+            <div class="flex ml-8 m-2">
+                <!-- Bouton d'annulation du formulaire -->
+                <div class="flex  m-8">
+                    @include('components.bouton.buttonAnnuler', ['route' => 'GestionEvenement.index'])
+                </div>
+                <!-- Bouton de soumission du formulaire -->
+                <div class="flex  m-8">
+                    @component('components.bouton.buttonValider')
                     @endcomponent
                 </div>
-                <div class="flex">
-                    <!-- Champ pour le type d'événement -->
-                    <h2 class="font-bold m-2">Type d'événement</h2>
-                    <select name="type_evenement_id" id="type_evenement" class="rounded border-gray-200">
-                        @foreach($type_evenements as $type_evenement)
-                        <option value="{{ $type_evenement->id }}" @if(isset($evenement) && $evenement->type_evenement_id == $type_evenement->id) selected @endif>{{ $type_evenement->type_event }}
-                        </option>
-                        @endforeach
-                    </select>
-                </div>
-                <!-- Champ pour la billetterie -->
-                <div class="flex">
-                    <h2 class="font-bold m-2" for="billeterie">Billetterie</h2>
-                    <input type="url" class="rounded border-gray-200" name="billeterie" value="{{ isset($evenement) ? ($evenement->billeterie) : '' }}">
-                </div>
-            </div>
-            <div class="flex justify-evenly items-center m-8">
-                <div class="flex">
-                    <!-- Champ pour la date de l'événement -->
-                    <h2 class="font-bold m-2" for="date_event">Date de l'événement</h2>
-                    <input type="date" class="rounded border-gray-200" name="date_event" value="{{ old('date_event', isset($evenement) ? $evenement->date_event->format('Y-m-d') : '') }}">
-                </div>
-                <!-- Champ pour la mise en avant -->
-                <div class="flex">
-                    <h2 class="font-bold m-2" for="mise_en_avant">Mise en avant</h2>
-                    <select name="mise_en_avant" class="rounded border-gray-200">
-                        <option value="oui" {{ isset($evenement) && $evenement->mise_en_avant == 'oui' ? 'selected' : '' }}>Oui</option>
-                        <option value="non" {{ isset($evenement) && $evenement->mise_en_avant == 'non' ? 'selected' : '' }}>Non</option>
-                    </select>
-                </div>
-    
-                <!-- Champ pour la visibilité -->
-                <div class="flex">
-                    <h2 class="font-bold m-2" for="visibilite">Visibilité</h2>
-                    <select name="visibilite" class="rounded border-gray-200">
-                        <option value="Actif" {{ isset($evenement) && $evenement->visibilite == 'Actif' ? 'selected' : '' }}>Actif</option>
-                        <option value="Inactif" {{ isset($evenement) && $evenement->visibilite == 'Inactif' ? 'selected' : '' }}>Inactif</option>
-                    </select>
-                </div>
             </div>
 
-            <!-- Champ pour Media -->
-            <div class="flex justify-center items-center m-8">
-                <h2 class="font-bold m-2">Image d'aperçu</h2>
-                <input type="file" name="media" accept="media/*" value="{{ isset($evenement) ? $evenement->media : '' }}">
-            </div>
-
-            <div class="flex justify-evenly m-8">
-                <!-- Bouton de soumission du formulaire -->
-                @include('components.bouton.buttonAnnuler', ['route' => 'GestionEvenement.index'])
-
-                @component('components.bouton.buttonValider')
-                @endcomponent
-            </div>
         </form>
-        @if (session('success'))
-        <div class="text-center m-4">
-            <div class="bg-green-500 text-white px-4 py-2 rounded-md inline-block">
-                {{ session('success') }}
-            </div>
-        </div>
-        @endif
+        <script src="{{ asset('js/evenement.js') }}" defer></script>
+        
     </x-slot>
 </x-app-layout>

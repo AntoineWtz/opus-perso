@@ -711,6 +711,9 @@ select {
 .top-1\/2 {
   top: 50%;
 }
+.top-20 {
+  top: 5rem;
+}
 .z-0 {
   z-index: 0;
 }
@@ -790,6 +793,9 @@ select {
 }
 .ml-4 {
   margin-left: 1rem;
+}
+.ml-8 {
+  margin-left: 2rem;
 }
 .mr-2 {
   margin-right: 0.5rem;
@@ -1033,6 +1039,9 @@ select {
 }
 .justify-evenly {
   justify-content: space-evenly;
+}
+.gap-2 {
+  gap: 0.5rem;
 }
 .space-y-1 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
