@@ -16,7 +16,6 @@ class TypePublication extends Model
      */
     protected $fillable = [
         'type_pub',
-        'couleur',
     ];
 
     /**
