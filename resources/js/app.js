@@ -1,8 +1,5 @@
 require('./bootstrap');
-
-
-
-
+require('./carrousel');
 
 //Fonction open Modal Search
 document.addEventListener('DOMContentLoaded', function() {

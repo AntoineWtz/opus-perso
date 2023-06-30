@@ -61,6 +61,14 @@ class Publication extends Model
     {
         return $this->belongsTo(Media::class);
     }
+    public function Img()
+    {
+        return $this->belongsTo(Media::class, 'image_demo');
+    }
+    public function video()
+    {
+        return $this->belongsTo(Media::class, 'video_demo');
+    }
 
     public function galeries()
     {
