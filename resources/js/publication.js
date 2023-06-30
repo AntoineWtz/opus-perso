@@ -9,6 +9,8 @@ import "select2";
 $(".js-example-basic-single").select2();
 $(".js-example-basic-multiple").select2();
 $(".js-example-basic-multiple2").select2();
+$(".js-example-basic-multiple-art1").select2();
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -52,6 +54,41 @@ document.addEventListener("DOMContentLoaded", function () {
     btnAnnulerGalerie2.addEventListener("click", function () {
         document.querySelector("div .modalGalerie2").classList.add("hidden");
     });
+    //variable new galerie 3
+    const newGaleriebtn3 = document.getElementById("new-galerie3-btn");
+    const btnAnnulerGalerie3 = document.getElementById("annuler-galerie3-btn");
+    // btn new galerie 3
+    newGaleriebtn3.addEventListener("click", function () {
+        document.querySelector("div .modalGalerie3").classList.remove("hidden");
+    });
+    // btn annuler galerie 3
+    btnAnnulerGalerie3.addEventListener("click", function () {
+        document.querySelector("div .modalGalerie3").classList.add("hidden");
+    });
+    //variable new galerie 4
+    const newGaleriebtn4 = document.getElementById("new-galerie4-btn");
+    const btnAnnulerGalerie4 = document.getElementById("annuler-galerie4-btn");
+    // btn new galerie 4
+    newGaleriebtn4.addEventListener("click", function () {
+        document.querySelector("div .modalGalerie4").classList.remove("hidden");
+    });
+    // btn annuler galerie 4
+    btnAnnulerGalerie4.addEventListener("click", function () {
+        document.querySelector("div .modalGalerie4").classList.add("hidden");
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // variable art1 / btn new art1 / btn annuler art1
     const newArtiste1 = document.getElementById("newArtiste-1");
@@ -135,8 +172,10 @@ document.addEventListener("DOMContentLoaded", function () {
             "Déposez vos fichiers ici ou cliquez pour les sélectionner",
         init: function() {}
         };
-
     
+        
+          
+        
 
 });
 
@@ -144,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-window.validerFormulaire = function (event) {
+window.validerFormulaire = function () {
     let valid = true;
     const titre = document.getElementById('titre').value;
     const image_demo = document.getElementById('image-demo').value;
@@ -184,15 +223,48 @@ window.validerFormulaire = function (event) {
             valid = false ;
         }
      }
-    //vérif Artiste
-    if(!document.querySelector('.Artiste-1').classList.contains('hidden')){
 
+    //vérif Artiste 1
+    if(!document.querySelector('.Artiste-1').classList.contains('hidden')){
+        var nom = document.getElementById('Art-1').value;
+        if(nom === '' || nom == null){
+            document.querySelector('.redh1').style.color= '#e53e3e'; 
+            valid = false ;
+        }
     }
+    //vérif Artiste 2
+    if(!document.querySelector('.Artiste-2').classList.contains('hidden')){
+        var nom = document.getElementById('Art-2').value;
+        if(nom === '' || nom == null){
+            document.querySelector('.redh2').style.color= '#e53e3e'; 
+            valid = false ;
+        }
+    }
+    //vérif Artiste 1
+    if(!document.querySelector('.Artiste-3').classList.contains('hidden')){
+        var nom = document.getElementById('Art-3').value;
+        if(nom === '' || nom == null){
+            document.querySelector('.redh3').style.color= '#e53e3e'; 
+            valid = false ;
+        }
+    }
+    //vérif Artiste 1
+    if(!document.querySelector('.Artiste-4').classList.contains('hidden')){
+        var nom = document.getElementById('Art-4').value;
+        if(nom === '' || nom == null){
+            document.querySelector('.redh4').style.color= '#e53e3e'; 
+            valid = false ;
+        }
+    }
+
+
+
+
 
     //vérif Galerie 1
     if(!document.querySelector('.modalGalerie').classList.contains('hidden')){
         var nom = document.getElementById('nomgalerie').value;
-        var imgInput = document.querySelector('input[name="photo[]"]');
+        var imgInput = document.querySelector('input[name="photoGalerie_0[]"]');
         var img = imgInput.files;
         if(nom === '' || nom == null || img.length === 0){
             if (nom === '' || nom == null) {
@@ -206,10 +278,64 @@ window.validerFormulaire = function (event) {
             
             valid = false ;
         }
+    }
+    //vérif Galerie 2
+    if(!document.querySelector('.modalGalerie2').classList.contains('hidden')){
+        var nom = document.getElementById('nomgalerie2').value;
+        var imgInput = document.querySelector('input[name="photoGalerie_1[]"]');
+        var img = imgInput.files;
+        if(nom === '' || nom == null || img.length === 0){
+            if (nom === '' || nom == null) {
+                document.querySelector('.redng2').style.color= '#e53e3e'; 
+                valid = false ;
+            }
+            if (img.length === 0) {
+                document.querySelector('.redig2').style.color= '#e53e3e'; 
+                valid = false ;
+            }       
+            valid = false ;
+        }   
+    }
+    //vérif Galerie 3
+    if(!document.querySelector('.modalGalerie3').classList.contains('hidden')){
+        var nom = document.getElementById('nomgalerie3').value;
+        var imgInput = document.querySelector('input[name="photoGalerie_2[]"]');
+        var img = imgInput.files;
+        if(nom === '' || nom == null || img.length === 0){
+            if (nom === '' || nom == null) {
+                document.querySelector('.redng3').style.color= '#e53e3e'; 
+                valid = false ;
+            }
+            if (img.length === 0) {
+                document.querySelector('.redig3').style.color= '#e53e3e'; 
+                valid = false ;
+            }
+            
+            valid = false ;
+        }
+    
+    }
+    //vérif Galerie 4
+    if(!document.querySelector('.modalGalerie4').classList.contains('hidden')){
+        var nom = document.getElementById('nomgalerie4').value;
+        var imgInput = document.querySelector('input[name="photoGalerie_3[]"]');
+        var img = imgInput.files;
+        if(nom === '' || nom == null || img.length === 0){
+            if (nom === '' || nom == null) {
+                document.querySelector('.redng4').style.color= '#e53e3e'; 
+                valid = false ;
+            }
+            if (img.length === 0) {
+                document.querySelector('.redig4').style.color= '#e53e3e'; 
+                valid = false ;
+            }
+            
+            valid = false ;
+        }
     
     }
 
-
+    
 
 
 

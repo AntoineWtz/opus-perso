@@ -45,7 +45,7 @@
             <h2 class="font-bold mt-2">Ordre dans le formulaire</h2>
             <input class="w-10/12 rounded border-gray-200" type="number" name="ordre" placeholder="Ordre dans le formulaire" value="{{ isset($motifContact) ? $motifContact->ordre : '' }}" min="0">
 
-            <br>
+            <br><br>
             <!-- Bouton de soumission du formulaire -->
 
             @include('components.bouton.buttonAnnuler', ['route' => 'GestionMotifContact.index'])

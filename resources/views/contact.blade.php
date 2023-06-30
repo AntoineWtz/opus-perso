@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <title>Opus Musique - Le webzine musical toulousain - Contact</title>
 </head>
 
@@ -62,15 +63,19 @@
                 </div>
                 <div class="mb-4">
                     <label class="block font-medium">Motif de contact</label>
-                    <select class="border border-gray-300 px-4 py-2 rounded-md w-full" name="motif">
+                    <select class="border border-gray-300 px-4 py-2 rounded-md w-full @error('motif') border-red-500 @enderror" name="motif">
+                        <option value="">Sélectionner un motif</option>
                         @foreach ($motifs as $id => $motif)
-                        <option value="{{ $id }}">{{ $motif }}</option>
+                        <option value="{{ $id }}" {{ old('motif') == $id ? 'selected' : '' }}>{{ $motif }}</option>
                         @endforeach
                     </select>
+                    @error('motif')
+                    <p class="text-red-500 mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label class="block font-medium">E-mail</label>
-                    <input type="text" class="border border-gray-300 px-4 py-2 rounded-md w-full @error('mail') border-red-500 @enderror" name="mail" value="{{ old('mail') }}" />
+                    <input type="email" class="border border-gray-300 px-4 py-2 rounded-md w-full @error('mail') border-red-500 @enderror" name="mail" value="{{ old('mail') }}" />
                     @error('mail')
                     <p class="text-red-500 mt-1">{{ $message }}</p>
                     @enderror
@@ -95,7 +100,7 @@
             </form>
         </div>
     </div>
-        @include('partials.footer')
+    @include('partials.footer')
 </body>
 
 </html>

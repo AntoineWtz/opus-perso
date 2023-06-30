@@ -15,6 +15,7 @@
                     <th class="w-8">Titre</th>
                     <th class="w-8">lieux</th>
                     <th class="w-8">Type d'événement</th>
+                    <th class="w-8">Artistes</th>
                     <th class="w-8">Billetterie</th>
                     <th class="w-8">Mise en avant</th>
                     <th class="w-5">Date de l'événement</th>
@@ -22,7 +23,6 @@
                     <th class="w-5">Date de modification</th>
                     <th class="w-2">Modifier</th>
                     <th class="w-2">Supprimer</th>
-
                 </tr>
             </thead>
 
@@ -31,6 +31,18 @@
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $evenement->titre }}</td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $evenement->lieux->nom }}</td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $evenement->typeEvenement->type_event }}</td>
+                <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>
+                    @if ($evenement->artistes->count() > 0)
+                    @foreach ($evenement->artistes as $artiste)
+                    {{ $artiste->nom }}<br>
+                    @endforeach
+                    @else
+                    Aucun artiste associé
+                    @endif
+                </td>
+
+
+
                 <!-- <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $evenement->descriptif }}</td> -->
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $evenement->billeterie }}</td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $evenement->mise_en_avant }}</td>
@@ -40,21 +52,27 @@
 
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid bg-gray-50'>
 
-                    <!-- modifier -->
-                    @include('components.bouton.ButtonModifier', ['routeName' => 'GestionEvenement', 'itemId' => $evenement->id])
+                     <!-- modifier -->
+                     @include('components.bouton.ButtonModifier', ['routeName' => 'GestionEvenement', 'itemId' => $evenement->id])
+                    </td>
 
-                </td>
-
-                <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid bg-gray-50'>
-
+                    <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>
                     <!-- supprimer -->
-
                     <x-bouton.buttonSupprimer routeName="GestionEvenement" itemId="{{ $evenement->id }}" />
-
-                </td>
+                          
+                    </td>
 
             </tr>
             @endforeach
         </table>
+        <script>
+            function confirmDelete(event, publicationId) {
+            event.preventDefault();
+
+            if (confirm("Êtes-vous sûr de vouloir supprimer cette publication ?")) {
+                document.getElementById('form-delete-' + publicationId).submit();
+                }
+            }
+                 </script>
     </x-slot>
 </x-app-layout>

@@ -13,7 +13,7 @@ class TypePublicationController extends Controller
     {
         $typePublications = TypePublication::all();
 
-        return view('TypePublication.ListeTypePublication')->with('typePublications', $typePublications);
+        return view('typePublication.ListeTypePublication')->with('typePublications', $typePublications);
     }
     
     public function create()
