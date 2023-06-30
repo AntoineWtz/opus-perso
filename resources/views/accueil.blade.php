@@ -26,7 +26,7 @@
                     <div class="relative p-4">
                         <div class="flex flex-col items-center">
                             <img src="{{ asset($infoAffichage->media->chemin) }}" alt="{{ $infoAffichage->media->balise_alt}}" class="w-full">
-                            <h2 class="absolute top-1/2 right-0 mt-12 mr-4 px-2 py-1 text-lg text-black font-bold sm:text-2xl bg-yellow-500">{{ $infoAffichage->titre }}</h2>
+                            <h2 class="absolute top-1/2 right-0 mt-12 px-2 py-1 text-lg text-black font-bold sm:text-2xl bg-yellow-500 mr-8">{{ $infoAffichage->titre }}</h2>
                         </div>
                     </div>
                     @endif
@@ -43,32 +43,32 @@
                 </div>
 
                 <!-- bloc publis -->
-                <div class="flex flex-col sm:flex-row justify-between items-center">
-                    <!-- bloc gauche => créer boucle pour afficher les deux publications récentes -->
-                    <div class="flex flex-col sm:items-center w-1/2">
-                        @foreach($publications->take(2) as $publication)
-                        <div class="relative m-4">
-                            <img src="{{ asset($publication->Img->chemin) }}" alt="photoPublication" class="w-full h-auto aspect-w-3 aspect-h-2">
-                            <div class="absolute top-1/2 right-4 text-right">
-                                <span class="text-lg px-2 py-1 bg-yellow-500 text-black font-semibold">{{ $publication->typePublication->type_pub }}</span>
-                                <h2 class="text-2xl mt-4 text-white font-bold">{{ $publication->titre }}</h2>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                    <!-- bloc droit => créer boucle pour afficher les trois autres publications récentes -->
-                    <div class="flex flex-col justify-between items-stretch">
-                        @foreach($publications->slice(2, 3) as $publication)
-                            <div class="flex items-center justify-between m-8">
-                                <div class="m-4">
-                                    <h3 class="text-2xl mb-4 font-bold">{{ $publication->titre }}</h3>
-                                    <span class="text-lg px-2 py-1 bg-yellow-500 text-black font-semibold">{{ $publication->typePublication->type_pub }}</span>
-                                </div>
-                                <img src="{{ asset($publication->Img->chemin) }}" alt="photoPublication" class="w-64 h-64 object-cover">
-                            </div>
-                        @endforeach
+    <div class="flex flex-col md:flex-row justify-between items-center">
+        <!-- bloc gauche => créer boucle pour afficher les deux publications récentes -->
+        <div class="flex flex-col items-center w-full md:w-1/2">
+            @foreach($publications->take(2) as $publication)
+                <div class="relative m-4">
+                    <img src="{{ asset($publication->Img->chemin) }}" alt="photoPublication" class="w-full h-auto aspect-w-3 aspect-h-2">
+                    <div class="absolute top-1/2 right-4 text-right">
+                        <span class="text-lg px-2 py-1 bg-yellow-500 text-black font-semibold">{{ $publication->typePublication->type_pub }}</span>
+                        <h2 class="text-2xl mt-4 text-white font-bold">{{ $publication->titre }}</h2>
                     </div>
                 </div>
+            @endforeach
+        </div>
+        <!-- bloc droit => créer boucle pour afficher les trois autres publications récentes -->
+        <div class="flex flex-col justify-between items-stretch w-auto md:w-auto">
+            @foreach($publications->slice(2, 3) as $publication)
+                <div class="flex items-center justify-between m-4">
+                    <div class="m-4">
+                        <h3 class="text-2xl mb-4 font-bold">{{ $publication->titre }}</h3>
+                        <span class="text-lg px-2 py-1 bg-yellow-500 text-black font-semibold">{{ $publication->typePublication->type_pub }}</span>
+                    </div>
+                    <img src="{{ asset($publication->Img->chemin) }}" alt="photoPublication" class="w-64 h-64 object-cover">
+                </div>
+            @endforeach
+        </div>
+    </div>
             </div>
             <!-- FIN PUBLICATIONS -->
 
@@ -97,7 +97,7 @@
                     <div class="relative p-4">
                         <div class="flex flex-col items-center">
                             <img src="{{ asset($infoAffichage->media->chemin) }}" alt="{{ $infoAffichage->media->balise_alt}}" class="w-full">
-                            <h2 class="absolute top-1/2 right-0 mt-12 mr-4 px-2 py-1 text-lg text-black font-bold sm:text-2xl bg-yellow-500">{{ $infoAffichage->titre }}</h2>
+                            <h2 class="absolute top-1/2 right-0 mt-12 px-2 py-1 text-lg text-black font-bold sm:text-2xl bg-yellow-500 mr-8">{{ $infoAffichage->titre }}</h2>
                         </div>
                     </div>
                     @endif

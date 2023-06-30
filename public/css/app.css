@@ -800,6 +800,9 @@ select {
 .mr-4 {
   margin-right: 1rem;
 }
+.mr-8 {
+  margin-right: 2rem;
+}
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -1716,20 +1719,12 @@ select {
     width: 60%;
   }
 
-  .sm\:w-full {
-    width: 100%;
-  }
-
   .sm\:max-w-md {
     max-width: 28rem;
   }
 
   .sm\:flex-1 {
     flex: 1 1 0%;
-  }
-
-  .sm\:flex-row {
-    flex-direction: row;
   }
 
   .sm\:items-center {
@@ -1772,8 +1767,12 @@ select {
     margin-bottom: 0px;
   }
 
-  .md\:w-full {
-    width: 100%;
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
+  .md\:w-auto {
+    width: auto;
   }
 
   .md\:flex-row {
