@@ -26,7 +26,7 @@
             @foreach ($users->reverse() as $user)
             <tr class='border-collapse text-left'>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $user->name }}</td>
-                <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $user->role->nom }}</td>
+                <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $user->role }}</td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $user->email }}</td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $user->nom }}</td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $user->prenom }}</td>
@@ -34,7 +34,7 @@
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $user->descriptif }}</td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid bg-gray-50'>
                     <!-- modifier -->
-                    @include('components.bouton.ButtonModifier', ['routeName' => 'GestionUser', 'itemId' => $user->id])
+                    @include('components.bouton.buttonModifier', ['routeName' => 'GestionUser', 'itemId' => $user->id])
                 </td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid bg-gray-50'>
                     <!-- supprimer -->

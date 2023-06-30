@@ -13,12 +13,12 @@ class UserController extends Controller
     {
         $users = User::all(); 
         
-        return view('User.ListeUser')->with('users', $users);
+        return view('user.ListeUser')->with('users', $users);
     }
 
     public function create()
     {
-        return view('User.FormUser');
+        return view('user.FormUser');
     }
 
     public function edit($id)

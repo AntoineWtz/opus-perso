@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h1 class="font-bold text-3xl text-center mt-2">
             @if (isset($typeEvenement))
-            Modifier le type d'Evenement : "{{ $typeMedia->type_event }}"
+            Modifier le type d'Evenement : "{{ $typeEvenement->type_event }}"
             @else
             Nouveau Type de Evenement
             @endif

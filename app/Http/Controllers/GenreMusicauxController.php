@@ -17,7 +17,7 @@ class GenreMusicauxController extends Controller
 
     public function create()
     {
-        return view('GenreMusicaux.FormGenreMusicaux');
+        return view('genreMusicaux.FormGenreMusicaux');
     }
 
     public function edit($id)

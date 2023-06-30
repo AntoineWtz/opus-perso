@@ -66,7 +66,8 @@
             <!-- Champ pour le descriptif -->
             <h2 class="font-bold mt-2">Descriptif</h2>
             <input class="w-10/12 rounded border-gray-200" type="text" name="descriptif" placeholder="Entrer votre descriptif" value="{{ isset($user) ? $user->descriptif : '' }}">
-
+		
+	    <br><br>
             <!-- Boutons de soumission et d'annulation du formulaire -->
             @include('components.bouton.buttonAnnuler', ['route' => 'GestionUser.index'])
             @component('components.bouton.buttonValider')

@@ -332,7 +332,6 @@ class PublicationController extends Controller
 
           // ]);
 
-         dd($request->all());
           return redirect()->route('GestionPublication.index')->with('succes' , 'Publication créer');
     }
     public function show(){

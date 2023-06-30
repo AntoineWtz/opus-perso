@@ -27,10 +27,10 @@ class EvenementController extends Controller
     $publicationsNonLiees = Publication::whereNull('evenement_id')->latest()->get();
     $type_evenements = TypeEvenement::all();
     $lieux = Lieux::all();
-    $artiste = Artiste::all();
+    $artistes = Artiste::all();
     $genre_musicaux = GenreMusicaux::all(); 
 
-    return view('evenement.FormEvenement', compact('type_evenements', 'lieux', 'artiste', 'genre_musicaux', 'publicationsNonLiees'));
+    return view('evenement.FormEvenement', compact('type_evenements', 'lieux', 'artistes', 'genre_musicaux', 'publicationsNonLiees'));
 }
 
 
@@ -48,14 +48,18 @@ class EvenementController extends Controller
     public function destroy($id)
     {
         $evenement = Evenement::findOrFail($id);
-
+    
         if (!$evenement) {
             return redirect()->back()->with('erreur', 'Événement introuvable');
         }
-
+    
+        $evenement->artistes()->detach();
+        $evenement->genreMusicauxes()->detach();
         $evenement->delete();
+    
         return redirect()->back()->with('succes', 'Événement supprimé avec succès');
     }
+    
 
     public function store(Request $request)
     {
@@ -97,6 +101,17 @@ class EvenementController extends Controller
             }
        }
 
+       if($request->has('genre_musicaux')){
+        $attach_art = $request['genre_musicaux'];
+        foreach( $attach_art as $arts) {
+             $art = Genremusicaux::findOrFail($arts);
+
+             if(isset($art)){
+                  $art->evenements()->attach($evenement);
+             }
+
+        }
+   }
 
         return redirect()->route('GestionEvenement.index')->with('success', 'L\'événement a été créé avec succès.');
     }

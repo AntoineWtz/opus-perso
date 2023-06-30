@@ -18,14 +18,14 @@ class TypePublicationController extends Controller
     
     public function create()
     {
-        return view('TypePublication.FormTypePublication');
+        return view('typePublication.FormTypePublication');
     }
 
     public function edit($id)
         {
     $typePublication = TypePublication::findOrFail($id);
 
-    return view('TypePublication.FormTypePublication')
+    return view('typePublication.FormTypePublication')
         ->with('typePublication', $typePublication);
     }
 

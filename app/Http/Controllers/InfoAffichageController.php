@@ -7,7 +7,6 @@ use App\Models\InfoAffichage;
 use App\Models\Media;
 use Illuminate\Support\Facades\Storage;
 
-
 class InfoAffichageController extends Controller
 {
     public function Index()
@@ -22,8 +21,7 @@ class InfoAffichageController extends Controller
         $medias = Media::all();
     
         return view('infoAffichage.FormInfoAffichage')
-            ->with('infoAffichage', new InfoAffichage())
-            ->with('media', $medias);
+            ->with(['media' => $medias]);
     }
     
     public function edit($id)
@@ -56,6 +54,8 @@ class InfoAffichageController extends Controller
             'ordre' => 'nullable',
             'chemin' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'balise_alt' => 'required',
+            'modifieur' => 'nullable',
+            'photographe' => 'nullable',
         ]);
 
         // Créer un nouveau InfoAffichage
@@ -93,6 +93,8 @@ class InfoAffichageController extends Controller
             'ordre' => 'nullable',
             'chemin' => 'image|mimes:jpeg,png,jpg|max:2048',
             'balise_alt' => 'required',
+            'modifieur' => 'nullable',
+            'photographe' => 'nullable',
         ]);
     
         $infoAffichage->media_id = $request->media_id;

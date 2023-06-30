@@ -18,14 +18,14 @@ class TypeMediaController extends Controller
     
     public function create()
     {
-        return view('TypeMedia.FormTypeMedia');
+        return view('typeMedia.FormTypeMedia');
     }
 
     public function edit($id)
         {
     $typeMedia = TypeMedia::findOrFail($id);
 
-    return view('TypeMedia.FormTypeMedia')
+    return view('typeMedia.FormTypeMedia')
         ->with('typeMedia', $typeMedia);
     }
 

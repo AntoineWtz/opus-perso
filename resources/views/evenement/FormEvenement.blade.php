@@ -1,12 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="font-bold text-3xl text-center mt-2">
-            @if (isset($evenements))
-            Modifier l'événement : "{{ $evenements[0]['titre'] }}"
+           @if (isset($evenements))
+            Modifier l'�v�nement : "{{ $evenements[0]['titre'] }}"
             @else
-            Nouvel événement
-            @endif
-        </h1>
+            Nouvel �v�nement
+            @endif        </h1>
     </x-slot>
     
     <x-slot name="slot">
@@ -41,7 +40,7 @@
                     @foreach ($lieux as $lieu)
                     @if ($lieu->visibilite == 'Actif')
                     <option value="{{ $lieu->id }}"
-                        @if (isset($publications) && $publications[0]['lieux_id'] == $lieu->id) selected @endif>
+                        @if (isset($evenements) && $evenements[0]['lieux_id'] == $lieu->id) selected @endif>
                         {{ $lieu->nom }}
                     </option>
                     @endif
@@ -55,10 +54,10 @@
     <h2 class="font-bold m-2">Artistes</h2>
     <select name="artiste[]" id="artiste" class="w-72 rounded border-gray-200 js-example-basic-multiple" multiple>
         
-        @foreach ($artiste as $artistes)
-        <option value="{{ $artistes->id }}"
-            @if (isset($evenement) && $evenement->artistes->contains('id', $artistes->id)) selected @endif>
-            {{ $artistes->nom }}
+        @foreach ($artistes as $artiste)
+        <option value="{{ $artiste->id }}"
+            @if (isset($evenement) && $evenement->artistes->contains('id', $artiste->id)) selected @endif>
+            {{ $artiste->nom }}
         </option>
        
         @endforeach
@@ -88,7 +87,7 @@
                     @endphp
                     @foreach ($genre_musicaux as $genre)
                         @if ($genre->visibilite == 'Actif')
-                            <option value="{{ $genre->id }}" @if (isset($publications) && $publications[0]['genre_musicaux_id'] == $genre_musicaux->id) selected @endif>
+                            <option value="{{ $genre->id }}" @if (isset($evenements) && $evenements[0]['genre_musicaux_id'] == $genre_musicaux->id) selected @endif>
                                 {{ $count }} - {{ $genre->nom }}
                             </option>
                             @php

@@ -16,7 +16,7 @@ class LieuxController extends Controller
     }   
     public function create()
     {
-        return view('Lieux.FormLieux');
+        return view('lieux.FormLieux');
     }
     public function edit($id)
     {

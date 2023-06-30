@@ -33,7 +33,7 @@
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $evenement->typeEvenement->type_event }}</td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>
                     @if ($evenement->artistes->count() > 0)
-                    @foreach ($evenement->artistes as $artiste)
+                    @foreach ($evenement->pivot->artistes as $artiste)
                     {{ $artiste->nom }}<br>
                     @endforeach
                     @else
@@ -53,7 +53,7 @@
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid bg-gray-50'>
 
                      <!-- modifier -->
-                     @include('components.bouton.ButtonModifier', ['routeName' => 'GestionEvenement', 'itemId' => $evenement->id])
+                     @include('components.bouton.buttonModifier', ['routeName' => 'GestionEvenement', 'itemId' => $evenement->id])
                     </td>
 
                     <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>

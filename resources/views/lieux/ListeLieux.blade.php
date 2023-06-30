@@ -28,7 +28,7 @@
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{$lieux->updated_at}}</td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid bg-gray-50'>
                     <!-- modifier -->
-                    @include('components.bouton.ButtonModifier', ['routeName' => 'GestionLieux', 'itemId' => $lieux->id])
+                    @include('components.bouton.buttonModifier', ['routeName' => 'GestionLieux', 'itemId' => $lieux->id])
                 </td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid bg-gray-50'>
                     <!-- supprimer -->
