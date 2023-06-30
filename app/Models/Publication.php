@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class Publication extends Model
 {
     use HasFactory;
@@ -25,7 +22,6 @@ class Publication extends Model
         'resume_rs',
         'statut',
     ];
-
     /**
      * The attributes that should be cast to native types.
      *
@@ -42,21 +38,17 @@ class Publication extends Model
     ];
     public function SelectAllPublication(){
            $publication = Publication::select('*')->get();
-
            return $publication;
     }
     
-
     public function genreMusicauxes()
     {
         return $this->belongsToMany(GenreMusicaux::class);
     }
-
     public function artistes()
     {
         return $this->belongsToMany(Artiste::class);
     }
-
     public function media()
     {
         return $this->belongsTo(Media::class);
@@ -82,12 +74,10 @@ class Publication extends Model
     {
         return $this->belongsTo(TypePublication::class);
     }
-
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-
     public function lieux()
     {
         return $this->belongsTo(Lieux::class);

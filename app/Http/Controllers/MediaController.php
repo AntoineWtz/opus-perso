@@ -11,7 +11,7 @@ class MediaController extends Controller
     {
         $medias = Media::all();
 
-        return view('Media.ListeMedia')->with('medias', $medias);
+        return view('media.ListeMedia')->with('medias', $medias);
     }   
     public function create()
     {

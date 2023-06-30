@@ -36549,43 +36549,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector("div .modalgenremusical").classList.add("hidden");
   });
 
-  // variable art1 / btn new art1 / btn annuler art1
-  var newArtiste1 = document.getElementById("newArtiste-1");
-  var annulerArtiste1 = document.getElementById("annulerArtiste-1");
-  newArtiste1.addEventListener("click", function () {
-    document.querySelector("div .Artiste-1").classList.remove("hidden");
-  });
-  annulerArtiste1.addEventListener("click", function () {
-    document.querySelector("div .Artiste-1").classList.add("hidden");
-  });
-  // variable art2 / btn new art2 / btn annuler art2
-  var newArtiste2 = document.getElementById("newArtiste-2");
-  var annulerArtiste2 = document.getElementById("annulerArtiste-2");
-  newArtiste2.addEventListener("click", function () {
-    document.querySelector("div .Artiste-2").classList.remove("hidden");
-  });
-  annulerArtiste2.addEventListener("click", function () {
-    document.querySelector("div .Artiste-2").classList.add("hidden");
-  });
-  // variable art3 / btn new art3 / btn annuler art3
-  var newArtiste3 = document.getElementById("newArtiste-3");
-  var annulerArtiste3 = document.getElementById("annulerArtiste-3");
-  newArtiste3.addEventListener("click", function () {
-    document.querySelector("div .Artiste-3").classList.remove("hidden");
-  });
-  annulerArtiste3.addEventListener("click", function () {
-    document.querySelector("div .Artiste-3").classList.add("hidden");
-  });
-  // variable art4 / btn new art4 / btn annuler art4
-  var newArtiste4 = document.getElementById("newArtiste-4");
-  var annulerArtiste4 = document.getElementById("annulerArtiste-4");
-  newArtiste4.addEventListener("click", function () {
-    document.querySelector("div .Artiste-4").classList.remove("hidden");
-  });
-  annulerArtiste4.addEventListener("click", function () {
-    document.querySelector("div .Artiste-4").classList.add("hidden");
-  });
-
   //variable lieux/ btn new lieux / btn annuler lieux
   var newLieux = document.getElementById('newLieux');
   var annulerLieux = document.getElementById('annulerLieux');
@@ -36641,7 +36604,16 @@ window.validerFormulaire = function (event) {
     }
   }
   //vérif Artiste
-  if (!document.querySelector('.Artiste-1').classList.contains('hidden')) {}
+  if (!document.querySelector('.Artiste-1').classList.contains('hidden')) {
+    var artistesSelect = document.getElementById('artiste');
+    var artistesSelectionnes = Array.from(artistesSelect.selectedOptions).map(function (option) {
+      return option.value;
+    });
+    if (artistesSelectionnes.length === 0) {
+      document.querySelector('.redartiste').style.color = '#e53e3e';
+      valid = false;
+    }
+  }
 
   //vérif Galerie 1
   if (!document.querySelector('.modalGalerie').classList.contains('hidden')) {

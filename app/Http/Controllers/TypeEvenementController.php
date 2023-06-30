@@ -13,19 +13,19 @@ class TypeEvenementController extends Controller
     {
         $typeEvenements = TypeEvenement::all();
 
-        return view('TypeEvenement.ListeTypeEvenement')->with('typeEvenements', $typeEvenements);
+        return view('typeEvenement.ListeTypeEvenement')->with('typeEvenements', $typeEvenements);
     }
     
     public function create()
     {
-        return view('TypeEvenement.FormTypeEvenement');
+        return view('typeEvenement.FormTypeEvenement');
     }
 
     public function edit($id)
         {
     $typeEvenement = TypeEvenement::findOrFail($id);
 
-    return view('TypeEvenement.FormTypeEvenement')
+    return view('typeEvenement.FormTypeEvenement')
         ->with('typeEvenement', $typeEvenement);
     }
 
@@ -37,7 +37,7 @@ class TypeEvenementController extends Controller
             return redirect()->back()->with('error', 'Type Evenement introuvable');
         }
 
-        $typePublication->delete();
+        $typeEvenement->delete();
         return redirect()->back()->with('success', 'Type Evenement supprimé avec succès');
     }
 
@@ -67,11 +67,10 @@ class TypeEvenementController extends Controller
             'type_event' => 'required',
         ]);
     
-        $typeEvenement->type_pub = $request->type_pub;
-        $typeEvenement->couleur = $request->couleur;
+        $typeEvenement->type_event = $request->type_event;
     
         $typeEvenement->save();
     
-        return redirect()->back()->with('success', 'Le type evenement a été mis à jour avec succès.');
+        return redirect()->route('GestionTypeEvenement.index')->with('success', 'Le type evenement a été mis à jour avec succès.');
     }
 }

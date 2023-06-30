@@ -2,17 +2,16 @@
     <x-slot name="header">
         <h1 class="font-bold text-3xl text-center mt-2">
             @if (isset($infoAffichages))
-            Modifier Affichage : "{{ $infoAffichages[0]['titre'] }}"
+                Modifier Affichage : "{{ $infoAffichages[0]['titre'] }}"
             @else
-            Nouvelle info affichage
-
+                Nouvelle Info Affichage
             @endif
         </h1>
     </x-slot>
 
     <x-slot name="slot">
-        <form class="m-8" action="{{ isset($infoAffichage) ? route('GestionInfoAffichage.update', ['GestionInfoAffichage' => $infoAffichage->id]) : route('GestionInfoAffichage.store') }}" 
-            method="POST" enctype="multipart/form-data" class="flex flex-col">
+        <form class="m-8 flex flex-col" action="{{ isset($infoAffichage) ? route('GestionInfoAffichage.update', ['GestionInfoAffichage' => $infoAffichage->id]) : route('GestionInfoAffichage.store') }}" 
+            method="POST" enctype="multipart/form-data">
             @csrf
             @if(isset($infoAffichage))
             @method('PUT')
@@ -33,13 +32,13 @@
                 <h3 class="font-bold text-xl m-8 uppercase">Infos Affichage</h3>
                 
                 <!-- Champ Titre -->
-                <div class="m-4">
+                <div class="m-4 flex justify-center items-center">
                     <label for="titre" class="font-bold">Titre</label>
                     <input class="w-1/2 rounded border-gray-200 ml-4" type="text" name="titre" placeholder="Titre de l'info affichage" value="{{ isset($infoAffichage) ? $infoAffichage->titre : '' }}">
                 </div>
                 
                 <!-- Champ Zone -->
-                <div class="m-4">
+                <div class="m-4 flex justify-center items-center">
                     <label for="zone" class="font-bold">Zone</label>
                     <select name="zone" class="w-1/2 rounded border-gray-200 ml-4">
                         <option value="1">Carrousel 1</option>
@@ -48,7 +47,7 @@
                 </div>
 
                 <!-- Champ Visibilité -->
-                <div class="m-4">
+                <div class="m-4 flex justify-center items-center">
                     <label for="visibilite" class="font-bold">Visibilité</label>
                     <select name="visibilite" id="visibilite" class="w-1/2 rounded border-gray-200 ml-4">
                         <option value="Actif">Actif</option>
@@ -57,7 +56,7 @@
                 </div>
 
                 <!-- Champ Ordre -->
-                <div class="m-4">
+                <div class="m-4 flex justify-center items-center">
                     <label for="ordre" class="font-bold">Ordre</label>
                     <select name="ordre" id="ordre" class="w-1/2 rounded border-gray-200 ml-4">
                         <option value="1">n°1</option>
@@ -73,35 +72,40 @@
             <div>
                 <h3 class="font-bold text-xl m-8 uppercase">Infos Média</h3>
 
+                <!-- <div class="m-4 flex justify-center items-center">
+                    <label for="media_id"></label>
+                    <input name="media_id" value="{{ isset($infoAffichage) ? $infoAffichage->media_id : '' }}">
+                </div> -->
+
                 <!-- Champ Chemin Média -->
-                <div class="m-4">
+                <div class="m-4 flex justify-center items-center">
                     <label for="chemin" class="font-bold">Chemin</label>
-                    <input id="myDropzone chemin-media" type="file" name="chemin" class="w-1/2 rounded border-gray-200 ml-4">
+                    <input id="myDropzone" type="file" name="chemin" class="w-1/2 rounded border-gray-200 ml-4">
                 </div>
 
                 <!-- Champ Type Média -->
-                <div class="m-4">
+                <div class="m-4 flex justify-center items-center">
                     <label for="type_media_id" class="font-bold">Type média</label>
                     <select name="type_media_id" id="type_media_id" class="w-1/2 rounded border-gray-200 ml-4">
                         <option value="1">1 - Photo</option>
                         <option value="2">2 - Vidéo</option>
                     </select>
                 </div>
-
+                
                 <!-- Champ Balise Média -->
-                <div class="m-4">
+                <div class="m-4 flex justify-center items-center">
                     <label for="balise_alt" class="font-bold">Balise ALT</label>
                     <input type="text" name="balise_alt" id="balise_alt" class="w-1/2 rounded border-gray-200 ml-4">
                 </div>
 
                 <!-- Champ Modifieur -->
-                <div class="m-4">
+                <div class="m-4 flex justify-center items-center">
                     <label for="modifieur" class="font-bold">Modifieur</label>
                     <input type="text" name="modifieur" id="modifieur" class="w-1/2 rounded border-gray-200 ml-4">
                 </div>
 
                 <!-- Champ Photographe -->
-                <div class="m-4">
+                <div class="m-4 flex justify-center items-center">
                     <label for="photographe" class="font-bold">Photographe</label>
                     <input type="text" name="photographe" id="photographe" class="w-1/2 rounded border-gray-200 ml-4">
                 </div>
@@ -114,8 +118,8 @@
                 </div>
                 <div class="m-4">
                     @component('components.bouton.buttonValider')
+                    @endcomponent
                 </div>
-                @endcomponent
             </div>
         </form>
 
@@ -126,6 +130,8 @@
             </div>
         </div>
         @endif
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
         <script>
             const myDropzone = document.querySelector("#myDropzone")
             Dropzone.options.myDropzone = {

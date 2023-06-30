@@ -13,7 +13,7 @@ class ParametrageRSController extends Controller
     {
         $parametrageRSes = ParametrageRS::all();
 
-        return view('ParametrageRS.ListeParametrageRS')->with('parametrageRSes', $parametrageRSes);
+        return view('parametrageRS.ListeParametrageRS')->with('parametrageRSes', $parametrageRSes);
     }
 
     public function create()

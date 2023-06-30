@@ -4,6 +4,7 @@
             <p class="text-center">Listes des éléments À La Une</p>
     </x-slot>
     <x-slot name="slot">
+        {{-- Boutton Création --}}
         <!-- bouton nouvelle entrée -->
         <div class="m-8 text-center">
             <x-bouton.buttonNew routeName="GestionInfoAffichage" sectionName="InfoAffichage" />
@@ -29,7 +30,7 @@
                     <td class="px-4 border-l-2 border-y-2 border-solid bg-gray-100">{{$infoAffichage->updated_at}}</td>
                     <td class="px-4 border-l-2 border-y-2 border-solid bg-gray-100">
                         <!-- modifier -->
-                        @include('components.bouton.ButtonModifier', ['routeName' => 'GestionInfoAffichage', 'itemId' => $infoAffichage->id])
+                        @include('components.bouton.buttonModifier', ['routeName' => 'GestionInfoAffichage', 'itemId' => $infoAffichage->id])
                     </td>
                     <td class="px-4 border-l-2 border-y-2 border-solid bg-gray-100">
                         <!-- supprimer -->

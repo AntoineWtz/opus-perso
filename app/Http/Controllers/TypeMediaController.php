@@ -18,14 +18,14 @@ class TypeMediaController extends Controller
     
     public function create()
     {
-        return view('TypeMedia.FormTypeMedia');
+        return view('typeMedia.FormTypeMedia');
     }
 
     public function edit($id)
         {
     $typeMedia = TypeMedia::findOrFail($id);
 
-    return view('TypeMedia.FormTypeMedia')
+    return view('typeMedia.FormTypeMedia')
         ->with('typeMedia', $typeMedia);
     }
 
@@ -75,6 +75,6 @@ class TypeMediaController extends Controller
     
         $typeMedia->save();
     
-        return redirect()->back()->with('success', 'Le type type de Média a été mis à jour avec succès.');
+        return redirect()->route('GestionTypeMedia.index')->with('success', 'Le type type de Média a été mis à jour avec succès.');
     }
 }
