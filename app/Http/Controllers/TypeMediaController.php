@@ -75,6 +75,6 @@ class TypeMediaController extends Controller
     
         $typeMedia->save();
     
-        return redirect()->back()->with('success', 'Le type type de Média a été mis à jour avec succès.');
+        return redirect()->route('GestionTypeMedia.index')->with('success', 'Le type type de Média a été mis à jour avec succès.');
     }
 }
