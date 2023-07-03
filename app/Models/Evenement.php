@@ -15,13 +15,21 @@ class Evenement extends Model
      * @var array
      */
     protected $fillable = [
+        
         'type_evenement_id',
+
         'lieux_id',
+
         'titre',
+
         'date_event',
+
         'billeterie',
+
         'mise_en_avant',
+
         'visibilite',
+
     ];
 
     /**
@@ -33,6 +41,7 @@ class Evenement extends Model
         'id' => 'integer',
         'type_evenement_id' => 'integer',
         'lieux_id' => 'integer',
+        'artiste_id' => 'integer',
         'media_id' => 'integer',
         'date_event' => 'date',
     ];
@@ -51,7 +60,10 @@ class Evenement extends Model
     {
         return $this->belongsTo(Media::class);
     }
-
+    public function img()
+    {
+        return $this->belongsTo(Media::class, 'media_id');
+    }
     public function typeEvenement()
     {
         return $this->belongsTo(TypeEvenement::class);

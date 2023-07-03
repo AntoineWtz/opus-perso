@@ -12,44 +12,30 @@
         <table class="table-auto w-full">
             <thead>
                 <tr class='text-left'>
+                    <th class="w-8">Image d'aperçu</th>
                     <th class="w-8">Titre</th>
                     <th class="w-8">lieux</th>
                     <th class="w-8">Type d'événement</th>
-                    <th class="w-8">Artistes</th>
-                    <th class="w-8">Billetterie</th>
                     <th class="w-8">Mise en avant</th>
                     <th class="w-5">Date de l'événement</th>
                     <th class="w-5">Date de création</th>
-                    <th class="w-5">Date de modification</th>
                     <th class="w-2">Modifier</th>
                     <th class="w-2">Supprimer</th>
                 </tr>
             </thead>
-
-            @foreach ($evenements->reverse() as $evenement)
+            @foreach ($evenements as $evenement)
             <tr class='border-collapse text-left'>
+                <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid bg-gray-50'>
+                    @if ($evenement->img)
+                    <img src="{{ asset($evenement->img->chemin) }}" alt="{{ $evenement->img->balise_alt }}" class="w-16 h-16">
+                    @endif
+                    </td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $evenement->titre }}</td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $evenement->lieux->nom }}</td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $evenement->typeEvenement->type_event }}</td>
-                <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>
-                    @if ($evenement->artistes->count() > 0)
-                    @foreach ($evenement->pivot->artistes as $artiste)
-                    {{ $artiste->nom }}<br>
-                    @endforeach
-                    @else
-                    Aucun artiste associé
-                    @endif
-                </td>
-
-
-
-                <!-- <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $evenement->descriptif }}</td> -->
-                <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $evenement->billeterie }}</td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $evenement->mise_en_avant }}</td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $evenement->date_event }}</td>
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $evenement->created_at }}</td>
-                <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid  bg-gray-50'>{{ $evenement->updated_at }}</td>
-
                 <td class='px-4 border-l-2 border-y-2 border-gray-200 border-solid bg-gray-50'>
 
                      <!-- modifier -->
@@ -73,6 +59,6 @@
                 document.getElementById('form-delete-' + publicationId).submit();
                 }
             }
-                 </script>
+        </script>
     </x-slot>
 </x-app-layout>

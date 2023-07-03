@@ -58,7 +58,7 @@ class PublicationController extends Controller
     public function destroy($id){
          $publication = Publication::findOrFail($id);
          if(!$publication){
-              return redirect()->back()->with('erreur' , 'Publication');
+              return redirect()->back()->with('erreur' , 'Publication introuvable');
           }
           
           $publication->artistes()->detach();
