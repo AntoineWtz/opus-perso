@@ -30,6 +30,15 @@
                     <p>{{ $evenement->date_event }}</p>
                 @endforeach
             </div>
+            <!-- les dernières publications créés par l'user connecté -->
+            <!-- <div>
+                <h1>Vos articles</h1>
+                @foreach($publications as $publication)
+                    @if($publication->user_id == Auth::user()->id)
+                        <p>{{ $publication->titre }}</p>
+                @endif
+                @endforeach
+            </div> -->
 
         </div>
     </x-slot>

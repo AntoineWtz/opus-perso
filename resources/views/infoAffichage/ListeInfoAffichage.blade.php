@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-            <h1 class="text-center text-4xl m-4">Information Affichage</h1>
-            <p class="text-center">Listes des éléments À La Une</p>
+        <h1 class="text-center text-4xl m-4">Information Affichage</h1>
+        <p class="text-center">Listes des éléments À La Une</p>
     </x-slot>
     <x-slot name="slot">
         {{-- Boutton Création --}}
