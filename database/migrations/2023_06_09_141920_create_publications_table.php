@@ -21,8 +21,8 @@ class CreatePublicationsTable extends Migration
             $table->foreignId('evenement_id')->nullable()->constrained();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('lieux_id')->nullable()->constrained();
-            $table->foreignId('image_aperçu')->constrained('media');
-            $table->foreignId('video_aperçu')->nullable()->constrained('media');
+            $table->foreignId('image_apercu')->constrained('media');
+            $table->foreignId('video_apercu')->nullable()->constrained('media');
             $table->string('titre');
             $table->longText('descriptif')->nullable();
             $table->dateTime('date_parution')->nullable();
@@ -30,7 +30,6 @@ class CreatePublicationsTable extends Migration
             $table->text('resume_rs')->nullable();
             $table->enum('statut', ["Brouillon","Relecture","Valide"]);
             $table->timestamps();
-            $table->foreignId('evenement_id')->nullable()->constrained();
         });
 
         Schema::enableForeignKeyConstraints();

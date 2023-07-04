@@ -25,7 +25,7 @@
                     @if ($infoAffichage->zone === '1')
                     <div class="relative p-4">
                         <div class="flex flex-col items-center">
-                            <img src="{{ asset($infoAffichage->media->chemin) }}" alt="{{ $infoAffichage->media->balise_alt}}" class="w-full">
+                            <img src="{{ asset($infoAffichage->media->chemin) }}" alt="{{ $infoAffichage->media->balise_alt}}" class="w-full h-auto aspect-w-3 aspect-h-2">
                             <h2 class="absolute top-1/2 right-0 mt-12 px-2 py-1 text-lg text-black font-bold sm:text-2xl bg-yellow-500 mr-8">{{ $infoAffichage->titre }}</h2>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                 <div class="flex flex-wrap lg:justify-between items-center justify-center">
                 @foreach ($evenements->sortBy('date_event')->take(6) as $evenement)
                         <div class="flex flex-col items-center text-center">
-                            <img src="{{ asset($evenement->media->chemin) }}" alt="Photo de l'événement">
+                            <img src="{{ asset($evenement->media->chemin) }}" alt="Photo de l'événement" class="w-48 h-48">
                             <p class="text-xl">{{ $evenement->titre}}</p>
                             <p>{{ $evenement->lieux->nom }} {{ date('d/m/Y', strtotime($evenement->date_event)) }}</p>
                         </div>
