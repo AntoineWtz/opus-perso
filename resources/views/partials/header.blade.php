@@ -27,7 +27,7 @@
     <nav class="bg-black flex justify-center text-white text-center items-center">
         <a href="/" class="px-6 py-2 font-medium hover:bg-yellow-500 hover:text-black">Accueil</a>
         <a href="/publications" class="px-6 py-2 font-medium hover:bg-yellow-500 hover:text-black">Publications</a>
-        <a href="/concert" class="px-6 py-2 font-medium hover:bg-yellow-500 hover:text-black">Agenda</a>
+        <a href="/agenda" class="px-6 py-2 font-medium hover:bg-yellow-500 hover:text-black">Agenda</a>
         <a href="/contact" class="px-6 py-2 font-medium hover:bg-yellow-500 hover:text-black">Contact</a>
     </nav>
     <!-- logo aligné à gauche, positionné au centre des deux bandeaux de couleur -->

@@ -18,6 +18,7 @@ use App\Http\Controllers\ParametrageRSController;
 use App\Http\Controllers\TypeEvenementController;
 use App\Http\Controllers\TypeMediaController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AgendaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,9 @@ Route::get('/publication', function () {
 Route::get('/publications', function () {
     return view('publications');
 });
+
+Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda.index');
+Route::get('/agenda/result', [AgendaController::class, 'search'])->name('agenda.search');
 
 Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact.showContactForm');
 Route::post('/contact', [ContactController::class, 'submitContactForm'])->name('contact.submitContactForm');

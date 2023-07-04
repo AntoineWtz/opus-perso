@@ -19,104 +19,102 @@
         @include('partials.header')
         <div class="mt-16 mb-8 mx-auto container">
 
-            <div class="flex flex-wrap m-8 mx-auto bg-yellow-500 justify-evenly items-center">
-                <div class="flex flex-col p-4">
+            <div class="m-8 mx-auto bg-yellow-500">
+                <form id="search-form" action="{{ route('agenda.index') }}"
+                    class="flex flex-wrap mx-auto w-full justify-evenly items-center content-evenly " method="GET">
+                    <div class="flex flex-col py-4 px-2">
 
-                    <label for="periodes">
-                        Période : </label>
-                    <select id="periodes" class="px-4 py-2">
-                        <option value="">Toutes les périodes</option>
-                        <option value="bla">bla</option>
-                        <option value="blabla">blabla</option>
-                        <option value="blablabla">blablabla</option>
-                        <option value="blaaaaaah">blaaaaaah</option>
-                        <option value="blu">blu</option>
-                    </select>
-                </div>
+                        <label for="periodes">
+                            Période :
+                            <input type="date" id="date_start" name="date_start"
+                                value="{{ old('date_start', $dateStart ?? '') }}">
+                            <input type="date" id="date_end" name="date_end"
+                                value="{{ old('date_end', $dateEnd ?? '') }}">
+                        </label>
 
-                <div class="flex flex-col p-4">
-                    <label for="style-musical">
-                        Style musical :</label>
-                    <select id="style-musical" class="px-4 py-2">
-                        <option value="">Tous les styles</option>
-                   
-                        <option value="rap">Rap</option>
-                        <option value="pop-rock">Pop Rock</option>
-                        <option value="electro">Electro</option>
-                        <option value="jazz">Jazz</option>
-                        <option value="metal">Metal</option>
-                    </select>
+                    </div>
 
-                </div>
-             
-                <div class="flex flex-col p-4 w-1/3">
-                   
-                    <label for="artistes">
-                        Artiste : </label>
-                    <input id="artistes" class="px-2 py-2" placeholder="Rechercher votre artiste préféré">
-                    
-                </div>
-             
+                    <div class="flex flex-col py-4 px-2">
+                        <label for="style-musical">
+                            Style musical :
+                            <select id="genre_musical" name="genre_musical" class="px-4 py-2">
+                                <option value="">Tous les styles</option>
+                                @foreach($genre_musicaux as $genre_musical)
+                                <!-- ucfirst = Mettre la première lettre de chaque style en Majuscule -->
+                                <option value="{{ $genre_musical }}">{{ ucfirst($genre_musical['nom']) }}</option>
+                                @endforeach
+                            </select>
+                        </label>
+
+                    </div>
+
+                    <div class="flex flex-col py-4 px-2">
+                        <label for="artiste" class="">
+                            Artiste :
+                            <input id="artiste" name="artiste" class="px-2 py-2 placeholder:text-base"
+                                placeholder="Rechercher votre artiste">
+                        </label>
+                    </div>
+
+                    <div class="flex flex-col py-4 px-2">
+                        <button type="submit" class="transform transition-all hover:scale-125">
+                            <img src="{{ asset('asset/icons/recherche-agenda.png') }}" alt="Article" class="h-6 w-6">
+                        </button>
+
+                    </div>
+                </form>
             </div>
+            @if (request()->filled('genre_musical') || request()->filled('artiste') || (request()->filled('date_start')
+            && request()->filled('date_end')))
+            @if (session('error'))
+            <div class="text-2xl text-red-500 font-bold mb-2 flex justify-center">
+                {!! session('error') !!}
+                <br><br>
+            </div>
+            @endif
+            @if (isset($evenements) && !$evenements->isEmpty())
+            <h2 class="text-2xl font-bold mb-2 flex items-center justify-center">
+                {{ count($evenements) }} événement{{ count($evenements) > 1 ? 's' : '' }} trouvé{{ count($evenements) >
+                1 ? 's' : '' }}
+            </h2>
+            @else
+            <h2 class="text-2xl font-bold mb-2 flex items-center justify-center">
+                Aucun événement trouvé
+            </h2>
+            @endif
+            @endif
 
-
+            @if(isset($evenements))
             <!-- Premier bloc -->
+            @foreach ($evenements as $evenement)
             <div class="max-w-4xl mx-auto mb-8">
                 <!-- mx-auto = centre horizontalement la div -->
-                <img src="{{ asset('asset/imageConcert/Worakls.jpg') }}" alt="Image de l'événement"
-                    class="w-full h-auto object-contain mb-4">
-                <h3 class="text-2xl text-yellow-500 font-bold mb-2 flex items-center justify-center"> Worakls @Zénith -
-                    15
-                    juin 2023
+                <!-- <img src="{{ asset('asset/imageConcert/Worakls.jpg') }}" alt="Image de l'événement"
+                    class="w-full h-auto object-contain mb-4"> -->
+                <!-- $evenement->media->chemin -->
+                @foreach ($evenement->artistes as $artiste)
+                <h3 class="text-2xl text-yellow-500 font-bold mb-2 flex items-center justify-center">
+
+                    {{ $artiste->nom }}
+                    @endforeach
+                    @ {{ $evenement->lieux->nom }}
+                    - {{ $evenement->date_event->format('d/m/Y') }}
+ 
                     <a href="" target="_blank" class="ml-4 transform transition-all hover:scale-125">
-                        <img src="{{ asset('asset/icons/lien-alt-bk.png') }}" alt="Article" class="h-6 w-6">
+                        <img src="{{ asset('asset/icons/lien.png') }}" alt="Article" class="h-6 w-6">
                     </a>
-                    <a href="" target="_blank" class="ml-4 transform transition-all hover:scale-125">
-                        <img src="{{ asset('asset/icons/billet-bk.png') }}" alt="Article" class="h-6 w-6">
+                    @if($evenement->billeterie !==NULL) 
+                    <a href="{{ $evenement->billeterie}}" target="_blank" class="ml-4 transform transition-all hover:scale-125">
+                        <img src="{{ asset('asset/icons/billet.png') }}" alt="Article" class="h-6 w-6">
                     </a>
+                    @endif
                 </h3>
                 <hr class="max-w-xl mx-auto">
                 <!-- Crée une ligne horizontale pour séparer le contenu : max-w-lg définit une largeur max
                 mx-auto =centre horizontalement l'élément-->
             </div>
-
-            <!-- Deuxième bloc -->
-            <div class="max-w-4xl mx-auto mb-8">
-                <img src="{{ asset('asset/imageConcert/Boris-Brejcha.jpg') }}" alt="Image de l'événement"
-                    class="w-full h-auto object-contain mb-4">
-                <!-- src = chemin de l'image, alt = Ce qui sera afficher si 0 chargement d'image
-                w-full = largueur défini à 100% de la largeur de son conteneur,
-                h-auto = hauteur ajusté automatiquement tout en gardant les proportions de l'img
-                object-contain= assure que l'image est entièrement visible dans son conteneur, mb-4 = ajoute un marge inférieur de 4 unités-->
-                <h3 class="text-2xl text-yellow-500 font-bold mb-2 flex items-center justify-center"> Boris Brejcha
-                    @Bikini
-                    - 25 décembre 2023
-                    <a href="" target="_blank" class="ml-4 transform transition-all hover:scale-125">
-                        <img src="{{ asset('asset/icons/lien-alt-bk.png') }}" alt="Article" class="h-6 w-6">
-                    </a>
-                    <a href="" target="_blank" class="ml-4 transform transition-all hover:scale-125">
-                        <img src="{{ asset('asset/icons/billet-bk.png') }}" alt="Article" class="h-6 w-6">
-                    </a>
-                </h3>
-                <hr class="max-w-lg mx-auto">
-            </div>
-            <!-- Troisième bloc -->
-            <div class="max-w-4xl mx-auto mb-8">
-                <img src="{{ asset('asset/imageConcert/The-Kooks.jpg') }}" alt="Image de l'événement"
-                    class="w-full h-auto object-contain mb-4">
-                <h3 class="text-2xl text-yellow-500 font-bold mb-2 flex items-center justify-center"> Mandarine
-                    @Connexion
-                    Live - 1 avril 2024
-                    <a href="" target="_blank" class="ml-4 transform transition-all hover:scale-125">
-                        <img src="{{ asset('asset/icons/lien-alt-bk.png') }}" alt="Article" class="h-6 w-6">
-                    </a>
-                    <a href="" target="_blank" class="ml-4 transform transition-all hover:scale-125">
-                        <img src="{{ asset('asset/icons/billet-bk.png') }}" alt="Article" class="h-6 w-6">
-                    </a>
-                </h3>
-
-                <hr class="max-w-lg mx-auto">
-            </div>
+            @endforeach
+            @endif
         </div>
         @include('partials.modal')
 
