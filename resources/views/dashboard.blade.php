@@ -1,45 +1,43 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="text-center text-4xl">Page d'accueil</h1>
+        <h1 class='text-center text-4xl m-4'>Page d'Accueil</h1>
+        <p class="text-center">Bienvenue dans votre espace Opus Musiques</p>
     </x-slot>
     <x-slot name="slot">
-        <div class='gap-2'>
-            <div class="absolute left-200 top-20 text-center bg-yellow-300 w-30">
-                <h1>Votre Profil</h1>
-                <h2 class="ml-4 mt-3 text-l">Nom :</h2>
-                <p class="ml-4 mt-1 text-l">{{ Auth::user()->nom }}</p>
-                <h2 class="ml-4 mt-3 text-l">Prénom :</h2>
-                <p class="ml-4 mt-1 text-l">{{ Auth::user()->prenom }}</p>
-                <h2 class="ml-4 mt-3 text-l">Email :</h2>
-                <p class="ml-4 mt-1 text-l">{{ Auth::user()->email }}</p>
-                <h2 class="ml-4 mt-3 text-l">Fonction :</h2>
-                <p class="ml-4 mt-1 text-l">{{ Auth::user()->fonction }}</p>
-                <h2 class="ml-4 mt-3 text-l">Descriptif :</h2>
-                <p class="ml-4 mt-1 text-l">{{ Auth::user()->descriptif }}</p>
+        <div class="flex flex-wrap justify-evenly items-stretch m-8 mx-auto">
+            <div class="bg-yellow-300 p-4 rounded-lg shadow-lg m-4">
+                <h1 class="text-xl m-4 text-center">Votre Profil</h1>
+                <p>Nom : {{ Auth::user()->nom }}</p>
+                <p>Prénom : {{ Auth::user()->prenom }}</p>
+                <p>Email : {{ Auth::user()->email }}</p>
+                <p>Fonction {{ Auth::user()->fonction }}</p>
+                <p>Notes : {{ Auth::user()->descriptif }}</p>
             </div>
-            <div class="absolute top-20 right-0 text-center bg-yellow-300 w-30 h-30">
-                <h1>Les Dernières Publications</h1>
-                @foreach($publications->take(5) as $publication)
-                    <p>{{ $publication->titre }}</p>
-                @endforeach
-            </div>
-            <div class="absolute bottom-0 right-0 text-center bg-yellow-300 w-30 h-30">
-                <h1>Les Prochains Événements</h1>
-                @foreach($evenements->take(5) as $evenement)
-                    <p>{{ $evenement->titre }}</p>
-                    <p>{{ $evenement->date_event }}</p>
-                @endforeach
-            </div>
-            <!-- les dernières publications créés par l'user connecté -->
-            <!-- <div>
-                <h1>Vos articles</h1>
+            <div class="bg-yellow-300 p-4 rounded-lg shadow-lg m-4">
+                <h1 class="text-xl m-4 text-center">Vos dernières créations</h1>
                 @foreach($publications as $publication)
                     @if($publication->user_id == Auth::user()->id)
-                        <p>{{ $publication->titre }}</p>
-                @endif
+                        <p class="mb-2">● {{ $publication->titre }} - {{ $publication->typePublication->type_pub }}</p>
+                    @endif
                 @endforeach
-            </div> -->
-
+            </div>
+        </div>
+        <div class="flex flex-wrap justify-evenly items-baseline m-8 mx-auto">
+            <div class="bg-yellow-300 p-4 rounded-lg shadow-lg m-4">
+                <h1 class="text-xl m-4 text-center">Les Dernières Publications</h1>
+                @foreach($publications->take(5) as $publication)
+                    <p class="mb-2">● {{ $publication->titre }}</p>
+                @endforeach
+            </div>
+            <div class="bg-yellow-300 p-4 rounded-lg shadow-lg m-4">
+                <h1 class="text-xl m-4 text-center">Les Prochains Événements</h1>
+                @foreach($evenements->take(5) as $evenement)
+                    <div>
+                        <p>● {{ $evenement->titre }}</p>
+                        <p class="mb-2">{{ $evenement->lieux->nom }} - {{ date('d/m/Y', strtotime($evenement->date_event)) }}</p>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </x-slot>
 </x-app-layout>
