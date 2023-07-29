@@ -89,8 +89,8 @@
             @foreach ($evenements as $evenement)
             <div class="max-w-4xl mx-auto mb-8">
                 <!-- mx-auto = centre horizontalement la div -->
-                <!-- <img src="{{ asset('asset/imageConcert/Worakls.jpg') }}" alt="Image de l'événement"
-                    class="w-full h-auto object-contain mb-4"> -->
+                <img src="{{ asset('asset/imageConcert/Worakls.jpg') }}" alt="Image de l'événement"
+                    class="w-full h-auto object-contain mb-4">
                 <!-- $evenement->media->chemin -->
                 @foreach ($evenement->artistes as $artiste)
                 <h3 class="text-2xl text-yellow-500 font-bold mb-2 flex items-center justify-center">
@@ -101,11 +101,11 @@
                     - {{ $evenement->date_event->format('d/m/Y') }}
  
                     <a href="" target="_blank" class="ml-4 transform transition-all hover:scale-125">
-                        <img src="{{ asset('asset/icons/lien.png') }}" alt="Article" class="h-6 w-6">
+                        <img src="{{ asset('asset/icons/lien.png') }}" alt="Rechercher" class="h-6 w-6">
                     </a>
                     @if($evenement->billeterie !==NULL) 
                     <a href="{{ $evenement->billeterie}}" target="_blank" class="ml-4 transform transition-all hover:scale-125">
-                        <img src="{{ asset('asset/icons/billet.png') }}" alt="Article" class="h-6 w-6">
+                        <img src="{{ asset('asset/icons/billet.png') }}" alt="Rechercher" class="h-6 w-6">
                     </a>
                     @endif
                 </h3>
